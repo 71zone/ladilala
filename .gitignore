@@ -1,0 +1,13 @@
+/bin/
+/dist/
+*.exe
+node_modules/
+.DS_Store
+.orca/signals/
+.orca/logs/
+.orca/state.json
+
+/app/dist/
+/app/bin/
+*.key
+dist-release/
