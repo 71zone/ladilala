@@ -1,0 +1,150 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Dark mode: shadcn-vue convention, a .dark class on <html> (toggled by useDark in src/theme.ts). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Reka UI exposes state as data-state / data-orientation; the generated shadcn-vue classes use these short variants. */
+@custom-variant data-open { &:where([data-state="open"]) { @slot; } }
+@custom-variant data-closed { &:where([data-state="closed"]) { @slot; } }
+@custom-variant data-checked { &:where([data-state="checked"]) { @slot; } }
+@custom-variant data-unchecked { &:where([data-state="unchecked"]) { @slot; } }
+@custom-variant data-active { &:where([data-state="active"]) { @slot; } }
+@custom-variant data-horizontal { &:where([data-orientation="horizontal"]) { @slot; } }
+@custom-variant data-vertical { &:where([data-orientation="vertical"]) { @slot; } }
+
+/* ===== THEME: macOS system look, flat fills only. All colours are shadcn variables; retune here. =====
+   Light: window #f0f0f1 (sidebar/muted), content #fafafa (background), grouped rows white (card).
+   Dark:  window #1e1e20, sidebar #2a2a2d, content #232325, grouped rows #2c2c2e. One accent: system blue. */
+:root {
+  --radius: 6px;          /* controls; cards and sheets use --radius-card */
+  --radius-card: 10px;
+  --background: #fafafa;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #0a64d6;               /* fills: white text 5.5:1 */
+  --primary-foreground: #ffffff;
+  --link: #0a64d6;                  /* accent-coloured text and icons */
+  --secondary: #ececee;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f0f0f1;
+  --muted-foreground: #636366;      /* secondary label, 5.4:1 on content */
+  --accent: rgb(0 0 0 / 0.06);      /* hover tint */
+  --accent-foreground: #1d1d1f;
+  --destructive: #c0262d;
+  --success: #1e7b46;
+  --warning: #8a5a00;
+  --idle: #6e6e73;
+  --border: rgb(0 0 0 / 0.1);
+  --input: rgb(0 0 0 / 0.42);       /* control borders, 3:1 on white */
+  --switch-off: #8e8e93;            /* off track, 3.3:1 on card */
+  --switch-on: #0a64d6;
+  --ring: #0a64d6;                  /* focus ring = 3px translucent accent */
+  --sidebar: #f0f0f1;
+  --sidebar-tint: rgb(240 240 241 / 0.82);
+  --sidebar-foreground: #1d1d1f;
+  --sidebar-primary: #0a64d6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(0 0 0 / 0.08);
+  --sidebar-accent-foreground: #1d1d1f;
+  --sidebar-border: rgb(0 0 0 / 0.1);
+  --sidebar-ring: #0a64d6;
+  --toolbar-tint: rgb(250 250 250 / 0.85);
+  --chart-1: #0a64d6; --chart-2: #1e7b46; --chart-3: #8a5a00; --chart-4: #c0262d; --chart-5: #6e6e73;
+}
+.dark {
+  --background: #232325;
+  --foreground: #f5f5f7;
+  --card: #2c2c2e;
+  --card-foreground: #f5f5f7;
+  --popover: #2c2c2e;
+  --popover-foreground: #f5f5f7;
+  --primary: #1f6fd6;
+  --primary-foreground: #ffffff;
+  --link: #6cb0ff;
+  --secondary: #3a3a3c;
+  --secondary-foreground: #f5f5f7;
+  --muted: #1e1e20;
+  --muted-foreground: #a1a1a6;
+  --accent: rgb(255 255 255 / 0.08);
+  --accent-foreground: #f5f5f7;
+  --destructive: #ec8383;
+  --success: #5bbf8a;
+  --warning: #d9a24a;
+  --idle: #8e8e93;
+  --border: rgb(255 255 255 / 0.1);
+  --input: rgb(255 255 255 / 0.45); /* control borders, 3:1+ on card */
+  --switch-off: #7a7a80;            /* off track, 3.2:1 on card */
+  --switch-on: #3b8cf0;             /* on track, 4:1 on card */
+  --ring: #4a9eff;
+  --sidebar: #2a2a2d;
+  --sidebar-tint: rgb(42 42 45 / 0.82);
+  --sidebar-foreground: #f5f5f7;
+  --sidebar-primary: #1f6fd6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(255 255 255 / 0.1);
+  --sidebar-accent-foreground: #f5f5f7;
+  --sidebar-border: rgb(255 255 255 / 0.1);
+  --sidebar-ring: #4a9eff;
+  --toolbar-tint: rgb(35 35 37 / 0.85);
+  --chart-1: #6cb0ff; --chart-2: #5bbf8a; --chart-3: #d9a24a; --chart-4: #ec8383; --chart-5: #8e8e93;
+}
+
+@theme inline {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", Inter, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  /* type scale: 11 caption, 12 secondary, 13 body, 15-20 titles */
+  --text-xs: 0.75rem; --text-xs--line-height: 1.4;
+  --text-sm: 0.8125rem; --text-sm--line-height: 1.4;
+  --text-base: 0.8125rem; --text-base--line-height: 1.4;
+  --text-lg: 0.9375rem; --text-lg--line-height: 1.35;
+  --text-xl: 1.25rem; --text-xl--line-height: 1.3;
+  /* one radius scale */
+  --radius-xs: 3px; --radius-sm: 4px; --radius-md: var(--radius); --radius-lg: var(--radius);
+  --radius-xl: var(--radius-card); --radius-2xl: var(--radius-card); --radius-3xl: var(--radius-card); --radius-4xl: 9999px;
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-link: var(--link);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-success: var(--success); --color-warning: var(--warning); --color-idle: var(--idle);
+  --color-switch-off: var(--switch-off); --color-switch-on: var(--switch-on);
+  --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar); --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary); --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent); --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border); --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3); --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html, body, #app { height: 100%; }
+  body { @apply bg-muted text-foreground font-sans text-sm; overflow: hidden; -webkit-font-smoothing: antialiased; }
+  /* one thin stroke for every lucide icon */
+  svg.lucide, .lucide { stroke-width: 1.6; }
+  /* Vietnamese: stacked tone marks rise above the line box; keep them inside the clip of truncated text, and wrap helper text evenly. */
+  :lang(vi) .truncate { padding-block: 3px; margin-block: -3px; }
+  p { text-wrap: pretty; }
+  ::placeholder { color: var(--muted-foreground); opacity: 1; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; } ::-webkit-scrollbar-thumb { background: var(--input); border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+}
+
+/* ===== VIBRANCY: the only translucency in the app (sidebar and window toolbar). Flat tint + 20px blur + hairline; opaque fallback. ===== */
+@utility vibrancy-sidebar {
+  background: var(--sidebar-tint);
+  backdrop-filter: blur(20px);
+  @media (prefers-reduced-transparency: reduce) { backdrop-filter: none; background: var(--sidebar); }
+}
+@utility vibrancy-toolbar {
+  background: var(--toolbar-tint);
+  backdrop-filter: blur(20px);
+  @media (prefers-reduced-transparency: reduce) { backdrop-filter: none; background: var(--background); }
+}

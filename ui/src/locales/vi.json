@@ -1,0 +1,1513 @@
+{
+  "common": {
+    "close": "Đóng",
+    "toggleSidebar": "Ẩn/hiện thanh bên",
+    "cancel": "Hủy",
+    "prototype": "bản thử",
+    "toggleDark": "Bật/tắt chế độ tối",
+    "search": "Tìm kiếm",
+    "start": "Bắt đầu",
+    "stop": "Dừng",
+    "moreActions": "Thêm thao tác",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "import": "Nhập",
+    "export": "Xuất",
+    "remove": "Gỡ",
+    "run": "Chạy",
+    "resume": "Tiếp tục",
+    "pause": "Tạm dừng",
+    "hide": "Ẩn",
+    "done": "Xong",
+    "notifications": "Thông báo"
+  },
+  "nav": {
+    "sidebar": "Thanh bên",
+    "sidebarDesc": "Thanh bên trên điện thoại.",
+    "profiles": "Profile",
+    "proxies": "Proxy",
+    "macros": "Macro",
+    "runs": "Lượt chạy",
+    "engines": "Engine",
+    "settings": "Cài đặt",
+    "library": "Thư viện",
+    "system": "Hệ thống",
+    "running": "{n} đang chạy"
+  },
+  "language": {
+    "label": "Ngôn ngữ",
+    "groupTitle": "Ngôn ngữ / Language",
+    "sub": "Áp dụng ngay cho toàn bộ ứng dụng",
+    "help": "Tiếng Việt là mặc định. Lựa chọn được ghi nhớ trên máy này."
+  },
+  "palette": {
+    "search": "Tìm kiếm",
+    "title": "Chuyển nhanh",
+    "description": "Đến một màn hình, một profile hoặc một thao tác",
+    "placeholder": "Đến màn hình, profile hoặc thao tác",
+    "empty": "Không có kết quả.",
+    "screens": "Màn hình",
+    "actions": "Thao tác",
+    "profiles": "Profile",
+    "newProfile": "Tạo profile mới",
+    "doctor": "Mở Doctor",
+    "checkUpdates": "Kiểm tra cập nhật ứng dụng",
+    "updateSettings": "Mở cài đặt cập nhật ứng dụng",
+    "toggleDark": "Bật/tắt chế độ tối",
+    "changeLanguage": "Đổi ngôn ngữ"
+  },
+  "simulate": {
+    "button": "Giả lập sự cố",
+    "title": "Giả lập một sự cố",
+    "reset": "Đặt lại tất cả",
+    "then": "Sau đó chạy cập nhật, chẩn đoán hoặc Chạy thử trong Engine.",
+    "appTitle": "Cập nhật ứng dụng (chính Ladilala)",
+    "sims": {
+      "network": {
+        "label": "Mất mạng",
+        "hint": "Tải xuống và kiểm tra máy chủ đều lỗi"
+      },
+      "checksum": {
+        "label": "Sai checksum",
+        "hint": "Tệp tải về không khớp SHA-256"
+      },
+      "policy": {
+        "label": "Bị chính sách chặn",
+        "hint": "Chính sách IT cấm gỡ lỗi từ xa"
+      },
+      "disk": {
+        "label": "Đầy ổ đĩa",
+        "hint": "Giải nén lỗi, còn ít dung lượng"
+      },
+      "orphan": {
+        "label": "Tiến trình mồ côi",
+        "hint": "Tiến trình trình duyệt cũ vẫn chạy"
+      },
+      "lock": {
+        "label": "Khóa cũ còn sót",
+        "hint": "Profile bị khóa bởi phiên đã sập"
+      },
+      "hang": {
+        "label": "Engine bị treo",
+        "hint": "Trình duyệt mở lên nhưng không phản hồi"
+      }
+    },
+    "app": {
+      "stable": {
+        "label": "Có bản cập nhật (Stable)",
+        "hint": "Ladilala 0.5.0 sẵn sàng để tải"
+      },
+      "beta": {
+        "label": "Có bản Beta mới",
+        "hint": "0.5.0-beta.2 trên kênh Beta"
+      },
+      "netfail": {
+        "label": "Tải xuống lỗi (mạng)",
+        "hint": "Mất kết nối ở mức 38%"
+      },
+      "sigfail": {
+        "label": "Chữ ký không hợp lệ",
+        "hint": "Tệp tải về không do chúng tôi ký"
+      },
+      "disk": {
+        "label": "Không đủ dung lượng",
+        "hint": "Cần 340 MB, còn trống 120 MB"
+      },
+      "engine": {
+        "label": "Cần engine mới hơn",
+        "hint": "Cần engine 165 trở lên, đang có 157"
+      },
+      "ready": {
+        "label": "Bản cập nhật đã sẵn sàng cài",
+        "hint": "Đã tải và xác minh, chờ khởi động lại"
+      },
+      "none": {
+        "label": "Không có bản mới (đã cập nhật)",
+        "hint": "Kiểm tra không thấy gì mới"
+      },
+      "unconfigured": {
+        "label": "Chưa đặt nguồn cập nhật",
+        "hint": "Cập nhật tắt cho đến khi đặt URL nguồn"
+      }
+    }
+  },
+  "status": {
+    "done": "xong",
+    "uncertain": "chưa rõ"
+  },
+  "proxyStatus": {
+    "ok": "hoạt động",
+    "down": "lỗi",
+    "checking": "đang kiểm tra",
+    "untested": "chưa kiểm tra"
+  },
+  "noise": {
+    "kinds": {
+      "canvas": "Canvas",
+      "audio": "AudioContext",
+      "webgl": "WebGL",
+      "fonts": "Phông chữ",
+      "rects": "Client rects",
+      "webrtc": "WebRTC"
+    },
+    "modes": {
+      "noise": "nhiễu",
+      "real": "thật",
+      "off": "tắt"
+    }
+  },
+  "errors": {
+    "proxyDown": "Proxy lỗi: đã chặn, ngắt kết nối an toàn",
+    "engineExit": "Engine đã thoát (mã {code})",
+    "run": {
+      "state": "Không làm được khi lượt chạy đang ở trạng thái {state}.",
+      "notFound": "Lượt chạy này không còn nữa.",
+      "noRows": "Khoảng dòng đã chọn không có dòng nào.",
+      "noProfiles": "Hãy chọn ít nhất một profile.",
+      "tooFewProfiles": "Số phiên song song nhiều hơn số profile.",
+      "notUncertain": "Dòng này không ở trạng thái chưa rõ.",
+      "guard": "Trang vẫn chưa đạt điều kiện của macro. Hãy sửa trang rồi trả lại lần nữa.",
+      "browserDied": "Trình duyệt đã tự đóng."
+    },
+    "invalid": "Dữ liệu nhập chưa hợp lệ.",
+    "notFound": "Không tìm thấy.",
+    "internal": "Có lỗi xảy ra. Hãy thử lại.",
+    "profileConflict": {
+      "name": "Tên này đã được dùng.",
+      "running": "Hãy dừng profile trước.",
+      "starting": "Profile đang khởi động.",
+      "duplicate": "Proxy này đã có trong kho."
+    },
+    "profile": {
+      "locked": "Một trình duyệt khác đang dùng thư mục của profile này.",
+      "dataDir": "Thư mục dữ liệu của profile không hợp lệ."
+    },
+    "proxy": {
+      "down": "Không kết nối được proxy. Profile vẫn đóng.",
+      "auth": "Proxy từ chối đăng nhập. Hãy kiểm tra user và mật khẩu."
+    },
+    "profileEngine": {
+      "notFound": "Không tìm thấy Chrome hoặc Edge trên máy này.",
+      "policyBlocked": "Chính sách của công ty chặn gỡ lỗi từ xa trên trình duyệt này.",
+      "hang": "Trình duyệt không vượt qua bước kiểm tra fingerprint."
+    },
+    "network": "Mạng bị lỗi. Hãy thử lại.",
+    "data": {
+      "format": "Không đọc được tệp dữ liệu. Hãy kiểm tra loại tệp, bảng mã và trang tính.",
+      "auth": "Máy chủ từ chối đăng nhập. Hãy kiểm tra token hoặc mật khẩu."
+    },
+    "macro": {
+      "origin": "Có bước đi ra ngoài các trang macro được phép dùng.",
+      "missingColumn": "Một dòng thiếu giá trị cho cột dữ liệu mà macro cần."
+    },
+    "engine": {
+      "network": "Không kết nối được máy chủ tải. Hãy kiểm tra mạng rồi thử lại.",
+      "download": "Tải xuống thất bại. Hãy thử lại.",
+      "checksum": "Tệp tải về bị hỏng.",
+      "disk": "Không đủ dung lượng đĩa.",
+      "policy": "Một chính sách trên máy này chặn gỡ lỗi từ xa.",
+      "selftest": "Trình duyệt mới không khởi động.",
+      "installed": "Phiên bản này đã được cài.",
+      "versionGone": "Phiên bản này không còn được cung cấp.",
+      "binary": "Không thấy tệp trình duyệt.",
+      "timeout": "Trình duyệt không phản hồi kịp.",
+      "unpack": "Không giải nén được tệp zip.",
+      "missing": "Engine này chưa được cài.",
+      "unavailable": "Engine này chưa có.",
+      "system": "Hệ thống quản lý trình duyệt này. Ladilala không cài hay gỡ được.",
+      "noPrevious": "Không có phiên bản trước để khôi phục.",
+      "inUse": "Tệp trình duyệt đang được dùng.",
+      "platform": "Chrome for Testing không có bản dựng cho hệ thống này.",
+      "notRollback": "Chỉ Chrome for Testing giữ các bản cũ.",
+      "closing": "Ứng dụng đang đóng.",
+      "internal": "Tác vụ engine thất bại. Hãy thử lại.",
+      "jobRunning": "Một lượt cài đang chạy.",
+      "runActive": "Một lượt chạy đang dùng trình duyệt. Hãy dừng lượt chạy trước."
+    },
+    "update": {
+      "notConfigured": "Chưa đặt nguồn cập nhật. Hãy đặt trong Cài đặt.",
+      "network": "Không kết nối được máy chủ cập nhật.",
+      "signature": "Bản cập nhật không qua kiểm tra chữ ký nên chưa được cài.",
+      "disk": "Không đủ dung lượng đĩa cho bản cập nhật.",
+      "noRelease": "Không có bản cập nhật để cài. Hãy kiểm tra lại.",
+      "restart": "Ladilala không khởi động lại được để cài bản cập nhật.",
+      "runActive": "Có lượt chạy đang hoạt động. Hãy đợi, hoặc khởi động lại khi rảnh.",
+      "notReady": "Chưa có bản cập nhật nào sẵn sàng để cài."
+    },
+    "settings": {
+      "dataFolder": "Không dùng được thư mục này. Hãy chọn thư mục bạn ghi được."
+    }
+  },
+  "checks": {
+    "uaOk": "Phiên bản UA khớp engine {engine}: ổn",
+    "uaMismatch": "Phiên bản UA {major} khác engine {engine}",
+    "gpuOk": "GPU khớp nền tảng: ổn",
+    "gpuBad": "GPU \"{gpu}\" không tồn tại trên {os}",
+    "uaPlatformOk": "Nền tảng trong UA khớp preset hệ điều hành: ổn",
+    "uaPlatformBad": "Nền tảng trong UA không khớp {os}",
+    "noProxy": "Không có proxy: sẽ dùng IP thật",
+    "proxyDown": "Proxy đang lỗi: phiên sẽ bị ngắt an toàn",
+    "proxyOk": "Proxy kết nối được: ổn",
+    "tzOk": "Múi giờ khớp proxy ({tz}): ổn",
+    "tzDiff": "Múi giờ {tz} khác proxy {proxy}",
+    "langOk": "Ngôn ngữ {lang} hợp lý cho {country}: ổn",
+    "langOdd": "Ngôn ngữ {lang} hiếm gặp ở {country}",
+    "webrtcLeak": "WebRTC \"thật\" có thể lộ IP nội bộ khi dùng proxy",
+    "webrtcOk": "Chính sách WebRTC: ổn",
+    "screenRare": "Màn hình {screen} hiếm gặp trên Windows",
+    "screenOk": "Kích thước màn hình hợp lý: ổn",
+    "threadsHigh": "Số luồng phần cứng quá cao so với {mem} GB RAM",
+    "threadsOk": "Tỷ lệ luồng/bộ nhớ hợp lý: ổn"
+  },
+  "profiles": {
+    "count": "{n} / {total}",
+    "new": "Profile mới",
+    "allGroups": "Mọi nhóm",
+    "allTags": "Mọi thẻ",
+    "state": {
+      "all": "Tất cả",
+      "running": "Đang chạy",
+      "stopped": "Đã dừng",
+      "error": "Lỗi"
+    },
+    "selectAll": "Chọn tất cả",
+    "selected": "Đã chọn {n}",
+    "assignProxies": "Gán proxy",
+    "shuffleFp": "Xáo trộn fingerprint",
+    "deleteTitle": "Xóa các profile đã chọn?",
+    "deleteDesc": "Thao tác này xóa vĩnh viễn {n} profile và cookie của chúng.",
+    "deleteSelected": "Xóa các mục đã chọn",
+    "selectOne": "Chọn {name}",
+    "proxy": "Proxy",
+    "location": "Vị trí",
+    "endpoint": "Địa chỉ",
+    "status": "Trạng thái",
+    "exitIp": "IP đầu ra",
+    "connection": "Kết nối",
+    "direct": "Kết nối trực tiếp, lộ IP thật",
+    "fingerprint": "Fingerprint",
+    "summary": "Tóm tắt",
+    "langTz": "Ngôn ngữ và múi giờ",
+    "noise": "Nhiễu",
+    "consistency": "Tính nhất quán",
+    "allPass": "Mọi kiểm tra đều đạt.",
+    "noIssues": "Không có vấn đề",
+    "sessions": "Phiên gần đây",
+    "runs": "Lượt chạy gần đây",
+    "pages": "{n} trang",
+    "loadError": "Không tải được danh sách profile.",
+    "retry": "Thử lại",
+    "emptyTitle": "Chưa có profile nào",
+    "emptyDesc": "Profile là một trình duyệt có fingerprint, cookie và proxy riêng. Hãy tạo profile đầu tiên.",
+    "noMatch": "Không có profile nào khớp bộ lọc.",
+    "clone": "Nhân bản",
+    "moveToGroup": "Chuyển nhóm hoặc thêm thẻ",
+    "setFromProxy": "Múi giờ và ngôn ngữ theo proxy",
+    "dataDir": "Thư mục dữ liệu",
+    "pwKeep": "Đã lưu. Nhập để thay.",
+    "groupDialog": {
+      "title": "Chuyển nhóm hoặc thêm thẻ",
+      "keep": "Giữ nhóm hiện tại",
+      "addTags": "Thêm thẻ",
+      "tagsPlaceholder": "thẻ1, thẻ2",
+      "apply": "Áp dụng"
+    },
+    "toast": {
+      "cloned": "Đã nhân bản thành {name}",
+      "grouped": "Đã cập nhật {n} profile",
+      "noProxies": "Hãy thêm proxy trước"
+    }
+  },
+  "editor": {
+    "defaultName": "Profile mới",
+    "noProxy": "Không dùng proxy (kết nối trực tiếp)",
+    "newTitle": "Profile mới",
+    "editTitle": "Sửa profile",
+    "tabGeneral": "Chung",
+    "tabChecks": "Kiểm tra",
+    "cookies": "Cookie",
+    "name": "Tên",
+    "group": "Nhóm",
+    "tags": "Thẻ",
+    "notes": "Ghi chú",
+    "notesPlaceholder": "Ghi chú cho profile này",
+    "connection": "Kết nối",
+    "fromPool": "Từ kho proxy",
+    "port": "Cổng",
+    "login": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "testing": "Đang kiểm tra",
+    "testProxy": "Kiểm tra proxy",
+    "notTested": "Chưa kiểm tra",
+    "testFailed": "Kết nối thất bại. Phiên sẽ bị ngắt an toàn.",
+    "testResult": "Kết quả kiểm tra",
+    "tzLangDiffers": "Múi giờ hoặc ngôn ngữ khác với vị trí proxy.",
+    "tzLangMatch": "Múi giờ và ngôn ngữ khớp với proxy.",
+    "timezone": "Múi giờ",
+    "language": "Ngôn ngữ",
+    "matchesProxy": "khớp proxy",
+    "profileValue": "profile: {v}",
+    "autofill": "Tự điền múi giờ và ngôn ngữ",
+    "identity": "Danh tính",
+    "osPreset": "Preset hệ điều hành",
+    "seed": "Seed",
+    "shuffle": "Xáo trộn",
+    "userAgent": "User-Agent",
+    "hardware": "Phần cứng",
+    "screen": "Màn hình",
+    "threads": "Số luồng phần cứng",
+    "memory": "Bộ nhớ (GB)",
+    "noise": "Nhiễu",
+    "noiseHelp": "\"Nhiễu\" thêm một biến thể ổn định cho từng profile. \"Thật\" trả về giá trị của trình duyệt. \"Tắt\" vô hiệu hóa API.",
+    "consistencyTitle": "Kiểm tra nhất quán",
+    "consistencyHelp": "Các kiểm tra chạy lại sau mỗi thay đổi. Cảnh báo không chặn việc lưu.",
+    "cookiesHelp": "Lưu riêng cho profile này.",
+    "storedCookies": "Cookie đã lưu",
+    "clearTitle": "Xóa toàn bộ cookie?",
+    "clearDesc": "Thao tác này xóa {n} cookie khỏi profile. Bạn sẽ bị đăng xuất khỏi mọi trang web.",
+    "clearAction": "Xóa cookie",
+    "clear": "Xóa",
+    "save": "Lưu profile"
+  },
+  "proxies": {
+    "count": "{n} trong kho",
+    "checking": "Đang kiểm tra",
+    "healthAll": "Kiểm tra tất cả",
+    "type": "Loại",
+    "host": "Máy chủ",
+    "country": "Quốc gia",
+    "status": "Trạng thái",
+    "latency": "Độ trễ",
+    "removeTitle": "Gỡ proxy này?",
+    "removeUsed": "{n} profile đang dùng proxy này và sẽ kết nối trực tiếp cho đến khi được gán lại.",
+    "removeUnused": "Proxy này chưa gán cho profile nào.",
+    "removeAria": "Gỡ proxy",
+    "bulk": "Nhập hàng loạt",
+    "bulkHelp": "Mỗi dòng một proxy: host:port:user:pass",
+    "loadError": "Không tải được danh sách proxy.",
+    "emptyTitle": "Chưa có proxy nào",
+    "emptyDesc": "Dán danh sách vào ô bên phải, hoặc thêm trong một profile. Profile có proxy sẽ không bao giờ chạy khi thiếu proxy.",
+    "testAria": "Kiểm tra proxy",
+    "assignAria": "Gán cho profile",
+    "assignTitle": "Gán proxy cho profile",
+    "defaultScheme": "Loại mặc định",
+    "skippedTitle": "Các dòng bị bỏ qua",
+    "skippedLine": "Dòng {line}: {reason}",
+    "reason": {
+      "format": "không phải host:port, host:port:user:pass hay URL proxy",
+      "scheme": "loại không phải http, https hoặc socks5",
+      "host": "host không hợp lệ",
+      "port": "cổng không nằm trong khoảng 1 đến 65535",
+      "duplicate": "đã có trong kho"
+    },
+    "toast": {
+      "testOk": "{host} hoạt động, {ms} ms",
+      "testFail": "{host} lỗi: {reason}",
+      "assigned": "Đã cập nhật {n} profile"
+    },
+    "lookup": {
+      "title": "Dịch vụ tra cứu",
+      "help": "Khi kiểm tra proxy, app hỏi hai dịch vụ công khai này về IP đầu ra và vị trí. Chúng chỉ thấy IP của proxy, không thấy IP của bạn. Để trống ô thứ hai nếu không cần vị trí.",
+      "ipUrl": "URL lấy IP đầu ra",
+      "geoUrl": "URL lấy vị trí ({ip} là IP đầu ra)",
+      "save": "Lưu",
+      "saved": "Đã lưu dịch vụ tra cứu"
+    }
+  },
+  "macros": {
+    "count": "{n} macro",
+    "record": "Ghi lại",
+    "new": "Macro mới",
+    "name": "Tên",
+    "steps": "Bước",
+    "source": "Nguồn dữ liệu",
+    "updated": "Cập nhật",
+    "mapping": "Ánh xạ",
+    "stepsCount": "{n} bước",
+    "tabSteps": "Các bước",
+    "tabMap": "Ánh xạ và dữ liệu",
+    "stopRecording": "Dừng ghi",
+    "recordingBanner": "Đang ghi trong profile {profile}. Các bước mới xuất hiện khi bạn thao tác trên trình duyệt.",
+    "action": "Hành động",
+    "target": "Mục tiêu",
+    "locators": "Bộ định vị (theo thứ tự dự phòng)",
+    "value": "Giá trị",
+    "expectGuard": "Kỳ vọng và điều kiện",
+    "commitPoint": "Điểm chốt",
+    "guard": "điều kiện",
+    "expect": "Kỳ vọng",
+    "guardLabel": "Điều kiện",
+    "actions": {
+      "navigate": "mở trang",
+      "fill": "nhập",
+      "select": "chọn",
+      "click": "nhấp",
+      "wait": "chờ",
+      "dblclick": "nhấp đúp",
+      "press": "nhấn phím",
+      "check": "tích",
+      "uploadFile": "tải tệp lên",
+      "assert": "kiểm tra",
+      "scroll": "cuộn",
+      "manual": "thủ công"
+    },
+    "enabled": "Bật",
+    "flags": "Cờ",
+    "noSteps": "Macro này chưa có bước nào. Dùng Thêm bước, hoặc ghi một macro mới.",
+    "inFrame": "trong khung",
+    "valuePlaceholder": "Văn bản hoặc {'{{'}cột{'}}'}",
+    "moveUp": "Chuyển lên",
+    "moveDown": "Chuyển xuống",
+    "advanced": "Nâng cao",
+    "deleteStep": "Xóa bước",
+    "locatorOrder": "Bộ định vị, ưu tiên nhất ở trên",
+    "locatorValue": "Giá trị bộ định vị",
+    "accessibleName": "Tên trợ năng",
+    "removeLocator": "Gỡ bộ định vị",
+    "addLocator": "Thêm bộ định vị",
+    "locatorHelp": "Trình phát thử theo thứ tự này và dùng cái đầu tiên tìm ra đúng một phần tử.",
+    "onFail": "Khi lỗi",
+    "retries": "Thử lại",
+    "timeout": "Thời gian chờ",
+    "columnName": "Tên cột",
+    "mapToColumn": "Gắn với cột",
+    "expectCount": "{n} kỳ vọng",
+    "locatorKinds": {
+      "label": "Nhãn",
+      "role": "Vai trò",
+      "text": "Văn bản",
+      "testid": "Test ID",
+      "css": "CSS",
+      "xpath": "XPath"
+    },
+    "onFailKinds": {
+      "stop": "Dừng dòng",
+      "skip": "Bỏ qua bước",
+      "pause": "Tạm dừng chờ tôi"
+    },
+    "expectKinds": {
+      "urlMatches": "URL khớp",
+      "elementPresent": "Phần tử có mặt",
+      "elementAbsent": "Phần tử không có",
+      "textContains": "Văn bản chứa",
+      "textEquals": "Văn bản bằng",
+      "valueEquals": "Giá trị bằng"
+    },
+    "warnings": {
+      "canvas_unsupported": "Một cú nhấp trên canvas chưa được ghi (trước bước {n}). Hãy thêm bước này bằng tay.",
+      "file_input_unsupported": "Một lần chọn tệp chưa được ghi (trước bước {n}). Hãy thêm bước này bằng tay."
+    },
+    "addStep": "Thêm bước",
+    "addStepHelp": "Thêm bước chờ, bước kiểm tra hoặc trang cần mở. Các bước đã ghi giữ nguyên vị trí.",
+    "addUrl": "Địa chỉ trang",
+    "addOriginHelp": "Trang web sẽ được thêm vào danh sách được phép nếu chưa có.",
+    "waitTime": "Chờ một lúc",
+    "waitElement": "Chờ một phần tử",
+    "assertWhat": "Kiểm tra rằng",
+    "locatorKind": "Tìm theo",
+    "urlPattern": "Mẫu URL (biểu thức chính quy)",
+    "expectedText": "Văn bản mong đợi",
+    "tabSettings": "Cài đặt",
+    "unsaved": "Macro này có thay đổi chưa lưu. Rời đi mà không lưu?",
+    "unsavedBadge": "Chưa lưu",
+    "problemsCount": "{n} lỗi",
+    "save": "Lưu",
+    "saveBeforeRun": "Hãy lưu macro trước khi chạy.",
+    "saved": "Đã lưu {name}",
+    "mapped": "Đã gắn với {column}",
+    "originBad": "Nhập một địa chỉ gốc như https://example.com",
+    "untitled": "Macro chưa đặt tên",
+    "warningsHelp": "{n} thao tác không ghi được. Các dòng bên dưới cho biết vị trí.",
+    "dismissWarnings": "Ẩn",
+    "description": "Mô tả",
+    "origins": "Trang web được phép",
+    "originsHelp": "Macro chỉ được mở và thao tác trên các trang này.",
+    "addOrigin": "Thêm trang",
+    "variables": "Cột dữ liệu",
+    "variablesHelp": "Mỗi {'{{'}tên{'}}'} trong một bước đọc một cột dữ liệu. Mỗi lượt chạy điền từ cột của tệp có cùng tên.",
+    "varName": "Tên cột",
+    "varRequired": "Bắt buộc",
+    "addVariable": "Thêm cột dữ liệu",
+    "add": "Thêm",
+    "varTypes": {
+      "string": "Văn bản",
+      "number": "Số",
+      "bool": "Có hoặc không",
+      "date": "Ngày"
+    },
+    "retry": "Thử lại",
+    "empty": {
+      "title": "Chưa có macro nào",
+      "help": "Ghi một macro trong profile trình duyệt, hoặc nhập một tệp macro."
+    },
+    "copyName": "{name} (bản sao)",
+    "duplicated": "Đã nhân bản thành {name}",
+    "exported": "Đã xuất {name}",
+    "deleted": "Đã xóa {name}",
+    "deleteTitle": "Xóa {name}?",
+    "deleteBody": "Các lượt chạy đã kết thúc giữ bản sao riêng. Macro đang được một lượt chạy dùng thì không xóa được.",
+    "duplicate": "Nhân bản",
+    "warningBadge": "{n} cảnh báo",
+    "import": {
+      "title": "Nhập macro",
+      "help": "Chọn một tệp macro. Chưa có gì được lưu cho đến khi bạn xác nhận.",
+      "choose": "Chọn tệp",
+      "none": "Chưa chọn tệp",
+      "problems": "{n} lỗi trong tệp",
+      "trust": "Chỉ nhập macro bạn tin cậy. Macro có thể mở trang và bấm nút trong các profile của bạn.",
+      "origins": "Các trang nó được dùng",
+      "originsHelp": "Trang web được phép",
+      "commits": "Các bước không hoàn tác được",
+      "commitsHelp": "Điểm chốt",
+      "noCommits": "Không có",
+      "variables": "Cột dữ liệu",
+      "noVariables": "Không có",
+      "confirm": "Nhập",
+      "done": "Đã nhập {name}"
+    },
+    "errors": {
+      "internal": "Có lỗi xảy ra. Hãy thử lại.",
+      "invalid": "Macro chưa hợp lệ.",
+      "invalidAt": "Chưa hợp lệ tại {path}: {msg}",
+      "notFound": "Mục này không còn nữa.",
+      "conflict": "Đã có macro cùng tên, hoặc một lượt chạy đang dùng nó.",
+      "nameTaken": "Đã có macro cùng tên. Hãy chọn tên khác.",
+      "network": "Yêu cầu mạng không thành công."
+    }
+  },
+  "macroData": {
+    "descSignup": "Điền form đăng ký cho từng dòng",
+    "descCheckout": "Thêm sản phẩm, điền giao hàng, thanh toán",
+    "descPrice": "Đọc giá vào cột của bảng tính",
+    "expUrl": "URL chứa /signup",
+    "expNotEmpty": "giá trị không rỗng",
+    "guardEmail": "bỏ qua nếu row.email trống",
+    "expThanks": "văn bản \"Thank you\" hiển thị",
+    "guardLedger": "sổ theo dõi: chưa gửi",
+    "expVisible": "phần tử hiển thị trong 10 giây"
+  },
+  "mapping": {
+    "bound": "Đã gắn {v} vào “{field}”",
+    "srcCsv": "UTF-8, dấu phẩy, có dòng tiêu đề",
+    "srcExcel": "sheet “April”, A1:I412",
+    "srcSheets": "chỉ đọc, Sheet1",
+    "issueEmailValue": "dòng {row}: email không hợp lệ (“{value}”)",
+    "issuePhone": "dòng {row}: số điện thoại trống, 1 trường đã gắn sẽ bị bỏ qua",
+    "issueEmail": "dòng {row}: email không hợp lệ",
+    "issueSchema": "schema: trường “{field}” là số ở trang 1, là chuỗi ở trang 3",
+    "issueMixed": "cột “{column}” có nhiều định dạng lẫn lộn",
+    "variables": "Cột dữ liệu Ladilala",
+    "row": "dòng {n}",
+    "armedHint": "Bấm vào một trường để gắn {v}",
+    "dragHint": "Kéo một huy hiệu vào trường, hoặc bấm huy hiệu rồi bấm trường",
+    "bindings": "Liên kết",
+    "boundCount": "{bound} đã gắn, {unbound} chưa gắn",
+    "preview": "Xem trước giá trị của dòng",
+    "noBindings": "Chưa có liên kết nào",
+    "rowsShowing": "{total} dòng, hiển thị {shown}",
+    "removeBinding": "Gỡ liên kết"
+  },
+  "runs": {
+    "progress": "xong {done} / {total} dòng",
+    "uncertainCount": "{n} chưa rõ",
+    "macro": "Macro",
+    "rows": "{n} dòng",
+    "concurrency": "Số phiên song song: {n}",
+    "startRun": "Bắt đầu chạy",
+    "newRun": "Lượt chạy mới",
+    "history": "Các lượt chạy",
+    "noRuns": "Chưa có lượt chạy nào.",
+    "loadFailed": "Không tải được các lượt chạy.",
+    "empty": "Chưa chọn lượt chạy. Hãy bắt đầu một lượt để xem các dòng ở đây.",
+    "reload": "Thử lại",
+    "errUnknown": "Có lỗi xảy ra. Hãy thử lại.",
+    "colProfile": "Profile",
+    "colRow": "Dòng",
+    "colStep": "Bước hiện tại",
+    "colState": "Trạng thái",
+    "colTime": "Đã chạy",
+    "state": {
+      "created": "đã tạo",
+      "running": "đang chạy",
+      "paused": "tạm dừng",
+      "takeover": "tiếp quản",
+      "stopping": "đang dừng",
+      "finished": "đã xong",
+      "failed": "lỗi",
+      "crashed_recovered": "khôi phục sau sự cố"
+    },
+    "rowState": {
+      "pending": "Chờ",
+      "running": "Đang chạy",
+      "done": "Xong",
+      "failed": "Lỗi",
+      "skipped": "Bỏ qua",
+      "uncertain": "Chưa rõ"
+    },
+    "errKind": {
+      "data": "Dữ liệu",
+      "origin": "Ngoài phạm vi",
+      "locator": "Bộ định vị",
+      "guard": "Điều kiện",
+      "browser": "Trình duyệt",
+      "timeout": "Quá thời gian",
+      "step": "Bước",
+      "crash": "Sự cố",
+      "stopped": "Đã dừng",
+      "ledger": "Sổ theo dõi",
+      "resolved": "Bạn đã xử lý"
+    },
+    "takeoverTip": "Tạm dừng tự động hóa để bạn tự dùng các cửa sổ trình duyệt",
+    "takeoverNote": "Các trình duyệt đang do bạn điều khiển. Sửa trang nếu cần, rồi chọn Trả lại. Ladilala sẽ kiểm tra từng trang theo điều kiện của macro trước.",
+    "handBack": "Trả lại",
+    "takeover": "Tiếp quản",
+    "overall": "Tổng {done} / {total}",
+    "stopTitle": "Dừng lượt chạy này?",
+    "stopDesc": "Các trình duyệt dừng ở bước hiện tại. Dòng đã qua điểm chốt sẽ chuyển sang chưa rõ. Các dòng khác quay lại hàng chờ.",
+    "stopAction": "Dừng lượt chạy",
+    "exportCsv": "Xuất CSV",
+    "exportToast": "Đã lưu sổ theo dõi vào {path}",
+    "retryFailed": "Thử lại {n} dòng lỗi",
+    "retryToast": "Đã xếp {n} dòng vào hàng chờ thử lại",
+    "doneToast": "Lượt chạy đã xong: {name}",
+    "uncertainToast": "Dòng {row} chưa rõ. Hãy kiểm tra trang web rồi quyết định.",
+    "logTitle": "Nhật ký",
+    "logEmpty": "Chưa có sự kiện nào.",
+    "logKind": {
+      "run_state": "Trạng thái lượt chạy đã đổi. {message}",
+      "row_started": "Dòng {row} bắt đầu trên {profile}",
+      "row_commit": "Dòng {row}: đã tới điểm chốt trên {profile}",
+      "row_done": "Dòng {row} xong trên {profile}",
+      "row_failed": "Dòng {row} lỗi trên {profile}: {message}",
+      "row_skipped": "Dòng {row} bị bỏ qua: {message}",
+      "row_uncertain": "Dòng {row} chưa rõ trên {profile}: {message}",
+      "row_released": "Dòng {row} quay lại hàng chờ. {message}",
+      "row_resolved": "Bạn đã xử lý dòng {row}. {message}",
+      "browser": "Trình duyệt {profile}: {message}"
+    },
+    "uncertainQueue": "Hàng đợi chưa rõ kết quả",
+    "whatIsThis": "Đây là gì?",
+    "uncertainHelp": "Ladilala đã bấm một điểm chốt (ví dụ Place order) rồi mất trình duyệt hoặc trang. Chúng tôi không biết trang web đã nhận dòng này hay chưa.",
+    "uncertainHelp2": "Dòng như vậy không bao giờ tự được thử lại, vì có thể gửi hai lần. Hãy kiểm tra trang web, rồi đánh dấu đã gửi, thử lại, hoặc đánh dấu chưa gửi.",
+    "nothingUncertain": "Không có mục nào chưa rõ.",
+    "rowN": "Dòng {n}",
+    "whyUncertain": "Dừng sau điểm chốt ở bước {step}.",
+    "uncertainMore": "Còn {n} dòng chưa rõ nữa. Hãy xử lý các dòng này trước.",
+    "markSubmitted": "Đánh dấu đã gửi",
+    "retryBtn": "Thử lại",
+    "markFailed": "Chưa gửi",
+    "resolve": {
+      "submitted": "đã đánh dấu đã gửi",
+      "retry": "đã xếp vào hàng chờ thử lại",
+      "failed": "đã đánh dấu chưa gửi"
+    },
+    "resolvedToast": "Dòng {row}: {action}",
+    "ledger": {
+      "title": "Sổ theo dõi",
+      "all": "Tất cả {n}",
+      "colError": "Vấn đề",
+      "colTime": "Giờ",
+      "loadFailed": "Không tải được các dòng.",
+      "empty": "Không có dòng nào khớp bộ lọc này."
+    },
+    "recovered": {
+      "title": "{name} đã dừng khi ứng dụng đóng",
+      "desc": "Ladilala đã chốt lượt chạy từ sổ theo dõi. {queue} dòng quay lại hàng chờ và {uncertain} dòng chưa rõ. Sẽ không có gì chạy cho đến khi bạn chọn.",
+      "resume": "Tiếp tục lượt chạy",
+      "leave": "Giữ nguyên"
+    },
+    "setup": {
+      "title": "Lượt chạy mới",
+      "desc": "Chọn việc cần chạy và các profile dùng để chạy. Xem phần tóm tắt trước khi bắt đầu.",
+      "pickMacro": "Chọn macro",
+      "pickSource": "Chọn nguồn",
+      "rowsUnknown": "Chưa biết số dòng",
+      "mapping": "Cột dữ liệu và cột trong tệp",
+      "mappingOk": "Mọi cột dữ liệu đều có trong tệp",
+      "mappingBad": "Có cột dữ liệu thiếu trong tệp hoặc tiêu đề bị lặp",
+      "mappingChecking": "Đang kiểm tra",
+      "range": "Dòng",
+      "rangeHelp": "Dòng đánh số từ 1, như trong tệp của bạn. Để trống ô Đến để chạy tới cuối.",
+      "from": "Từ dòng",
+      "to": "Đến dòng",
+      "toEnd": "Cuối",
+      "testOne": "Chạy thử một dòng",
+      "testOneHelp": "Chỉ chạy dòng đầu tiên của khoảng đã chọn. Dùng để kiểm tra macro trước khi chạy lớn.",
+      "dryRun": "Chạy khô",
+      "dryRunHelp": "Điền các trang nhưng bỏ qua mọi lần bấm điểm chốt, nên không gửi gì cả.",
+      "profilesHelp": "Dòng k chạy trên profile (k mod N). Dòng được thử lại vẫn ở profile cũ.",
+      "search": "Tìm profile",
+      "selectAll": "Chọn tất cả",
+      "selectNone": "Bỏ chọn",
+      "profileRunning": "Đang chạy. Hãy dừng nó trước.",
+      "noProfiles": "Không tìm thấy profile.",
+      "pace": "Tốc độ",
+      "concHelp": "Tối đa {n} trình duyệt chạy cùng lúc. Bạn đã chọn {picked} profile; các profile còn lại là dự phòng.",
+      "delay": "Nghỉ sau mỗi dòng",
+      "delayHelp": "Tính bằng mili giây, cho mỗi trình duyệt.",
+      "stopAfter": "Tạm dừng sau số lỗi liên tiếp",
+      "stopAfterHelp": "Lượt chạy tạm dừng sau chừng này dòng lỗi liên tiếp.",
+      "summary": "Tóm tắt",
+      "summaryLine": "{rows} dòng sẽ chạy, tối đa {n} trình duyệt cùng lúc.",
+      "summaryUnknown": "Chưa biết số dòng, tối đa {n} trình duyệt cùng lúc.",
+      "warnMissing": "Nguồn thiếu cột {cols}. Các dòng thiếu giá trị này sẽ bị bỏ qua.",
+      "warnDup": "Tiêu đề {cols} xuất hiện nhiều lần.",
+      "warnNoProfile": "Hãy chọn ít nhất một profile.",
+      "warnRange": "Dòng cuối phải sau dòng đầu.",
+      "warnNoRows": "Khoảng đã chọn không có dòng nào.",
+      "noteDry": "Chạy khô: bỏ qua các lần bấm điểm chốt. Không gửi gì cả.",
+      "warnCommit": "Lượt chạy này sẽ bấm các điểm chốt (ví dụ Place order) trên trang thật. Nếu chưa chắc, hãy chạy thử một dòng trước.",
+      "noteSpare": "{spare} profile dự phòng chỉ chạy khi một trình duyệt khác không khởi động được.",
+      "startTest": "Chạy thử một dòng"
+    }
+  },
+  "settings": {
+    "appearance": "Giao diện",
+    "dataFolder": "Thư mục dữ liệu",
+    "dataFolderHelp": "Profile, cookie, ledger.db và macro. Đã dùng {size}.",
+    "location": "Vị trí",
+    "change": "Đổi",
+    "open": "Mở",
+    "appUpdates": "Cập nhật ứng dụng",
+    "appUpdatesHelp": "Mục này cập nhật chính Ladilala. Engine trình duyệt được cập nhật ở màn hình Engine.",
+    "chanHelp": {
+      "stable": "Stable: bản đã kiểm thử, vài tuần một lần.",
+      "beta": "Beta: tính năng sớm, đi trước Stable một bản.",
+      "nightly": "Nightly: dựng mỗi đêm từ mã mới nhất."
+    },
+    "version": "Phiên bản",
+    "lastChecked": "Kiểm tra lần cuối: {when}",
+    "viewUpdate": "Xem bản cập nhật",
+    "checkNow": "Kiểm tra ngay",
+    "channel": "Kênh cập nhật",
+    "caution": {
+      "beta": "Lưu ý: bản beta có thể còn lỗi.",
+      "nightly": "Lưu ý: bản nightly có thể làm hỏng lượt chạy. Chỉ dùng trên máy dự phòng."
+    },
+    "autoCheck": "Tự động kiểm tra",
+    "check": {
+      "daily": "Hằng ngày",
+      "weekly": "Hằng tuần",
+      "off": "Tắt"
+    },
+    "installOnQuit": "Cài khi thoát Ladilala",
+    "installOnQuitSub": "Bản cập nhật đã tải sẽ được cài vào lần thoát tiếp theo",
+    "skipVersion": "Bỏ qua phiên bản này",
+    "skipHide": "Ẩn {version} cho đến bản phát hành tiếp theo",
+    "skipped": "Đã bỏ qua {version}",
+    "noSkip": "Không có bản cập nhật để bỏ qua",
+    "skip": "Bỏ qua",
+    "releaseNotes": "Ghi chú phát hành",
+    "whatsNew": "Có gì mới",
+    "secrets": "Bí mật",
+    "credManager": "Credential Manager",
+    "credManagerSub": "Mật khẩu proxy và token Google Sheets được lưu trong Windows Credential Manager, không bao giờ nằm trong thư mục dữ liệu hay tệp xuất.",
+    "status": {
+      "checking": "Đang kiểm tra...",
+      "downloading": "Đang tải {version}",
+      "ready": "{version} sẵn sàng để cài",
+      "failed": "Cập nhật thất bại",
+      "available": "Có bản {version}",
+      "upToDate": "Đã là bản mới nhất",
+      "notConfigured": "Đã tắt cập nhật"
+    },
+    "theme": {
+      "label": "Giao diện",
+      "sub": "Hệ thống theo Windows. Sáng và Tối giữ nguyên như bạn chọn.",
+      "system": "Hệ thống",
+      "light": "Sáng",
+      "dark": "Tối"
+    },
+    "runs": {
+      "title": "Mặc định cho lượt chạy",
+      "help": "Lượt chạy mới bắt đầu với các giá trị này. Bạn có thể đổi cho từng lượt.",
+      "engine": "Engine mặc định",
+      "engineSub": "Trình duyệt mà profile mở, trừ khi đã ghim",
+      "delay": "Nghỉ sau mỗi dòng (ms)",
+      "delaySub": "Cho mỗi trình duyệt. 0 là không nghỉ.",
+      "concurrency": "Số trình duyệt cùng lúc",
+      "concurrencySub": "Từ 1 đến 64",
+      "proxyTest": "URL kiểm tra proxy",
+      "proxyTestSub": "Trang trả về IP mà nó thấy"
+    },
+    "folderEnv": "Thư mục được cố định bởi biến LADILALA_DATA. Không đổi được ở đây.",
+    "folderPending": "Lần khởi động sau sẽ dùng {path}.",
+    "folderNoMove": "Ladilala không chuyển dữ liệu của bạn. Thư mục mới bắt đầu trống. Hãy tự chép tệp cũ nếu cần.",
+    "folderReset": "Dùng thư mục mặc định",
+    "logs": {
+      "title": "Nhật ký",
+      "level": "Mức nhật ký",
+      "levelSub": "Càng chi tiết thì tệp nhật ký càng lớn",
+      "folder": "Thư mục nhật ký"
+    },
+    "log": {
+      "error": "Chỉ lỗi",
+      "warn": "Cảnh báo",
+      "info": "Bình thường",
+      "debug": "Gỡ lỗi"
+    },
+    "feed": "Nguồn cập nhật",
+    "feedEnv": "Đặt bởi LADILALA_UPDATE_URL cho lần chạy này",
+    "feedSub": "Địa chỉ danh sách cập nhật. Để trống là tắt cập nhật.",
+    "feedPlaceholder": "https://",
+    "notConfiguredSub": "Chưa đặt nguồn cập nhật nên Ladilala không kiểm tra cập nhật được."
+  },
+  "appUpdate": {
+    "channel": {
+      "stable": "Stable",
+      "beta": "Beta",
+      "nightly": "Nightly"
+    },
+    "notes": {
+      "loop": "Macro giờ có thể lặp qua danh sách profile trong một lượt chạy.",
+      "health": "Tình trạng proxy được kiểm tra ngầm mỗi 10 phút.",
+      "sort": "Danh sách profile nhớ thứ tự sắp xếp của bạn.",
+      "consistency": "Kiểm tra nhất quán fingerprint mới (bản xem trước).",
+      "sleep": "Lượt chạy không còn bị kẹt ở trạng thái tạm dừng sau khi máy thức dậy từ chế độ ngủ.",
+      "bom": "Nhập cookie từ tệp có byte order mark đã hoạt động."
+    },
+    "engineNeeds": "Cần engine {n} trở lên.",
+    "engineOk": "Dùng được với engine {n} trở lên.",
+    "stage": {
+      "check": "Kiểm tra bản cập nhật",
+      "download": "Tải xuống",
+      "verify": "Xác minh chữ ký",
+      "prepare": "Chuẩn bị bản cập nhật",
+      "ready": "Sẵn sàng khởi động lại"
+    },
+    "versionBuild": "{version} (bản dựng {build})",
+    "indicator": {
+      "downloading": "{pct} · còn {eta}",
+      "ready": "Sẵn sàng, khởi động lại để cập nhật",
+      "failed": "Cập nhật thất bại",
+      "available": "Có bản cập nhật"
+    },
+    "progressAria": "Tiến độ tải xuống",
+    "fail": {
+      "disk": {
+        "title": "Không đủ dung lượng ổ đĩa",
+        "why": "Không đủ dung lượng đĩa trống cho bản cập nhật. Chưa có gì bị thay đổi.",
+        "fix": "Giải phóng dung lượng và thử lại"
+      },
+      "net": {
+        "title": "Tải xuống bị gián đoạn",
+        "why": "Kết nối bị ngắt. Máy này chưa bị thay đổi gì.",
+        "fix": "Tải lại"
+      },
+      "sig": {
+        "title": "Chữ ký không hợp lệ",
+        "why": "Tệp không do Ladilala ký nên đã bị xóa và không được cài.",
+        "fix": "Tải lại từ đầu"
+      },
+      "other": {
+        "title": "Cập nhật thất bại",
+        "why": "Có lỗi xảy ra. Máy này chưa bị thay đổi gì.",
+        "fix": "Thử lại"
+      }
+    },
+    "detail": {
+      "signed": "Đã được Ladilala ký",
+      "staged": "Đã đặt cạnh ứng dụng"
+    },
+    "justNow": "Vừa xong",
+    "todayAt": "Hôm nay lúc {time}",
+    "sheetDesc": "{date} · {size}. Mục này cập nhật chính Ladilala. Engine trình duyệt được cập nhật ở màn hình Engine.",
+    "new": "Mới",
+    "fixed": "Đã sửa",
+    "engineCompat": "Tương thích engine",
+    "needsEngineTitle": "Bản cập nhật này cần engine {n}+ (đang có {installed})",
+    "needsEngineDesc": "Hãy cập nhật engine trình duyệt trước rồi quay lại. Các profile vẫn dùng bình thường trong lúc chờ.",
+    "goEngines": "Đến màn hình Engine",
+    "dlLine": "{got} trên {total} · {speed} · {eta}",
+    "paused": "đã tạm dừng",
+    "eta": "còn {s}",
+    "untouched": "Ladilala {version} không bị ảnh hưởng. Bản cập nhật lỗi không bao giờ thay thế ứng dụng đang chạy tốt.",
+    "readyTitle": "Đã sẵn sàng. Khởi động lại để cập nhật.",
+    "readyDesc": "Khởi động lại sẽ cài bản cập nhật. Không có lượt chạy nào đang hoạt động.",
+    "waitingIdle": "Đang chờ các lượt chạy kết thúc, sau đó Ladilala sẽ khởi động lại.",
+    "installOnQuit": "Nếu bạn không làm gì, bản cập nhật sẽ được cài khi bạn thoát Ladilala.",
+    "updateNow": "Cập nhật ngay",
+    "later": "Nhắc lại sau",
+    "restartNow": "Khởi động lại để cập nhật",
+    "restartIdle": "Khởi động lại khi rảnh",
+    "newest": "Bạn đang dùng bản mới nhất của kênh {channel}.",
+    "readyBusy": "{runs} lượt chạy đang hoạt động. Khởi động lại sẽ dừng chúng. Hãy đợi chúng xong, hoặc khởi động lại khi rảnh.",
+    "cancelIdle": "Không đợi nữa",
+    "notConfigured": "Chưa đặt nguồn cập nhật. Hãy đặt trong Cài đặt để kiểm tra cập nhật.",
+    "never": "chưa bao giờ",
+    "engineNone": "Bản này không nêu yêu cầu về engine."
+  },
+  "toasts": {
+    "stopped": "Đã dừng {name}",
+    "startRefused": "{name}: không khởi động, proxy lỗi",
+    "started": "Đã bắt đầu {name}",
+    "stoppedN": "Đã dừng {n} profile",
+    "shuffledN": "Đã xáo trộn fingerprint của {n} profile",
+    "assigned": "Đã gán proxy theo vòng tròn",
+    "deletedN": "Đã xóa {n} profile",
+    "pickCookie": "Chọn một tệp cookie",
+    "exportedCookies": "Đã xuất {n} cookie",
+    "appReady": "Ladilala {version} đã sẵn sàng để cài",
+    "appAvailable": "Có Ladilala {version}",
+    "appUpToDate": "Ladilala đã là bản mới nhất",
+    "appCurrent": "Ladilala {version} đã là bản mới nhất",
+    "freedSpace": "Đã giải phóng {size} (tệp engine cũ và bộ nhớ đệm)",
+    "dlCanceled": "Đã hủy tải xuống",
+    "restarting": "Đang khởi động lại Ladilala (giả lập)",
+    "updatedTo": "Đã cập nhật lên Ladilala {version}",
+    "restartWhenIdle": "Ladilala sẽ khởi động lại khi lượt chạy cuối cùng kết thúc",
+    "skipping": "Bỏ qua {version}",
+    "rolledBackApp": "Đã khôi phục về Ladilala {version}, khởi động lại để áp dụng (giả lập)",
+    "imported": "Đã nhập {n}",
+    "importedSkipped": "Đã nhập {n}, bỏ qua {bad} dòng không hợp lệ",
+    "healthDone": "Đã kiểm tra xong",
+    "recordHint": "Việc ghi sẽ mở một profile và ghi lại các bước",
+    "newMacro": "Macro trống mới",
+    "recordingStopped": "Đã dừng ghi, {n} bước",
+    "engineInstalled": "Đã cài {name} {version}",
+    "rolledBack": "Đã khôi phục về {version}",
+    "removedEngine": "Đã gỡ {name}",
+    "depsAttention": "Một số mục vẫn cần xử lý",
+    "depsOk": "Mọi thứ đã sẵn sàng",
+    "tzLangSet": "Đã đặt múi giờ và ngôn ngữ theo proxy",
+    "newSeed": "Seed fingerprint mới {seed}",
+    "profileSaved": "Đã lưu profile",
+    "pickCookieFile": "Chọn tệp cookie JSON hoặc Netscape",
+    "cookiesCleared": "Đã xóa cookie",
+    "folderPicker": "Chọn thư mục (bản thử)",
+    "openedExplorer": "Đã mở trong Explorer",
+    "remindTomorrow": "Chúng tôi sẽ nhắc lại vào ngày mai",
+    "reportCopied": "Đã sao chép báo cáo chẩn đoán",
+    "bundleSaved": "Đã lưu gói hỗ trợ: {file} (giả lập)",
+    "defenderHint": "Mở Windows Security, Exclusions, rồi thêm thư mục engine",
+    "nowDefault": "{name} giờ là engine mặc định",
+    "smartscreenHint": "Chọn More info, rồi Run anyway",
+    "pinsSaved": "Đã lưu các ghim",
+    "engineUpdate": "Có Chrome for Testing {version}",
+    "engineUpToDate": "Chrome for Testing đã mới nhất ({version})"
+  },
+  "engines": {
+    "sub": "Các trình duyệt Ladilala có thể mở, và cách có được chúng",
+    "tabDoctor": "Doctor",
+    "pin": "Ghim phiên bản",
+    "intro": "Ladilala điều khiển một trình duyệt thật. Ladilala dùng Chrome hoặc Edge trên máy này trước, và có thể tải Chrome for Testing. Chính Ladilala được cập nhật trong {link}.",
+    "blocked": {
+      "title": "Một chính sách chặn gỡ lỗi từ xa",
+      "desc": "{names}: máy bạn có quy tắc không cho chương trình điều khiển trình duyệt này. Công ty thường đặt quy tắc đó. Chrome for Testing không bị ảnh hưởng.",
+      "action": "Cài Chrome for Testing"
+    },
+    "noBrowser": {
+      "title": "Chưa có trình duyệt nào sẵn sàng",
+      "desc": "Ladilala không thấy Chrome hay Edge dùng được. Hãy cài Chrome for Testing để bắt đầu."
+    },
+    "tier": {
+      "1": {
+        "title": "Trình duyệt trên máy này",
+        "help": "Chrome trước, rồi đến Edge. Hãng cập nhật chúng. Ladilala không thay đổi chúng."
+      },
+      "2": {
+        "title": "Chrome for Testing",
+        "help": "Bản dựng chính thức của Google. Ladilala tải về, kiểm tra và giữ các bản cũ để khôi phục. Dùng khi máy chưa có trình duyệt hoặc chính sách chặn các trình duyệt kia."
+      },
+      "3": {
+        "title": "Ladilala Chromium",
+        "help": "Bản Chromium vá riêng của chúng tôi. Chưa được dựng nên chưa có gì để tải."
+      }
+    },
+    "colEngine": "Engine",
+    "colVersion": "Phiên bản",
+    "colSize": "Dung lượng",
+    "default": "mặc định",
+    "role": {
+      "chrome": "Đã cài trên máy này",
+      "edge": "Đã cài trên máy này",
+      "cft": "Ladilala tải về",
+      "patched": "Chưa có"
+    },
+    "none": "chưa có",
+    "availableVer": "có bản {v}",
+    "latestVer": "mới nhất {v}",
+    "prevVer": "trước {v}",
+    "status": {
+      "ready": "Sẵn sàng",
+      "missing": "Chưa cài",
+      "blocked": "Bị chính sách chặn",
+      "unavailable": "Chưa có",
+      "update": "Có bản cập nhật",
+      "busy": "Đang xử lý"
+    },
+    "install": "Cài",
+    "update": "Cập nhật",
+    "actionsFor": "Thao tác cho {name}",
+    "rollbackTo": "Khôi phục về {v}",
+    "rollback": "Khôi phục",
+    "setDefault": "Đặt làm mặc định",
+    "pinGroup": "Ghim theo nhóm profile",
+    "redownload": "Tải lại",
+    "openFolder": "Mở trong thư mục",
+    "updSettings": "Cài đặt cập nhật",
+    "updHelp": "Chỉ cho Chrome for Testing. Trình duyệt có sẵn trên máy do hãng cập nhật. Bản cũ được giữ cho đến khi bản mới chạy và phản hồi.",
+    "checkNow": "Kiểm tra ngay",
+    "checkFor": "Kiểm tra cập nhật",
+    "keepOld": "Giữ bản cũ",
+    "keepNone": "Không giữ",
+    "keepN": "{n} bản cũ",
+    "speedLimit": "Giới hạn tốc độ tải",
+    "unlimited": "Không giới hạn",
+    "channel": {
+      "stable": "Stable",
+      "beta": "Beta"
+    },
+    "logTitle": "Nhật ký engine",
+    "logLines": "{n} dòng",
+    "removeTitle": "Gỡ {name}?",
+    "removeDesc": "Mọi phiên bản đã tải sẽ bị xóa khỏi đĩa. Profile đã ghim vào đây sẽ dùng engine mặc định.",
+    "pins": {
+      "title": "Ghim phiên bản theo nhóm",
+      "desc": "Profile trong nhóm dùng engine đã ghim thay cho engine mặc định.",
+      "default": "Engine mặc định",
+      "noGroups": "Chưa có nhóm profile nào."
+    },
+    "stage": {
+      "check": "Kiểm tra phiên bản mới nhất",
+      "download": "Tải xuống",
+      "verify": "Xác minh SHA-256",
+      "unpack": "Giải nén",
+      "selftest": "Chạy thử tự kiểm tra",
+      "switch": "Chuyển sang phiên bản mới"
+    },
+    "job": {
+      "installTitle": "Cài {name}",
+      "updateTitle": "Cập nhật {name}",
+      "redownloadTitle": "Tải lại {name}",
+      "version": "Phiên bản {v}",
+      "eta": "Còn {s}",
+      "tryN": "lần {n} trên 3",
+      "untouched": "Engine {v} đang dùng vẫn hoạt động và không bị đụng tới.",
+      "justRetry": "Chỉ thử lại",
+      "done": "Xong",
+      "doneDesc": "{name} {v} đang hoạt động.",
+      "prevKept": "Phiên bản trước {v} được giữ để bạn khôi phục.",
+      "test": {
+        "start": "Trình duyệt khởi động",
+        "cdp": "Trình duyệt phản hồi qua pipe CDP",
+        "canvas": "Đọc canvas có phản hồi",
+        "fingerprint": "Fingerprint đã được xác minh"
+      },
+      "stage": {
+        "contacting": "Đang đọc danh sách phiên bản Chrome for Testing",
+        "latest": "{channel} mới nhất: {version} (hiện có: {have})",
+        "downloaded": "Đã tải {size}",
+        "computing": "Đang tính SHA-256",
+        "shaMatches": "SHA-256 {sha} khớp với lần tải đầu",
+        "shaRecorded": "Đã ghi SHA-256 {sha}. Google không công bố checksum.",
+        "extracting": "Đang giải nén vào thư mục tạm",
+        "unpacked": "{files} tệp, {size} trên đĩa",
+        "testing": "Đang khởi động trình duyệt",
+        "selftestOk": "Trình duyệt đã khởi động và phản hồi",
+        "switching": "Đang ghi phiên bản mới rồi chuyển sang",
+        "activeKept": "Đang dùng: {version}. Giữ bản trước {previous} để khôi phục",
+        "active": "Đang dùng: {version}"
+      }
+    },
+    "fail": {
+      "network": {
+        "title": "Không kết nối được máy chủ cập nhật",
+        "why": "Máy của bạn không có đường tới máy chủ tải của Google. Wi-Fi có thể đang tắt, VPN có thể đang chặn hoặc tường lửa đang cản."
+      },
+      "download": {
+        "title": "Tải xuống thất bại sau 3 lần thử",
+        "why": "Kết nối liên tục ngắt ở mức {pct}. Tệp tải dở được giữ lại, nên lần sau sẽ tiếp tục từ chỗ dừng."
+      },
+      "checksum": {
+        "title": "Tệp tải về bị hỏng",
+        "why": "Tệp không khớp SHA-256 đã ghi ở lần tải đầu, hoặc không phải tệp zip hợp lệ. Tệp đã bị bỏ."
+      },
+      "disk": {
+        "title": "Không đủ dung lượng đĩa",
+        "why": "Không đủ chỗ trống để giải nén. Engine hiện tại không bị đụng tới."
+      },
+      "policy": {
+        "title": "Bị chính sách công ty chặn",
+        "why": "Chính sách Windows RemoteDebuggingAllowed đang tắt trên máy này. Quản trị IT đặt ra, không phải Ladilala. Bản mới đã bị xóa."
+      },
+      "selftest": {
+        "title": "Engine mới không phản hồi",
+        "why": "Trình duyệt không khởi động hoặc không phản hồi kịp. Bản thử đã bị xóa và engine cũ vẫn đang dùng."
+      },
+      "installed": {
+        "title": "Phiên bản này đã được cài",
+        "why": "Phiên bản {version} đã có trên máy. Dùng Tải lại để thay thế."
+      },
+      "versionGone": {
+        "title": "Phiên bản này không còn được cung cấp",
+        "why": "Chrome for Testing chỉ liệt kê bản mới nhất của mỗi kênh. Hãy kiểm tra cập nhật và chọn bản mới."
+      },
+      "binary": {
+        "title": "Không thấy tệp trình duyệt",
+        "why": "Tệp trình duyệt bị mất. Hãy gỡ engine rồi cài lại."
+      },
+      "timeout": {
+        "title": "Trình duyệt quá lâu",
+        "why": "Trình duyệt không phản hồi kịp. Hãy thử lại."
+      },
+      "unpack": {
+        "title": "Không giải nén được tệp zip",
+        "why": "Tệp zip không có tệp trình duyệt hoặc có đường dẫn không an toàn. Chưa cài gì."
+      },
+      "closing": {
+        "title": "Đã dừng khi ứng dụng đóng",
+        "why": "Tệp tải dở được giữ lại. Hãy cài lại để tiếp tục."
+      },
+      "internal": {
+        "title": "Cài đặt thất bại",
+        "why": "Có lỗi bất ngờ. Engine hiện tại không bị đụng tới."
+      },
+      "cancel": {
+        "title": "Đã hủy",
+        "why": "Bạn đã hủy. {kept}{partial}",
+        "untouched": "Bản {version} hiện tại không bị đụng tới.",
+        "nothing": "Chưa cài gì cả.",
+        "partial": " Tệp tải dở được giữ lại để bạn tiếp tục."
+      }
+    },
+    "fixes": {
+      "retry": "Thử lại",
+      "redownload": "Xóa và tải lại",
+      "freeSpace": "Giải phóng dung lượng và thử lại",
+      "installCft": "Cài Chrome for Testing",
+      "resume": "Tiếp tục"
+    },
+    "log": {
+      "checking": "Đang đọc danh sách Chrome for Testing (kênh {channel})",
+      "checked": "Chrome for Testing mới nhất: {version}",
+      "rolledBack": "Đã khôi phục {name}",
+      "removed": "Đã gỡ {name}",
+      "nowActive": "{name} {version} đang hoạt động",
+      "cancelled": "Người dùng đã hủy",
+      "jobStarted": "Bắt đầu {name} {version}",
+      "fix": "Sửa: {fix}",
+      "diagStarted": "Đang chạy chẩn đoán",
+      "diagDone": "Chẩn đoán xong: {bad} lỗi, {warn} cảnh báo",
+      "testStarted": "Bắt đầu chạy thử"
+    },
+    "doctor": {
+      "diagnostics": "Chẩn đoán",
+      "running": "Đang chạy",
+      "run": "Chạy chẩn đoán",
+      "summary": "{ok} đạt, {warn} cảnh báo, {fail} lỗi",
+      "help": "Mở một trình duyệt trong hai giây và kiểm tra máy này. Có gợi ý sửa cho mục nào sai.",
+      "notRun": "Chưa chạy",
+      "copy": "Sao chép báo cáo",
+      "testLaunch": "Chạy thử",
+      "testing": "Đang thử",
+      "startTest": "Bắt đầu thử",
+      "stoppedAt": "Dừng ở bước {n}: {step}",
+      "problems": "Sự cố thường gặp"
+    },
+    "diag": {
+      "browser": {
+        "label": "Có trình duyệt để điều khiển",
+        "found": "Thấy {n} trình duyệt",
+        "none": "Không thấy Chrome, Edge hay Chrome for Testing."
+      },
+      "policy": {
+        "label": "Chính sách trình duyệt (RemoteDebuggingAllowed)",
+        "ok": "Không có chính sách nào chặn gỡ lỗi từ xa",
+        "blocked": "Một quy tắc trên máy này không cho chương trình điều khiển {brands}. Chrome for Testing không bị ảnh hưởng."
+      },
+      "pipe": {
+        "label": "Trình duyệt phản hồi qua pipe CDP",
+        "ok": "{engine} {version} phản hồi sau {ms} ms",
+        "blocked": "Một chính sách chặn việc điều khiển {engine}.",
+        "failed": "{engine} không phản hồi: {error}",
+        "timeout": "{engine} không phản hồi trong {s} giây.",
+        "skipped": "Bỏ qua: không có trình duyệt để thử."
+      },
+      "folder": {
+        "label": "Thư mục dữ liệu ghi được",
+        "ok": "Ghi được vào {path}",
+        "notWritable": "Không ghi được vào {path}: {error}"
+      },
+      "job": {
+        "label": "Trình duyệt đóng cùng ứng dụng (Job Object)",
+        "ok": "Sẵn sàng",
+        "failed": "Không tạo được Job Object: {error}"
+      },
+      "relay": {
+        "label": "Cổng nội bộ cho relay proxy",
+        "ok": "Cổng dùng được ({addr})",
+        "failed": "Không mở được cổng nội bộ: {error}"
+      }
+    },
+    "launch": {
+      "skipped": "Bỏ qua",
+      "launch": {
+        "label": "Mở trình duyệt",
+        "ok": "Khởi động trong {s} giây",
+        "failed": "Trình duyệt không khởi động: {error}",
+        "timeout": "Trình duyệt không khởi động kịp.",
+        "blocked": "Một chính sách chặn trình duyệt.",
+        "binary": "Không thấy tệp trình duyệt."
+      },
+      "cdp": {
+        "label": "Trình duyệt phản hồi qua CDP",
+        "ok": "Đã kết nối qua pipe, phiên bản {version}",
+        "failed": "Trình duyệt không phản hồi: {error}",
+        "timeout": "Trình duyệt không phản hồi kịp.",
+        "blocked": "Một chính sách chặn gỡ lỗi từ xa."
+      },
+      "fingerprint": {
+        "label": "Fingerprint đã được xác minh",
+        "ok": "Canvas và phần cứng đọc lại đúng như profile",
+        "failed": "Kiểm tra fingerprint thất bại: {error}",
+        "timeout": "Kiểm tra fingerprint quá lâu."
+      },
+      "proxy": {
+        "label": "Proxy kết nối được",
+        "noProfile": "Bỏ qua: hãy chọn profile có proxy. Màn hình Proxy kiểm tra proxy."
+      }
+    },
+    "problems": {
+      "noOpen": {
+        "t": "Profile không mở được",
+        "d": "Thường do khóa còn sót hoặc tiến trình trình duyệt sau sự cố. Hãy đóng mọi cửa sổ trình duyệt rồi thử lại."
+      },
+      "updateStops": {
+        "t": "Cài đặt dừng ở bước tải",
+        "d": "Kết nối ngắt hoặc tường lửa chặn việc tải. Hãy thử lại: tệp tải dở được giữ."
+      },
+      "policy": {
+        "t": "“Tổ chức của bạn chặn việc này”",
+        "d": "Một chính sách IT cấm gỡ lỗi từ xa. Chrome for Testing tránh được điều này."
+      },
+      "freeze": {
+        "t": "Trình duyệt treo ở trang canvas",
+        "d": "Lỗi treo đã biết ở một số bản dựng. Hãy thử Chrome for Testing hoặc phiên bản khác."
+      },
+      "smartscreen": {
+        "t": "Windows báo “đã bảo vệ PC của bạn”",
+        "d": "SmartScreen cảnh báo về tệp tải mới. Chọn Thông tin thêm, rồi Vẫn chạy."
+      },
+      "damaged": {
+        "t": "Tệp engine bị hỏng",
+        "d": "Checksum không khớp. Dùng Tải lại trong menu của engine."
+      },
+      "diskFull": {
+        "t": "Đĩa đã đầy",
+        "d": "Giải nén cần khoảng 500 MB. Hãy giải phóng dung lượng rồi thử lại."
+      }
+    }
+  },
+  "data": {
+    "auto": "Tự động",
+    "add": "Thêm nguồn dữ liệu",
+    "none": "Chưa có nguồn dữ liệu",
+    "name": "Tên",
+    "file": "Tệp",
+    "fileHelp": "CSV, JSON hoặc Excel",
+    "choose": "Chọn tệp",
+    "encoding": "Bảng mã",
+    "detected": "Phát hiện: {v}",
+    "delimiter": "Dấu phân cách",
+    "delims": {
+      "comma": "Dấu phẩy",
+      "semicolon": "Dấu chấm phẩy",
+      "tab": "Tab"
+    },
+    "sheet": "Trang tính",
+    "sheetHelp": "Trang tính có dòng đầu là tên cột.",
+    "wizard": {
+      "title": "Nguồn dữ liệu",
+      "step": "Bước {n} trên {total}",
+      "source": "Chọn dữ liệu",
+      "mapping": "Ánh xạ cột dữ liệu với cột trong tệp",
+      "check": "Kiểm tra các dòng",
+      "back": "Quay lại",
+      "next": "Tiếp",
+      "save": "Lưu nguồn",
+      "finish": "Hoàn tất"
+    },
+    "kinds": {
+      "file": "Tệp",
+      "rest": "REST",
+      "sheets": "Google Sheets"
+    },
+    "restHelp": "Chỉ dùng yêu cầu GET. Token, mật khẩu và giá trị header được giữ trong kho bí mật, không bao giờ hiện trong danh sách.",
+    "url": "URL",
+    "rowsPath": "Đường dẫn tới các dòng",
+    "rowsPathHelp": "Vị trí danh sách dòng trong phản hồi, ví dụ $.data.items. Để trống nếu phản hồi chính là danh sách.",
+    "authKind": "Đăng nhập",
+    "auth": {
+      "none": "Không",
+      "bearer": "Bearer token",
+      "basic": "Tài khoản và mật khẩu"
+    },
+    "token": "Token",
+    "user": "Tài khoản",
+    "password": "Mật khẩu",
+    "secretHelp": "Lưu trong kho bí mật. Không đọc lại được.",
+    "paging": {
+      "title": "Phân trang",
+      "none": "Một yêu cầu",
+      "page": "Số trang",
+      "offset": "Vị trí bắt đầu",
+      "link": "Liên kết tiếp"
+    },
+    "pageSize": "Số dòng mỗi yêu cầu",
+    "headers": "Header",
+    "headersHelp": "Header thêm, ví dụ khóa API. Giá trị được giữ bí mật.",
+    "headerName": "Tên",
+    "headerValue": "Giá trị",
+    "addHeader": "Thêm header",
+    "test": "Thử",
+    "testHelp": "Gửi yêu cầu đầu tiên và hiện các dòng.",
+    "sheetsNeedsSetup": "Google Sheets cần được thiết lập. Hiện chưa dùng được; hãy xuất ra CSV hoặc Excel.",
+    "previewTitle": "Xem trước",
+    "rowsUnknown": "Chưa biết số dòng",
+    "rows": "{n} dòng",
+    "showing": "hiện {n}",
+    "duplicates": "Tên cột bị lặp: {v}",
+    "issues": {
+      "ragged": "Dòng {row}: có {got} ô nhưng tiêu đề có {want}",
+      "nested": "Dòng {row}: cột {column} chứa đối tượng hoặc danh sách",
+      "notObject": "Dòng {row} không phải đối tượng",
+      "emptyRequired": "Dòng {row}: {column} trống (cần cho {variable})",
+      "noColumn": "Dòng {row}: không có cột cho {variable}",
+      "format": "Không đọc được dòng {row}"
+    },
+    "mapping": {
+      "title": "Cột dữ liệu và cột trong tệp",
+      "help": "Mỗi cột dữ liệu đọc cột trong tệp có cùng tên, không phân biệt hoa thường. Chọn một cột để đổi.",
+      "noVariables": "Macro này chưa có cột dữ liệu nào.",
+      "suggest": "Tên gần giống: {v}",
+      "required": "Bắt buộc",
+      "noColumn": "Chưa có cột",
+      "missing": "Thiếu cột cho: {v}",
+      "extra": "Cột trong tệp mà không cột dữ liệu nào đọc: {v}",
+      "ok": "Mọi cột dữ liệu đều có trong tệp."
+    },
+    "checking": "Đang kiểm tra các dòng…",
+    "check": {
+      "issues": "{n} lỗi trong {rows} dòng",
+      "ok": "Cả {rows} dòng đều ổn",
+      "truncated": "(danh sách dừng ở 500)"
+    },
+    "saveFirst": "Hãy lưu macro trước. Ánh xạ dùng các cột dữ liệu đã lưu.",
+    "empty": {
+      "title": "Chưa có nguồn dữ liệu",
+      "help": "Thêm tệp CSV, JSON hoặc Excel, hoặc một địa chỉ REST. Macro đọc một dòng cho mỗi lượt chạy."
+    },
+    "deleteTitle": "Xóa nguồn dữ liệu này?",
+    "deleteBody": "Tệp gốc không bị đụng tới. Nguồn đang được một lượt chạy dùng thì không xóa được.",
+    "deleted": "Đã xóa nguồn dữ liệu",
+    "hasAuth": "Có đăng nhập",
+    "validate": "Kiểm tra mọi dòng",
+    "rowPreview": {
+      "title": "Xem trước một dòng",
+      "help": "Cho thấy chữ mà mỗi bước sẽ nhập với một dòng dữ liệu.",
+      "row": "Số dòng",
+      "show": "Xem",
+      "missingColumn": "Không có giá trị cho {v}",
+      "invalid": "Không dựng được giá trị"
+    }
+  },
+  "record": {
+    "title": "Ghi một macro",
+    "setupHelp": "Một trình duyệt mở ra với profile bạn chọn. Hãy làm việc cần làm một lần. Mỗi thao tác thành một bước.",
+    "liveHelp": "Thao tác trong cửa sổ trình duyệt. Các bước hiện ở đây khi bạn làm.",
+    "reviewTitle": "Xem lại bản ghi",
+    "reviewHelp": "Kiểm tra các bước, đặt tên macro rồi lưu. Sau này vẫn sửa được từng bước.",
+    "profile": "Profile",
+    "profileHelp": "Trình duyệt dùng fingerprint, proxy và phiên đăng nhập của profile này.",
+    "profileRunning": "Profile này đang chạy. Hãy dừng nó trước.",
+    "noProfiles": "Chưa có profile",
+    "noProfilesHelp": "Hãy tạo một profile trước.",
+    "loading": "Đang tải…",
+    "inUse": "đang chạy",
+    "startUrl": "Trang bắt đầu",
+    "urlHelp": "Trang trình duyệt mở đầu tiên.",
+    "urlBad": "Nhập địa chỉ đầy đủ, bắt đầu bằng http:// hoặc https://.",
+    "name": "Tên macro",
+    "nameHelp": "Bạn có thể đổi khi lưu.",
+    "defaultName": "Bản ghi {date}",
+    "start": "Bắt đầu ghi",
+    "starting": "Đang khởi động…",
+    "recording": "Đang ghi trong profile {profile}. Các bước hiện ra khi bạn thao tác trên trình duyệt.",
+    "paused": "Đã tạm dừng. Thao tác không được ghi.",
+    "discard": "Bỏ",
+    "save": "Lưu macro",
+    "saved": "Đã lưu {name}",
+    "nameTaken": "Đã có macro cùng tên. Hãy chọn tên khác.",
+    "warningHelp": "{n} thao tác không ghi được (canvas hoặc chọn tệp). Các dòng bên dưới cho biết vị trí."
+  },
+  "ux": {
+    "coach": {
+      "e": {
+        "stepOf": "Bước {n}/{total}",
+        "skip": "Bỏ qua hướng dẫn",
+        "press": "Bấm Ghi lại",
+        "done": "Đã hiểu",
+        "title": {
+          "1": "Bấm Ghi lại, điền biểu mẫu một lần.",
+          "2": "Gõ {ph} vào một ô.",
+          "3": "Tải mẫu Excel.",
+          "4": "Liên kết tệp rồi bấm Chạy."
+        },
+        "body": {
+          "1": "Ladilala mở trang trong hồ sơ trình duyệt của bạn. Hãy điền biểu mẫu một lần như khi làm tay.",
+          "2": "Trong trang trình duyệt, gõ một tên trong ngoặc nhọn đôi, ví dụ {ph}, vào bất kỳ ô văn bản nào. Nó trở thành một cột dữ liệu. Thẻ gợi ý nhỏ trong trang chỉ cách làm.",
+          "3": "Mỗi cột dữ liệu giờ là một cột trong mẫu. Điền tệp với mỗi lượt chạy một dòng, rồi bấm Lưu.",
+          "4": "Trong trình chỉnh sửa, mở thẻ Ánh xạ và dữ liệu và liên kết tệp đã điền. Sau đó bấm Chạy."
+        }
+      }
+    },
+    "bar": {
+      "row": "Dòng xem trước",
+      "prev": "Dòng trước",
+      "next": "Dòng sau",
+      "rowOf": "Dòng {n}/{total}",
+      "missing": "Tệp thiếu cột: {v}",
+      "extra": "Chưa dùng: {v}",
+      "ok": "{n} cột dữ liệu đã sẵn sàng",
+      "choose": "Liên kết tệp dữ liệu",
+      "columns": "{n} cột dữ liệu",
+      "none": "Chưa có cột dữ liệu. Khi ghi, hãy gõ {'{{'}tên{'}}'} vào một ô."
+    },
+    "tpl": {
+      "excel": "Tải mẫu Excel",
+      "csv": "Tải mẫu CSV",
+      "saved": "Đã lưu mẫu với {n} cột dữ liệu: {path}"
+    },
+    "kind": {
+      "text": "văn bản",
+      "email": "email",
+      "phone": "điện thoại",
+      "number": "số",
+      "url": "liên kết",
+      "date": "ngày",
+      "password": "mật khẩu, được bảo vệ"
+    },
+    "step": {
+      "dataColumn": "Cột dữ liệu",
+      "protected": "Giá trị được bảo vệ, không hiển thị",
+      "noColumn": "Dữ liệu không có cột tên {v}",
+      "chooseColumn": "Chọn một cột",
+      "protectedNote": "Ô này chứa mật khẩu. Chỉ ánh xạ thủ công tới cột mà bạn bảo vệ."
+    },
+    "record": {
+      "setupTip": "Không cần thiết lập. Khi ghi, hãy gõ {ph} vào một ô để tạo cột dữ liệu.",
+      "liveTip": "Trong trang trình duyệt: điền biểu mẫu. Gõ {ph} vào một ô văn bản để tạo cột dữ liệu. Trang nhận một giá trị thử để qua được kiểm tra. Bấm Dừng trên thanh công cụ trong trang khi xong."
+    },
+    "empty": {
+      "title": "Ghi biểu mẫu một lần, điền từ một tệp",
+      "help": "Ghi biểu mẫu trên trang web. Gõ {'{{'}tên{'}}'} vào các ô thay đổi. Ladilala tạo mẫu Excel với các cột đó và điền từng dòng một.",
+      "tip": "Bắt đầu bằng nút Ghi ở trên."
+    },
+    "settings": {
+      "hintTitle": "Hiện thẻ gợi ý khi ghi",
+      "hintSub": "Thẻ trong trang trình duyệt chỉ cách gõ một cột dữ liệu."
+    },
+    "help": "Hướng dẫn: cách dùng cột dữ liệu"
+  }
+}

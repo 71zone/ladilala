@@ -1,0 +1,1513 @@
+{
+  "common": {
+    "close": "Close",
+    "toggleSidebar": "Toggle sidebar",
+    "cancel": "Cancel",
+    "prototype": "prototype",
+    "toggleDark": "Toggle dark mode",
+    "search": "Search",
+    "start": "Start",
+    "stop": "Stop",
+    "moreActions": "More actions",
+    "delete": "Delete",
+    "edit": "Edit",
+    "import": "Import",
+    "export": "Export",
+    "remove": "Remove",
+    "run": "Run",
+    "resume": "Resume",
+    "pause": "Pause",
+    "hide": "Hide",
+    "done": "Done",
+    "notifications": "Notifications"
+  },
+  "nav": {
+    "sidebar": "Sidebar",
+    "sidebarDesc": "Displays the mobile sidebar.",
+    "profiles": "Profiles",
+    "proxies": "Proxies",
+    "macros": "Macros",
+    "runs": "Runs",
+    "engines": "Engines",
+    "settings": "Settings",
+    "library": "Library",
+    "system": "System",
+    "running": "{n} running"
+  },
+  "language": {
+    "label": "Language",
+    "groupTitle": "Ngôn ngữ / Language",
+    "sub": "Applies to the whole app immediately",
+    "help": "Vietnamese is the default. Your choice is remembered on this PC."
+  },
+  "palette": {
+    "search": "Search",
+    "title": "Quick switcher",
+    "description": "Jump to a screen, a profile or an action",
+    "placeholder": "Go to screen, profile or action",
+    "empty": "No results.",
+    "screens": "Screens",
+    "actions": "Actions",
+    "profiles": "Profiles",
+    "newProfile": "New profile",
+    "doctor": "Open Doctor",
+    "checkUpdates": "Check for app updates",
+    "updateSettings": "Open app update settings",
+    "toggleDark": "Toggle dark mode",
+    "changeLanguage": "Change language"
+  },
+  "simulate": {
+    "button": "Simulate problem",
+    "title": "Simulate a problem",
+    "reset": "Reset all",
+    "then": "Then run an update, diagnostics or Test launch on Engines.",
+    "appTitle": "App update (Ladilala itself)",
+    "sims": {
+      "network": {
+        "label": "Network down",
+        "hint": "Downloads and host checks fail"
+      },
+      "checksum": {
+        "label": "Checksum mismatch",
+        "hint": "Downloaded file fails SHA-256"
+      },
+      "policy": {
+        "label": "Policy blocked",
+        "hint": "IT policy forbids remote debugging"
+      },
+      "disk": {
+        "label": "Disk full",
+        "hint": "Unpack fails, low free space"
+      },
+      "orphan": {
+        "label": "Orphan process",
+        "hint": "Old browser processes still running"
+      },
+      "lock": {
+        "label": "Stale lock",
+        "hint": "Profiles locked by a crashed session"
+      },
+      "hang": {
+        "label": "Engine hang",
+        "hint": "Browser starts but stops answering"
+      }
+    },
+    "app": {
+      "stable": {
+        "label": "Update available (stable)",
+        "hint": "Ladilala 0.5.0 is ready to download"
+      },
+      "beta": {
+        "label": "Beta update available",
+        "hint": "0.5.0-beta.2 on the Beta channel"
+      },
+      "netfail": {
+        "label": "Download fails (network)",
+        "hint": "Connection drops at 38%"
+      },
+      "sigfail": {
+        "label": "Signature check fails",
+        "hint": "Downloaded file is not signed by us"
+      },
+      "disk": {
+        "label": "Not enough disk space",
+        "hint": "Needs 340 MB, 120 MB free"
+      },
+      "engine": {
+        "label": "Requires newer engine",
+        "hint": "Needs engine 165+, installed is 157"
+      },
+      "ready": {
+        "label": "Update ready to install",
+        "hint": "Downloaded and verified, waiting for restart"
+      },
+      "none": {
+        "label": "No update (up to date)",
+        "hint": "Check finds nothing"
+      },
+      "unconfigured": {
+        "label": "No update feed set",
+        "hint": "Updates are off until a feed URL is set"
+      }
+    }
+  },
+  "status": {
+    "done": "done",
+    "uncertain": "uncertain"
+  },
+  "proxyStatus": {
+    "ok": "ok",
+    "down": "down",
+    "checking": "checking",
+    "untested": "untested"
+  },
+  "noise": {
+    "kinds": {
+      "canvas": "Canvas",
+      "audio": "AudioContext",
+      "webgl": "WebGL",
+      "fonts": "Fonts",
+      "rects": "Client rects",
+      "webrtc": "WebRTC"
+    },
+    "modes": {
+      "noise": "noise",
+      "real": "real",
+      "off": "off"
+    }
+  },
+  "errors": {
+    "proxyDown": "Proxy down: blocked, failing closed",
+    "engineExit": "Engine exited (code {code})",
+    "run": {
+      "state": "This is not possible while the run is {state}.",
+      "notFound": "This run no longer exists.",
+      "noRows": "The row range has no rows.",
+      "noProfiles": "Pick at least one profile.",
+      "tooFewProfiles": "Concurrency is higher than the number of profiles.",
+      "notUncertain": "This row is not uncertain.",
+      "guard": "The page still fails a macro guard. Fix the page, then hand back again.",
+      "browserDied": "The browser closed by itself."
+    },
+    "invalid": "Some input is not valid.",
+    "notFound": "Not found.",
+    "internal": "Something went wrong. Try again.",
+    "profileConflict": {
+      "name": "This name is already used.",
+      "running": "Stop the profile first.",
+      "starting": "The profile is starting.",
+      "duplicate": "This proxy is already in the pool."
+    },
+    "profile": {
+      "locked": "Another browser uses this profile folder.",
+      "dataDir": "The profile data folder is not valid."
+    },
+    "proxy": {
+      "down": "The proxy is not reachable. The profile stays closed.",
+      "auth": "The proxy refused the login. Check user and password."
+    },
+    "profileEngine": {
+      "notFound": "Chrome or Edge was not found on this computer.",
+      "policyBlocked": "A company policy blocks remote debugging in this browser.",
+      "hang": "The browser did not pass the fingerprint check."
+    },
+    "network": "The network failed. Try again.",
+    "data": {
+      "format": "The data file cannot be read. Check the type, the encoding and the sheet.",
+      "auth": "The server refused the sign-in. Check the token or the password."
+    },
+    "macro": {
+      "origin": "A step leaves the sites the macro may use.",
+      "missingColumn": "A row has no value for a data column the macro needs."
+    },
+    "engine": {
+      "network": "Cannot reach the download server. Check the network and try again.",
+      "download": "The download failed. Try again.",
+      "checksum": "The downloaded file is damaged.",
+      "disk": "Not enough disk space.",
+      "policy": "A policy on this PC blocks remote debugging.",
+      "selftest": "The new browser did not start.",
+      "installed": "This version is already installed.",
+      "versionGone": "This version is not offered any more.",
+      "binary": "The browser file was not found.",
+      "timeout": "The browser did not answer in time.",
+      "unpack": "The zip cannot be unpacked.",
+      "missing": "This engine is not installed.",
+      "unavailable": "This engine is not available yet.",
+      "system": "The system manages this browser. Ladilala cannot install or remove it.",
+      "noPrevious": "There is no previous version to roll back to.",
+      "inUse": "The browser files are in use.",
+      "platform": "Chrome for Testing has no build for this system.",
+      "notRollback": "Only Chrome for Testing keeps old versions.",
+      "closing": "The app is closing.",
+      "internal": "The engine task failed. Try again.",
+      "jobRunning": "An install is already running.",
+      "runActive": "A run is using the browser. Stop the run first."
+    },
+    "update": {
+      "notConfigured": "No update feed is set. Set one in Settings.",
+      "network": "Cannot reach the update server.",
+      "signature": "The update failed the signature check. It was not installed.",
+      "disk": "Not enough disk space for the update.",
+      "noRelease": "There is no update to install. Check again.",
+      "restart": "Ladilala could not restart to install the update.",
+      "runActive": "A run is active. Wait for it, or restart when idle.",
+      "notReady": "No update is ready to install."
+    },
+    "settings": {
+      "dataFolder": "This folder cannot be used. Pick one you can write to."
+    }
+  },
+  "checks": {
+    "uaOk": "UA major matches engine {engine}: ok",
+    "uaMismatch": "UA major {major} differs from engine {engine}",
+    "gpuOk": "GPU matches platform: ok",
+    "gpuBad": "GPU \"{gpu}\" does not exist on {os}",
+    "uaPlatformOk": "UA platform matches OS preset: ok",
+    "uaPlatformBad": "UA platform string does not match {os}",
+    "noProxy": "No proxy: real IP will be used",
+    "proxyDown": "Proxy is down: session will fail closed",
+    "proxyOk": "Proxy reachable: ok",
+    "tzOk": "Timezone matches proxy ({tz}): ok",
+    "tzDiff": "Timezone {tz} differs from proxy {proxy}",
+    "langOk": "Language {lang} plausible for {country}: ok",
+    "langOdd": "Language {lang} unusual for {country}",
+    "webrtcLeak": "WebRTC real may leak local IP behind proxy",
+    "webrtcOk": "WebRTC policy: ok",
+    "screenRare": "Screen {screen} is rare on Windows",
+    "screenOk": "Screen size plausible: ok",
+    "threadsHigh": "Hardware threads high for {mem} GB memory",
+    "threadsOk": "Threads / memory ratio plausible: ok"
+  },
+  "profiles": {
+    "count": "{n} of {total}",
+    "new": "New Profile",
+    "allGroups": "All groups",
+    "allTags": "All tags",
+    "state": {
+      "all": "All",
+      "running": "Running",
+      "stopped": "Stopped",
+      "error": "Error"
+    },
+    "selectAll": "Select all",
+    "selected": "{n} selected",
+    "assignProxies": "Assign proxies",
+    "shuffleFp": "Shuffle fingerprints",
+    "deleteTitle": "Delete selected profiles?",
+    "deleteDesc": "This permanently removes {n} profile and its cookies. | This permanently removes {n} profiles and their cookies.",
+    "deleteSelected": "Delete selected",
+    "selectOne": "Select {name}",
+    "proxy": "Proxy",
+    "location": "Location",
+    "endpoint": "Endpoint",
+    "status": "Status",
+    "exitIp": "Exit IP",
+    "connection": "Connection",
+    "direct": "Direct, real IP exposed",
+    "fingerprint": "Fingerprint",
+    "summary": "Summary",
+    "langTz": "Language and timezone",
+    "noise": "Noise",
+    "consistency": "Consistency",
+    "allPass": "All checks pass.",
+    "noIssues": "No issues",
+    "sessions": "Recent sessions",
+    "runs": "Recent runs",
+    "pages": "{n} page | {n} pages",
+    "loadError": "Could not load the profiles.",
+    "retry": "Try again",
+    "emptyTitle": "No profiles yet",
+    "emptyDesc": "A profile is a browser with its own fingerprint, cookies and proxy. Create the first one.",
+    "noMatch": "No profile matches the filters.",
+    "clone": "Clone",
+    "moveToGroup": "Move to group or add tags",
+    "setFromProxy": "Timezone and language from proxy",
+    "dataDir": "Data folder",
+    "pwKeep": "Saved. Type to replace.",
+    "groupDialog": {
+      "title": "Move to group or add tags",
+      "keep": "Keep the current group",
+      "addTags": "Add tags",
+      "tagsPlaceholder": "tag1, tag2",
+      "apply": "Apply"
+    },
+    "toast": {
+      "cloned": "Cloned as {name}",
+      "grouped": "Updated {n} profile | Updated {n} profiles",
+      "noProxies": "Add a proxy first"
+    }
+  },
+  "editor": {
+    "defaultName": "New profile",
+    "noProxy": "No proxy (direct)",
+    "newTitle": "New profile",
+    "editTitle": "Edit profile",
+    "tabGeneral": "General",
+    "tabChecks": "Checks",
+    "cookies": "Cookies",
+    "name": "Name",
+    "group": "Group",
+    "tags": "Tags",
+    "notes": "Notes",
+    "notesPlaceholder": "Notes for this profile",
+    "connection": "Connection",
+    "fromPool": "From pool",
+    "port": "Port",
+    "login": "Login",
+    "password": "Password",
+    "testing": "Testing",
+    "testProxy": "Test proxy",
+    "notTested": "Not tested yet",
+    "testFailed": "Connection failed. Session would fail closed.",
+    "testResult": "Test result",
+    "tzLangDiffers": "Timezone or language differs from the proxy location.",
+    "tzLangMatch": "Timezone and language match the proxy.",
+    "timezone": "Timezone",
+    "language": "Language",
+    "matchesProxy": "matches proxy",
+    "profileValue": "profile: {v}",
+    "autofill": "Auto-fill timezone and language",
+    "identity": "Identity",
+    "osPreset": "OS preset",
+    "seed": "Seed",
+    "shuffle": "Shuffle",
+    "userAgent": "User-Agent",
+    "hardware": "Hardware",
+    "screen": "Screen",
+    "threads": "Hardware threads",
+    "memory": "Memory (GB)",
+    "noise": "Noise",
+    "noiseHelp": "Noise adds a stable per-profile variation. Real passes the browser value. Off disables the API.",
+    "consistencyTitle": "Consistency check",
+    "consistencyHelp": "Checks re-run on every change. Warnings do not block saving.",
+    "cookiesHelp": "Stored for this profile.",
+    "storedCookies": "Stored cookies",
+    "clearTitle": "Clear all cookies?",
+    "clearDesc": "This removes {n} cookie from this profile. You will be signed out of every site. | This removes {n} cookies from this profile. You will be signed out of every site.",
+    "clearAction": "Clear cookies",
+    "clear": "Clear",
+    "save": "Save profile"
+  },
+  "proxies": {
+    "count": "{n} in pool",
+    "checking": "Checking",
+    "healthAll": "Health Check All",
+    "type": "Type",
+    "host": "Host",
+    "country": "Country",
+    "status": "Status",
+    "latency": "Latency",
+    "removeTitle": "Remove this proxy?",
+    "removeUsed": "{n} profile uses it and will connect directly until reassigned. | {n} profiles use it and will connect directly until reassigned.",
+    "removeUnused": "It is not assigned to any profile.",
+    "removeAria": "Remove proxy",
+    "bulk": "Bulk import",
+    "bulkHelp": "One proxy per line: host:port:user:pass",
+    "loadError": "Could not load the proxies.",
+    "emptyTitle": "No proxies yet",
+    "emptyDesc": "Paste a list on the right, or add one in a profile. A profile with a proxy never starts without it.",
+    "testAria": "Test proxy",
+    "assignAria": "Assign to profiles",
+    "assignTitle": "Assign proxy to profiles",
+    "defaultScheme": "Default type",
+    "skippedTitle": "Skipped lines",
+    "skippedLine": "Line {line}: {reason}",
+    "reason": {
+      "format": "not host:port, host:port:user:pass or a proxy URL",
+      "scheme": "type is not http, https or socks5",
+      "host": "host is not valid",
+      "port": "port is not between 1 and 65535",
+      "duplicate": "already in the pool"
+    },
+    "toast": {
+      "testOk": "{host} works, {ms} ms",
+      "testFail": "{host} failed: {reason}",
+      "assigned": "Updated {n} profile | Updated {n} profiles"
+    },
+    "lookup": {
+      "title": "Lookup services",
+      "help": "A proxy test asks these two public services for the exit IP and its location. They see the proxy IP, not yours. Leave the second empty to skip the location.",
+      "ipUrl": "Exit IP URL",
+      "geoUrl": "Location URL ({ip} is the exit IP)",
+      "save": "Save",
+      "saved": "Lookup services saved"
+    }
+  },
+  "macros": {
+    "count": "{n} macro | {n} macros",
+    "record": "Record",
+    "new": "New Macro",
+    "name": "Name",
+    "steps": "Steps",
+    "source": "Data source",
+    "updated": "Updated",
+    "mapping": "Mapping",
+    "stepsCount": "{n} step | {n} steps",
+    "tabSteps": "Steps",
+    "tabMap": "Mapping and data",
+    "stopRecording": "Stop Recording",
+    "recordingBanner": "Recording in profile {profile}. New steps appear as you act in the browser.",
+    "action": "Action",
+    "target": "Target",
+    "locators": "Locators (fallback order)",
+    "value": "Value",
+    "expectGuard": "Expect and guard",
+    "commitPoint": "Commit point",
+    "guard": "guard",
+    "expect": "Expect",
+    "guardLabel": "Guard",
+    "actions": {
+      "navigate": "open page",
+      "fill": "fill",
+      "select": "select",
+      "click": "click",
+      "wait": "wait",
+      "dblclick": "double-click",
+      "press": "press key",
+      "check": "check",
+      "uploadFile": "upload file",
+      "assert": "assert",
+      "scroll": "scroll",
+      "manual": "manual"
+    },
+    "enabled": "On",
+    "flags": "Flags",
+    "noSteps": "This macro has no steps yet. Use Add step, or record a new macro.",
+    "inFrame": "in frame",
+    "valuePlaceholder": "Text or {'{{'}column{'}}'}",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "advanced": "Advanced",
+    "deleteStep": "Delete step",
+    "locatorOrder": "Locators, most preferred first",
+    "locatorValue": "Locator value",
+    "accessibleName": "Accessible name",
+    "removeLocator": "Remove locator",
+    "addLocator": "Add locator",
+    "locatorHelp": "The player tries them in this order and uses the first one that finds exactly one element.",
+    "onFail": "On failure",
+    "retries": "Retries",
+    "timeout": "Timeout",
+    "columnName": "Column name",
+    "mapToColumn": "Map to column",
+    "expectCount": "{n} expectation | {n} expectations",
+    "locatorKinds": {
+      "label": "Label",
+      "role": "Role",
+      "text": "Text",
+      "testid": "Test ID",
+      "css": "CSS",
+      "xpath": "XPath"
+    },
+    "onFailKinds": {
+      "stop": "Stop the row",
+      "skip": "Skip the step",
+      "pause": "Pause for me"
+    },
+    "expectKinds": {
+      "urlMatches": "URL matches",
+      "elementPresent": "Element is present",
+      "elementAbsent": "Element is absent",
+      "textContains": "Text contains",
+      "textEquals": "Text equals",
+      "valueEquals": "Value equals"
+    },
+    "warnings": {
+      "canvas_unsupported": "A canvas click was not recorded here (before step {n}). Add the step by hand.",
+      "file_input_unsupported": "A file choice was not recorded here (before step {n}). Add the step by hand."
+    },
+    "addStep": "Add step",
+    "addStepHelp": "Add a wait, a check or a page to open. Recorded steps keep their place.",
+    "addUrl": "Page URL",
+    "addOriginHelp": "The site is added to the allowed origins if it is not there yet.",
+    "waitTime": "Wait a time",
+    "waitElement": "Wait for an element",
+    "assertWhat": "Check that",
+    "locatorKind": "Find by",
+    "urlPattern": "URL pattern (regular expression)",
+    "expectedText": "Expected text",
+    "tabSettings": "Settings",
+    "unsaved": "This macro has unsaved changes. Leave without saving?",
+    "unsavedBadge": "Unsaved",
+    "problemsCount": "{n} problem | {n} problems",
+    "save": "Save",
+    "saveBeforeRun": "Save the macro before you run it.",
+    "saved": "Saved {name}",
+    "mapped": "Mapped to {column}",
+    "originBad": "Enter an origin such as https://example.com",
+    "untitled": "Untitled macro",
+    "warningsHelp": "{n} action could not be recorded. The rows show where. | {n} actions could not be recorded. The rows show where.",
+    "dismissWarnings": "Dismiss",
+    "description": "Description",
+    "origins": "Allowed origins",
+    "originsHelp": "The macro may only open and act on these sites.",
+    "addOrigin": "Add origin",
+    "variables": "Data columns",
+    "variablesHelp": "Each {'{{'}name{'}}'} in a step reads one data column. A run fills it from the file column with the same name.",
+    "varName": "Column name",
+    "varRequired": "Required",
+    "addVariable": "Add data column",
+    "add": "Add",
+    "varTypes": {
+      "string": "Text",
+      "number": "Number",
+      "bool": "Yes or no",
+      "date": "Date"
+    },
+    "retry": "Try again",
+    "empty": {
+      "title": "No macros yet",
+      "help": "Record one in a browser profile, or import a macro file."
+    },
+    "copyName": "{name} copy",
+    "duplicated": "Duplicated as {name}",
+    "exported": "Exported {name}",
+    "deleted": "Deleted {name}",
+    "deleteTitle": "Delete {name}?",
+    "deleteBody": "Runs that already ended keep their own copy. A macro that a running run uses cannot be deleted.",
+    "duplicate": "Duplicate",
+    "warningBadge": "{n} warning | {n} warnings",
+    "import": {
+      "title": "Import a macro",
+      "help": "Choose a macro file. Nothing is saved until you confirm.",
+      "choose": "Choose file",
+      "none": "No file chosen",
+      "problems": "{n} problem in the file | {n} problems in the file",
+      "trust": "Only import macros you trust. A macro can open pages and press buttons in your profiles.",
+      "origins": "Sites it may use",
+      "originsHelp": "Allowed origins",
+      "commits": "Steps that cannot be undone",
+      "commitsHelp": "Commit points",
+      "noCommits": "None",
+      "variables": "Data columns",
+      "noVariables": "None",
+      "confirm": "Import",
+      "done": "Imported {name}"
+    },
+    "errors": {
+      "internal": "Something went wrong. Try again.",
+      "invalid": "The macro is not valid.",
+      "invalidAt": "Not valid at {path}: {msg}",
+      "notFound": "This item no longer exists.",
+      "conflict": "A macro with this name exists, or a run is using it.",
+      "nameTaken": "A macro with this name exists. Choose another name.",
+      "network": "The network request failed."
+    }
+  },
+  "macroData": {
+    "descSignup": "Fills the signup form for each row",
+    "descCheckout": "Adds item, fills shipping, pays",
+    "descPrice": "Reads price into sheet column",
+    "expUrl": "url contains /signup",
+    "expNotEmpty": "value not empty",
+    "guardEmail": "skip if row.email empty",
+    "expThanks": "text \"Thank you\" visible",
+    "guardLedger": "ledger: not already submitted",
+    "expVisible": "element visible 10s"
+  },
+  "mapping": {
+    "bound": "Bound {v} to “{field}”",
+    "srcCsv": "UTF-8, comma, header row",
+    "srcExcel": "sheet “April”, A1:I412",
+    "srcSheets": "read-only scope, Sheet1",
+    "issueEmailValue": "row {row}: email invalid (“{value}”)",
+    "issuePhone": "row {row}: phone is empty, 1 bound field will be skipped",
+    "issueEmail": "row {row}: email invalid",
+    "issueSchema": "schema: field “{field}” is number on page 1, string on page 3",
+    "issueMixed": "column “{column}” has mixed formats",
+    "variables": "Ladilala data columns",
+    "row": "row {n}",
+    "armedHint": "Now click a field to bind {v}",
+    "dragHint": "Drag a badge onto a field, or click one then a field",
+    "bindings": "Bindings",
+    "boundCount": "{bound} bound, {unbound} unbound",
+    "preview": "Preview row values",
+    "noBindings": "No bindings yet",
+    "rowsShowing": "{total} row, showing {shown} | {total} rows, showing {shown}",
+    "removeBinding": "Remove binding"
+  },
+  "runs": {
+    "progress": "{done} of {total} rows done",
+    "uncertainCount": "{n} uncertain",
+    "macro": "Macro",
+    "rows": "{n} row | {n} rows",
+    "concurrency": "Concurrency: {n}",
+    "startRun": "Start Run",
+    "newRun": "New run",
+    "history": "Runs",
+    "noRuns": "No runs yet.",
+    "loadFailed": "Could not load the runs.",
+    "empty": "No run selected. Start a run to see its rows here.",
+    "reload": "Try again",
+    "errUnknown": "Something went wrong. Try again.",
+    "colProfile": "Profile",
+    "colRow": "Row",
+    "colStep": "Current step",
+    "colState": "State",
+    "colTime": "Elapsed",
+    "state": {
+      "created": "created",
+      "running": "running",
+      "paused": "paused",
+      "takeover": "takeover",
+      "stopping": "stopping",
+      "finished": "finished",
+      "failed": "failed",
+      "crashed_recovered": "recovered after a crash"
+    },
+    "rowState": {
+      "pending": "Pending",
+      "running": "Running",
+      "done": "Done",
+      "failed": "Failed",
+      "skipped": "Skipped",
+      "uncertain": "Uncertain"
+    },
+    "errKind": {
+      "data": "Data",
+      "origin": "Origin",
+      "locator": "Locator",
+      "guard": "Guard",
+      "browser": "Browser",
+      "timeout": "Timeout",
+      "step": "Step",
+      "crash": "Crash",
+      "stopped": "Stopped",
+      "ledger": "Ledger",
+      "resolved": "Resolved by you"
+    },
+    "takeoverTip": "Pause automation and use the browser windows yourself",
+    "takeoverNote": "The browsers are yours. Fix the page if needed, then choose Hand back. Ladilala checks that each page passes the macro guards first.",
+    "handBack": "Hand back",
+    "takeover": "Takeover",
+    "overall": "Overall {done} / {total}",
+    "stopTitle": "Stop this run?",
+    "stopDesc": "Browsers stop at their current step. Rows past a commit point become uncertain. Other rows go back to pending.",
+    "stopAction": "Stop run",
+    "exportCsv": "Export CSV",
+    "exportToast": "Saved the ledger to {path}",
+    "retryFailed": "Retry {n} failed",
+    "retryToast": "Queued {n} row for retry | Queued {n} rows for retry",
+    "doneToast": "Run finished: {name}",
+    "uncertainToast": "Row {row} is uncertain. Check the site, then decide.",
+    "logTitle": "Log",
+    "logEmpty": "No events yet.",
+    "logKind": {
+      "run_state": "Run state changed. {message}",
+      "row_started": "Row {row} started on {profile}",
+      "row_commit": "Row {row}: commit point reached on {profile}",
+      "row_done": "Row {row} done on {profile}",
+      "row_failed": "Row {row} failed on {profile}: {message}",
+      "row_skipped": "Row {row} skipped: {message}",
+      "row_uncertain": "Row {row} uncertain on {profile}: {message}",
+      "row_released": "Row {row} went back to the queue. {message}",
+      "row_resolved": "Row {row} resolved by you. {message}",
+      "browser": "Browser {profile}: {message}"
+    },
+    "uncertainQueue": "Uncertain queue",
+    "whatIsThis": "What is this?",
+    "uncertainHelp": "Ladilala clicked a commit point (for example Place order) and then lost the browser or the page. We cannot know if the site accepted the row.",
+    "uncertainHelp2": "Rows like this are never retried by themselves, because that could submit twice. Check the site, then mark the row submitted, retry it, or mark it not submitted.",
+    "nothingUncertain": "Nothing uncertain.",
+    "rowN": "Row {n}",
+    "whyUncertain": "Stopped after the commit point at step {step}.",
+    "uncertainMore": "{n} more uncertain rows. Resolve these first.",
+    "markSubmitted": "Mark submitted",
+    "retryBtn": "Retry",
+    "markFailed": "Not submitted",
+    "resolve": {
+      "submitted": "marked submitted",
+      "retry": "queued for retry",
+      "failed": "marked not submitted"
+    },
+    "resolvedToast": "Row {row}: {action}",
+    "ledger": {
+      "title": "Ledger",
+      "all": "All {n}",
+      "colError": "Problem",
+      "colTime": "Time",
+      "loadFailed": "Could not load the rows.",
+      "empty": "No rows match this filter."
+    },
+    "recovered": {
+      "title": "{name} stopped when the app closed",
+      "desc": "Ladilala settled the run from its ledger. {queue} rows went back to the queue and {uncertain} are uncertain. Nothing runs until you choose.",
+      "resume": "Resume run",
+      "leave": "Leave as it is"
+    },
+    "setup": {
+      "title": "New run",
+      "desc": "Pick what to run and on which profiles. Check the summary before you start.",
+      "pickMacro": "Pick a macro",
+      "pickSource": "Pick a source",
+      "rowsUnknown": "Row count unknown",
+      "mapping": "Data columns and file columns",
+      "mappingOk": "Every data column is in the file",
+      "mappingBad": "Some data columns are missing in the file, or the headers repeat",
+      "mappingChecking": "Checking",
+      "range": "Rows",
+      "rangeHelp": "Rows are numbered from 1, as in your file. Leave To empty to run to the end.",
+      "from": "From row",
+      "to": "To row",
+      "toEnd": "End",
+      "testOne": "Test one row",
+      "testOneHelp": "Run only the first row of the range. Use it to check the macro before a big run.",
+      "dryRun": "Dry run",
+      "dryRunHelp": "Fill the pages but skip every commit point click, so nothing is submitted.",
+      "profilesHelp": "Row k goes to profile (k mod N). A retried row stays on its profile.",
+      "search": "Search profiles",
+      "selectAll": "Select all",
+      "selectNone": "Clear",
+      "profileRunning": "Running now. Stop it first.",
+      "noProfiles": "No profiles found.",
+      "pace": "Pace",
+      "concHelp": "Up to {n} browsers run at once. You picked {picked} profile. | Up to {n} browsers run at once. You picked {picked} profiles; the others are spares.",
+      "delay": "Delay after each row",
+      "delayHelp": "Milliseconds, per browser.",
+      "stopAfter": "Pause after errors in a row",
+      "stopAfterHelp": "The run pauses after this many failed rows in a row.",
+      "summary": "Summary",
+      "summaryLine": "{rows} row to run, up to {n} browsers at once. | {rows} rows to run, up to {n} browsers at once.",
+      "summaryUnknown": "Row count unknown, up to {n} browsers at once.",
+      "warnMissing": "Column {cols} is missing in the source. Rows without it are skipped. | Columns {cols} are missing in the source. Rows without them are skipped.",
+      "warnDup": "Header {cols} appears more than once. | Headers {cols} appear more than once.",
+      "warnNoProfile": "Pick at least one profile.",
+      "warnRange": "The last row must be after the first row.",
+      "warnNoRows": "The range has no rows.",
+      "noteDry": "Dry run: commit point clicks are skipped. Nothing is submitted.",
+      "warnCommit": "This run clicks commit points (for example Place order) on real sites. Test one row first if you are not sure.",
+      "noteSpare": "{spare} spare profile starts only when another browser fails to start. | {spare} spare profiles start only when another browser fails to start.",
+      "startTest": "Test one row"
+    }
+  },
+  "settings": {
+    "appearance": "Appearance",
+    "dataFolder": "Data folder",
+    "dataFolderHelp": "Profiles, cookies, ledger.db and macros. {size} used.",
+    "location": "Location",
+    "change": "Change",
+    "open": "Open",
+    "appUpdates": "App updates",
+    "appUpdatesHelp": "This updates Ladilala itself. Browser engines update on the Engines screen.",
+    "chanHelp": {
+      "stable": "Stable: tested releases, every few weeks.",
+      "beta": "Beta: early features, one release ahead of Stable.",
+      "nightly": "Nightly: built every night from the latest code."
+    },
+    "version": "Version",
+    "lastChecked": "Last checked: {when}",
+    "viewUpdate": "View Update",
+    "checkNow": "Check Now",
+    "channel": "Channel",
+    "caution": {
+      "beta": "Caution: beta builds can have bugs.",
+      "nightly": "Caution: nightly builds can break runs. Use on a spare setup."
+    },
+    "autoCheck": "Check automatically",
+    "check": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "off": "Off"
+    },
+    "installOnQuit": "Install when Ladilala quits",
+    "installOnQuitSub": "Downloaded updates install the next time you quit",
+    "skipVersion": "Skip this version",
+    "skipHide": "Hide {version} until the next release",
+    "skipped": "Skipped {version}",
+    "noSkip": "No update to skip",
+    "skip": "Skip",
+    "releaseNotes": "Release notes",
+    "whatsNew": "What's new",
+    "secrets": "Secrets",
+    "credManager": "Credential Manager",
+    "credManagerSub": "Proxy passwords and Sheets tokens are stored in Windows Credential Manager, never in the data folder or in exports.",
+    "status": {
+      "checking": "Checking...",
+      "downloading": "Downloading {version}",
+      "ready": "{version} ready to install",
+      "failed": "Update failed",
+      "available": "{version} available",
+      "upToDate": "Up to date",
+      "notConfigured": "Updates off"
+    },
+    "theme": {
+      "label": "Theme",
+      "sub": "System follows Windows. Light and Dark stay as chosen.",
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "runs": {
+      "title": "Run defaults",
+      "help": "New runs start with these values. You can change them for each run.",
+      "engine": "Default engine",
+      "engineSub": "The browser profiles open with, unless pinned",
+      "delay": "Pause after each row (ms)",
+      "delaySub": "Per browser. 0 means no pause.",
+      "concurrency": "Browsers at the same time",
+      "concurrencySub": "From 1 to 64",
+      "proxyTest": "Proxy test URL",
+      "proxyTestSub": "A page that returns the IP it sees"
+    },
+    "folderEnv": "The folder is fixed by the LADILALA_DATA variable. It cannot change here.",
+    "folderPending": "Next start uses {path}.",
+    "folderNoMove": "Ladilala does not move your data. The new folder starts empty. Copy the old files yourself if you want them.",
+    "folderReset": "Use the default folder",
+    "logs": {
+      "title": "Logs",
+      "level": "Log level",
+      "levelSub": "More detail makes bigger log files",
+      "folder": "Log folder"
+    },
+    "log": {
+      "error": "Errors only",
+      "warn": "Warnings",
+      "info": "Normal",
+      "debug": "Debug"
+    },
+    "feed": "Update feed",
+    "feedEnv": "Set by LADILALA_UPDATE_URL for this start",
+    "feedSub": "The address of the update list. Empty means updates are off.",
+    "feedPlaceholder": "https://",
+    "notConfiguredSub": "No update feed is set, so Ladilala cannot check for updates."
+  },
+  "appUpdate": {
+    "channel": {
+      "stable": "Stable",
+      "beta": "Beta",
+      "nightly": "Nightly"
+    },
+    "notes": {
+      "loop": "Macros can now loop over a list of profiles in one run.",
+      "health": "Proxy health is checked in the background every 10 minutes.",
+      "sort": "Profiles list remembers your sort order.",
+      "consistency": "New fingerprint consistency checks (preview).",
+      "sleep": "Runs no longer stay paused after a computer wakes from sleep.",
+      "bom": "Importing cookies from a file with a byte order mark now works."
+    },
+    "engineNeeds": "Needs engine {n} or newer.",
+    "engineOk": "Works with engines {n} and newer.",
+    "stage": {
+      "check": "Check for update",
+      "download": "Download",
+      "verify": "Verify signature",
+      "prepare": "Prepare update",
+      "ready": "Ready to restart"
+    },
+    "versionBuild": "{version} (build {build})",
+    "indicator": {
+      "downloading": "{pct} · {eta} left",
+      "ready": "Ready, restart to update",
+      "failed": "Update failed",
+      "available": "Update available"
+    },
+    "progressAria": "Download progress",
+    "fail": {
+      "disk": {
+        "title": "Not enough disk space",
+        "why": "There is not enough free disk space for the update. Nothing was changed.",
+        "fix": "Free up space and retry"
+      },
+      "net": {
+        "title": "Download interrupted",
+        "why": "The connection dropped. Nothing was changed on this PC.",
+        "fix": "Retry download"
+      },
+      "sig": {
+        "title": "Signature check failed",
+        "why": "The file is not signed by Ladilala, so it was deleted and not installed.",
+        "fix": "Download again"
+      },
+      "other": {
+        "title": "The update failed",
+        "why": "Something went wrong. Nothing was changed on this PC.",
+        "fix": "Try again"
+      }
+    },
+    "detail": {
+      "signed": "Signed by Ladilala",
+      "staged": "Staged next to the app"
+    },
+    "justNow": "Just now",
+    "todayAt": "Today at {time}",
+    "sheetDesc": "{date} · {size}. This updates Ladilala itself. Browser engines update on the Engines screen.",
+    "new": "New",
+    "fixed": "Fixed",
+    "engineCompat": "Engine compatibility",
+    "needsEngineTitle": "This update needs engine {n}+ (installed {installed})",
+    "needsEngineDesc": "Update the browser engine first, then come back. Your profiles keep working until then.",
+    "goEngines": "Go to Engines",
+    "dlLine": "{got} of {total} · {speed} · {eta}",
+    "paused": "paused",
+    "eta": "{s} left",
+    "untouched": "Ladilala {version} is untouched. A failed update never replaces the working app.",
+    "readyTitle": "Ready. Restart to update.",
+    "readyDesc": "Restarting installs the update. No run is active.",
+    "waitingIdle": "Waiting for the runs to finish, then Ladilala restarts.",
+    "installOnQuit": "If you do nothing, it installs when you quit Ladilala.",
+    "updateNow": "Update now",
+    "later": "Remind me later",
+    "restartNow": "Restart to update",
+    "restartIdle": "Restart when idle",
+    "newest": "You are on the newest version for the {channel} channel.",
+    "readyBusy": "{runs} run is active. Restarting would stop it. Wait for it to end, or restart when idle. | {runs} runs are active. Restarting would stop them. Wait for them to end, or restart when idle.",
+    "cancelIdle": "Do not wait",
+    "notConfigured": "No update feed is set. Set one in Settings to check for updates.",
+    "never": "never",
+    "engineNone": "This release states no engine need."
+  },
+  "toasts": {
+    "stopped": "Stopped {name}",
+    "startRefused": "{name}: start refused, proxy down",
+    "started": "Started {name}",
+    "stoppedN": "Stopped {n} profile | Stopped {n} profiles",
+    "shuffledN": "Shuffled {n} fingerprint | Shuffled {n} fingerprints",
+    "assigned": "Assigned proxies round-robin",
+    "deletedN": "Deleted {n} profile | Deleted {n} profiles",
+    "pickCookie": "Pick a cookie file",
+    "exportedCookies": "Exported {n} cookie | Exported {n} cookies",
+    "appReady": "Ladilala {version} is ready to install",
+    "appAvailable": "Ladilala {version} is available",
+    "appUpToDate": "Ladilala is up to date",
+    "appCurrent": "Ladilala {version} is up to date",
+    "freedSpace": "Freed {size} (old engine downloads and caches)",
+    "dlCanceled": "Download canceled",
+    "restarting": "Restarting Ladilala (mock)",
+    "updatedTo": "Updated to Ladilala {version}",
+    "restartWhenIdle": "Ladilala will restart when the last run finishes",
+    "skipping": "Skipping {version}",
+    "rolledBackApp": "Rolled back to Ladilala {version}, restart to apply (mock)",
+    "imported": "Imported {n}",
+    "importedSkipped": "Imported {n}, skipped {bad} invalid",
+    "healthDone": "Health check done",
+    "recordHint": "Recording would open a profile and capture steps",
+    "newMacro": "New empty macro",
+    "recordingStopped": "Recording stopped, {n} step | Recording stopped, {n} steps",
+    "engineInstalled": "{name} {version} installed",
+    "rolledBack": "Rolled back to {version}",
+    "removedEngine": "Removed {name}",
+    "depsAttention": "Some items still need attention",
+    "depsOk": "Everything is in place",
+    "tzLangSet": "Timezone and language set from proxy",
+    "newSeed": "New fingerprint seed {seed}",
+    "profileSaved": "Profile saved",
+    "pickCookieFile": "Pick a JSON or Netscape cookie file",
+    "cookiesCleared": "Cookies cleared",
+    "folderPicker": "Folder picker (prototype)",
+    "openedExplorer": "Opened in Explorer",
+    "remindTomorrow": "We will remind you tomorrow",
+    "reportCopied": "Diagnostic report copied",
+    "bundleSaved": "Support bundle saved: {file} (mock)",
+    "defenderHint": "Open Windows Security, Exclusions, and add the engines folder",
+    "nowDefault": "{name} is now the default",
+    "smartscreenHint": "Choose More info, then Run anyway",
+    "pinsSaved": "Pins saved",
+    "engineUpdate": "Chrome for Testing {version} is available",
+    "engineUpToDate": "Chrome for Testing is up to date ({version})"
+  },
+  "engines": {
+    "sub": "Browsers Ladilala can launch, and how to get them",
+    "tabDoctor": "Doctor",
+    "pin": "Pin Versions",
+    "intro": "Ladilala drives a real browser. It uses the Chrome or Edge on this PC first. It can download Chrome for Testing. Ladilala itself updates in {link}.",
+    "blocked": {
+      "title": "A policy blocks remote debugging",
+      "desc": "{names}: your PC has a rule that stops programs from controlling this browser. Companies set it. Chrome for Testing ignores it.",
+      "action": "Install Chrome for Testing"
+    },
+    "noBrowser": {
+      "title": "No browser is ready",
+      "desc": "Ladilala found no Chrome or Edge it can use. Install Chrome for Testing to start."
+    },
+    "tier": {
+      "1": {
+        "title": "Browsers on this PC",
+        "help": "Chrome first, then Edge. The vendor updates them. Ladilala does not change them."
+      },
+      "2": {
+        "title": "Chrome for Testing",
+        "help": "The official build from Google. Ladilala downloads it, checks it and keeps old versions for roll back. Use it when no browser is installed or a policy blocks the others."
+      },
+      "3": {
+        "title": "Ladilala Chromium",
+        "help": "Our own patched build. It is not built yet, so there is nothing to download."
+      }
+    },
+    "colEngine": "Engine",
+    "colVersion": "Version",
+    "colSize": "Size",
+    "default": "default",
+    "role": {
+      "chrome": "Installed on this PC",
+      "edge": "Installed on this PC",
+      "cft": "Downloaded by Ladilala",
+      "patched": "Not available"
+    },
+    "none": "none",
+    "availableVer": "{v} available",
+    "latestVer": "latest {v}",
+    "prevVer": "prev {v}",
+    "status": {
+      "ready": "Ready",
+      "missing": "Not installed",
+      "blocked": "Blocked by policy",
+      "unavailable": "Not available",
+      "update": "Update available",
+      "busy": "Working"
+    },
+    "install": "Install",
+    "update": "Update",
+    "actionsFor": "Actions for {name}",
+    "rollbackTo": "Roll back to {v}",
+    "rollback": "Roll back",
+    "setDefault": "Set as default",
+    "pinGroup": "Pin per profile group",
+    "redownload": "Download again",
+    "openFolder": "Show in folder",
+    "updSettings": "Update settings",
+    "updHelp": "Chrome for Testing only. The browser on this PC is updated by its vendor. The old version stays until the new one starts and answers.",
+    "checkNow": "Check Now",
+    "checkFor": "Check for updates",
+    "keepOld": "Keep old versions",
+    "keepNone": "None",
+    "keepN": "{n} old version | {n} old versions",
+    "speedLimit": "Download speed limit",
+    "unlimited": "Unlimited",
+    "channel": {
+      "stable": "Stable",
+      "beta": "Beta"
+    },
+    "logTitle": "Engine log",
+    "logLines": "{n} line | {n} lines",
+    "removeTitle": "Remove {name}?",
+    "removeDesc": "All downloaded versions are deleted from disk. Profiles pinned to it use the default engine.",
+    "pins": {
+      "title": "Pin versions per group",
+      "desc": "Profiles in a group use the pinned engine instead of the default.",
+      "default": "Default engine",
+      "noGroups": "No profile groups yet."
+    },
+    "stage": {
+      "check": "Check latest version",
+      "download": "Download",
+      "verify": "Verify SHA-256",
+      "unpack": "Unpack",
+      "selftest": "Self-test launch",
+      "switch": "Switch active version"
+    },
+    "job": {
+      "installTitle": "Install {name}",
+      "updateTitle": "Update {name}",
+      "redownloadTitle": "Download {name} again",
+      "version": "Version {v}",
+      "eta": "ETA {s}",
+      "tryN": "try {n} of 3",
+      "untouched": "Your working engine {v} is still active and untouched.",
+      "justRetry": "Just retry",
+      "done": "Done",
+      "doneDesc": "{name} {v} is active.",
+      "prevKept": "The previous version {v} is kept so you can roll back.",
+      "test": {
+        "start": "Browser starts",
+        "cdp": "Browser answers over the CDP pipe",
+        "canvas": "Canvas read answers",
+        "fingerprint": "Fingerprint verified"
+      },
+      "stage": {
+        "contacting": "Reading the Chrome for Testing version list",
+        "latest": "Latest {channel}: {version} (installed: {have})",
+        "downloaded": "{size} downloaded | {size} downloaded after {attempts} tries",
+        "computing": "Computing SHA-256",
+        "shaMatches": "SHA-256 {sha} matches the first download",
+        "shaRecorded": "SHA-256 {sha} recorded. Google publishes no checksum.",
+        "extracting": "Extracting to a staging folder",
+        "unpacked": "{files} files, {size} on disk",
+        "testing": "Starting the browser",
+        "selftestOk": "The browser started and answered",
+        "switching": "Writing the new version, then switching",
+        "activeKept": "Active: {version}. Previous {previous} kept for roll back",
+        "active": "Active: {version}"
+      }
+    },
+    "fail": {
+      "network": {
+        "title": "Cannot reach the update server",
+        "why": "Your PC has no route to Google's download server. Wi-Fi may be off, a VPN may block it, or a firewall is in the way."
+      },
+      "download": {
+        "title": "Download failed after 3 tries",
+        "why": "The connection keeps dropping at {pct}. The partial file is kept, so the next try continues where it stopped."
+      },
+      "checksum": {
+        "title": "Downloaded file is damaged",
+        "why": "The file does not match the SHA-256 recorded on the first download, or it is not a valid zip. It was discarded."
+      },
+      "disk": {
+        "title": "Not enough disk space",
+        "why": "There is not enough free space to unpack. Your current engine was not touched."
+      },
+      "policy": {
+        "title": "Blocked by a company policy",
+        "why": "Windows policy RemoteDebuggingAllowed is off on this PC. Your IT admin sets it, not Ladilala. The new copy was removed."
+      },
+      "selftest": {
+        "title": "New engine did not respond",
+        "why": "The browser did not start or did not answer in time. The test copy was removed and the old engine stays active."
+      },
+      "installed": {
+        "title": "This version is already installed",
+        "why": "Version {version} is on this PC. Use Download Again to replace it."
+      },
+      "versionGone": {
+        "title": "This version is not offered any more",
+        "why": "Chrome for Testing lists only the newest build of each channel. Check for updates and pick the new one."
+      },
+      "binary": {
+        "title": "Browser file not found",
+        "why": "The browser file is missing. Remove the engine and install it again."
+      },
+      "timeout": {
+        "title": "The browser took too long",
+        "why": "It did not answer in time. Try again."
+      },
+      "unpack": {
+        "title": "The zip cannot be unpacked",
+        "why": "The zip has no browser file or an unsafe path. It was not installed."
+      },
+      "closing": {
+        "title": "Stopped when the app closed",
+        "why": "The partial download is kept. Start the install again to continue."
+      },
+      "internal": {
+        "title": "The install failed",
+        "why": "Something unexpected happened. Your current engine was not touched."
+      },
+      "cancel": {
+        "title": "Cancelled",
+        "why": "You cancelled. {kept}{partial}",
+        "untouched": "Your current {version} is untouched.",
+        "nothing": "Nothing was installed.",
+        "partial": " The partial download is kept so you can resume."
+      }
+    },
+    "fixes": {
+      "retry": "Try again",
+      "redownload": "Delete and download again",
+      "freeSpace": "Free space and retry",
+      "installCft": "Install Chrome for Testing",
+      "resume": "Resume"
+    },
+    "log": {
+      "checking": "Reading the Chrome for Testing list ({channel} channel)",
+      "checked": "Latest Chrome for Testing: {version}",
+      "rolledBack": "Rolled back {name}",
+      "removed": "Removed {name}",
+      "nowActive": "{name} {version} is now active",
+      "cancelled": "Cancelled by user",
+      "jobStarted": "Started {name} {version}",
+      "fix": "Fix: {fix}",
+      "diagStarted": "Running diagnostics",
+      "diagDone": "Diagnostics done: {bad} failed, {warn} warning | Diagnostics done: {bad} failed, {warn} warnings",
+      "testStarted": "Starting test launch"
+    },
+    "doctor": {
+      "diagnostics": "Diagnostics",
+      "running": "Running",
+      "run": "Run Diagnostics",
+      "summary": "{ok} pass, {warn} warning, {fail} failed | {ok} pass, {warn} warnings, {fail} failed",
+      "help": "Starts a browser for two seconds and checks this PC. It shows a fix for anything wrong.",
+      "notRun": "Not run yet",
+      "copy": "Copy Report",
+      "testLaunch": "Test launch",
+      "testing": "Testing",
+      "startTest": "Start Test",
+      "stoppedAt": "Stopped at step {n}: {step}",
+      "problems": "Common problems"
+    },
+    "diag": {
+      "browser": {
+        "label": "A browser to drive",
+        "found": "{n} browser found | {n} browsers found",
+        "none": "No Chrome, Edge or Chrome for Testing found."
+      },
+      "policy": {
+        "label": "Browser policy (RemoteDebuggingAllowed)",
+        "ok": "No policy blocks remote debugging",
+        "blocked": "A rule on this PC stops programs from controlling {brands}. Chrome for Testing ignores it."
+      },
+      "pipe": {
+        "label": "Browser answers over the CDP pipe",
+        "ok": "{engine} {version} answered in {ms} ms",
+        "blocked": "A policy blocks control of {engine}.",
+        "failed": "{engine} did not answer: {error}",
+        "timeout": "{engine} did not answer in {s} seconds.",
+        "skipped": "Skipped: no browser to test."
+      },
+      "folder": {
+        "label": "Data folder is writable",
+        "ok": "{path} is writable",
+        "notWritable": "Cannot write to {path}: {error}"
+      },
+      "job": {
+        "label": "Browsers close with the app (Job Object)",
+        "ok": "Ready",
+        "failed": "Cannot create the Job Object: {error}"
+      },
+      "relay": {
+        "label": "Local port for the proxy relay",
+        "ok": "Port available ({addr})",
+        "failed": "Cannot open a local port: {error}"
+      }
+    },
+    "launch": {
+      "skipped": "Skipped",
+      "launch": {
+        "label": "Launch browser",
+        "ok": "Started in {s} s",
+        "failed": "The browser did not start: {error}",
+        "timeout": "The browser did not start in time.",
+        "blocked": "A policy blocks the browser.",
+        "binary": "The browser file was not found."
+      },
+      "cdp": {
+        "label": "Browser answers over CDP",
+        "ok": "Connected on the pipe, version {version}",
+        "failed": "The browser did not answer: {error}",
+        "timeout": "The browser did not answer in time.",
+        "blocked": "A policy blocks remote debugging."
+      },
+      "fingerprint": {
+        "label": "Fingerprint verified",
+        "ok": "Canvas and hardware read back as the profile says",
+        "failed": "The fingerprint check failed: {error}",
+        "timeout": "The fingerprint check took too long."
+      },
+      "proxy": {
+        "label": "Proxy reachable",
+        "noProfile": "Skipped: pick a profile with a proxy. The Proxies screen tests proxies."
+      }
+    },
+    "problems": {
+      "noOpen": {
+        "t": "A profile will not open",
+        "d": "Often a leftover lock or a browser process from a crash. Close all browser windows and try again."
+      },
+      "updateStops": {
+        "t": "Install stops at download",
+        "d": "The connection drops or a firewall blocks the download. Try again: the partial file is kept."
+      },
+      "policy": {
+        "t": "“Your organisation blocks this”",
+        "d": "An IT policy forbids remote debugging. Chrome for Testing avoids it."
+      },
+      "freeze": {
+        "t": "Browser freezes on canvas pages",
+        "d": "A known hang in some browser builds. Try Chrome for Testing or another version."
+      },
+      "smartscreen": {
+        "t": "Windows says “protected your PC”",
+        "d": "SmartScreen warns about new downloads. Choose More info, then Run anyway."
+      },
+      "damaged": {
+        "t": "Engine file is damaged",
+        "d": "The checksum did not match. Use Download Again in the engine menu."
+      },
+      "diskFull": {
+        "t": "Disk is full",
+        "d": "Unpacking needs about 500 MB. Free space, then try again."
+      }
+    }
+  },
+  "data": {
+    "auto": "Automatic",
+    "add": "Add data source",
+    "none": "No data source",
+    "name": "Name",
+    "file": "File",
+    "fileHelp": "CSV, JSON or Excel",
+    "choose": "Choose file",
+    "encoding": "Encoding",
+    "detected": "Detected: {v}",
+    "delimiter": "Delimiter",
+    "delims": {
+      "comma": "Comma",
+      "semicolon": "Semicolon",
+      "tab": "Tab"
+    },
+    "sheet": "Sheet",
+    "sheetHelp": "The sheet whose first row holds the column names.",
+    "wizard": {
+      "title": "Data source",
+      "step": "Step {n} of {total}",
+      "source": "Choose the data",
+      "mapping": "Map data columns to file columns",
+      "check": "Check the rows",
+      "back": "Back",
+      "next": "Next",
+      "save": "Save source",
+      "finish": "Finish"
+    },
+    "kinds": {
+      "file": "File",
+      "rest": "REST",
+      "sheets": "Google Sheets"
+    },
+    "restHelp": "GET requests only. The token, the password and the header values are kept in the secret store, never in the list.",
+    "url": "URL",
+    "rowsPath": "Rows path",
+    "rowsPathHelp": "Where the list of rows is in the answer, for example $.data.items. Empty when the answer is the list.",
+    "authKind": "Sign-in",
+    "auth": {
+      "none": "None",
+      "bearer": "Bearer token",
+      "basic": "User and password"
+    },
+    "token": "Token",
+    "user": "User",
+    "password": "Password",
+    "secretHelp": "Saved in the secret store. It cannot be read back.",
+    "paging": {
+      "title": "Paging",
+      "none": "One request",
+      "page": "Page number",
+      "offset": "Offset",
+      "link": "Next link"
+    },
+    "pageSize": "Rows per request",
+    "headers": "Headers",
+    "headersHelp": "Extra headers, for example an API key. The values are secret.",
+    "headerName": "Name",
+    "headerValue": "Value",
+    "addHeader": "Add header",
+    "test": "Test",
+    "testHelp": "Sends the first request and shows the rows.",
+    "sheetsNeedsSetup": "Google Sheets needs setup. It is not available yet; use a CSV or Excel export for now.",
+    "previewTitle": "Preview",
+    "rowsUnknown": "Row count unknown",
+    "rows": "{n} row | {n} rows",
+    "showing": "{n} shown",
+    "duplicates": "Repeated column names: {v}",
+    "issues": {
+      "ragged": "Row {row}: {got} cells but the header has {want}",
+      "nested": "Row {row}: column {column} holds an object or a list",
+      "notObject": "Row {row} is not an object",
+      "emptyRequired": "Row {row}: {column} is empty (needed for {variable})",
+      "noColumn": "Row {row}: no column for {variable}",
+      "format": "Row {row} cannot be read"
+    },
+    "mapping": {
+      "title": "Data columns and file columns",
+      "help": "Each data column reads the file column with the same name, ignoring case. Pick a column to change that.",
+      "noVariables": "This macro has no data columns yet.",
+      "suggest": "Close name: {v}",
+      "required": "Required",
+      "noColumn": "No column",
+      "missing": "No column for: {v}",
+      "extra": "File columns no data column reads: {v}",
+      "ok": "Every data column is in the file."
+    },
+    "checking": "Checking the rows…",
+    "check": {
+      "issues": "{n} problem in {rows} rows | {n} problems in {rows} rows",
+      "ok": "{rows} row is fine | All {rows} rows are fine",
+      "truncated": "(the list stops at 500)"
+    },
+    "saveFirst": "Save the macro first. The mapping uses the saved data columns.",
+    "empty": {
+      "title": "No data source yet",
+      "help": "Add a CSV, JSON or Excel file, or a REST address. The macro reads one row per run."
+    },
+    "deleteTitle": "Delete this data source?",
+    "deleteBody": "The file itself is not touched. A source that a running run uses cannot be deleted.",
+    "deleted": "Data source deleted",
+    "hasAuth": "Uses sign-in",
+    "validate": "Check all rows",
+    "rowPreview": {
+      "title": "Preview one row",
+      "help": "Shows the text each step types for one row of the data.",
+      "row": "Row number",
+      "show": "Show",
+      "missingColumn": "No value for {v}",
+      "invalid": "The value cannot be built"
+    }
+  },
+  "record": {
+    "title": "Record a macro",
+    "setupHelp": "A browser opens with the profile you choose. Do the task once. Each action becomes a step.",
+    "liveHelp": "Act in the browser window. Steps appear here as you go.",
+    "reviewTitle": "Review the recording",
+    "reviewHelp": "Check the steps, name the macro and save it. You can edit every step later.",
+    "profile": "Profile",
+    "profileHelp": "The browser uses this profile's fingerprint, proxy and logins.",
+    "profileRunning": "This profile is running. Stop it first.",
+    "noProfiles": "No profiles",
+    "noProfilesHelp": "Create a profile first.",
+    "loading": "Loading…",
+    "inUse": "running",
+    "startUrl": "Start page",
+    "urlHelp": "The page the browser opens first.",
+    "urlBad": "Enter a full address that starts with http:// or https://.",
+    "name": "Macro name",
+    "nameHelp": "You can change it when you save.",
+    "defaultName": "Recording {date}",
+    "start": "Start recording",
+    "starting": "Starting…",
+    "recording": "Recording in profile {profile}. Steps appear as you act in the browser.",
+    "paused": "Paused. Actions are not recorded.",
+    "discard": "Discard",
+    "save": "Save macro",
+    "saved": "Saved {name}",
+    "nameTaken": "A macro with this name exists. Choose another name.",
+    "warningHelp": "{n} action cannot be recorded (canvas or file choice). The rows show where. | {n} actions cannot be recorded (canvas or file choice). The rows show where."
+  },
+  "ux": {
+    "coach": {
+      "e": {
+        "stepOf": "Step {n} of {total}",
+        "skip": "Skip tour",
+        "press": "Press Record",
+        "done": "Got it",
+        "title": {
+          "1": "Press Record, fill the form once.",
+          "2": "Type {ph} in a field.",
+          "3": "Download the Excel template.",
+          "4": "Link the file, then Run."
+        },
+        "body": {
+          "1": "Ladilala opens the page in your browser profile. Fill the form once, as you would by hand.",
+          "2": "In the browser page, type a name in double braces, for example {ph}, in any text field. It becomes a data column. A short hint card in the page shows how.",
+          "3": "Each data column is now a column in the template. Fill the file with one row for each run, then Save.",
+          "4": "In the editor, open the Mapping and data tab and link the filled file. Then press Run."
+        }
+      }
+    },
+    "bar": {
+      "row": "Preview row",
+      "prev": "Previous row",
+      "next": "Next row",
+      "rowOf": "Row {n} of {total}",
+      "missing": "No file column for: {v}",
+      "extra": "Not used: {v}",
+      "ok": "{n} data column is ready | {n} data columns are ready",
+      "choose": "Link data file",
+      "columns": "{n} data column | {n} data columns",
+      "none": "No data columns yet. Type {'{{'}name{'}}'} in a field while you record."
+    },
+    "tpl": {
+      "excel": "Download Excel template",
+      "csv": "Download CSV template",
+      "saved": "Template saved with {n} data column: {path} | Template saved with {n} data columns: {path}"
+    },
+    "kind": {
+      "text": "text",
+      "email": "email",
+      "phone": "phone",
+      "number": "number",
+      "url": "link",
+      "date": "date",
+      "password": "password, protected"
+    },
+    "step": {
+      "dataColumn": "Data column",
+      "protected": "Protected value, not shown",
+      "noColumn": "No column named {v} in the data",
+      "chooseColumn": "Choose a column",
+      "protectedNote": "This field holds a password. Map it by hand only to a column you protect."
+    },
+    "record": {
+      "setupTip": "No setup is needed. While you record, type {ph} in a field to make a data column.",
+      "liveTip": "In the browser page: fill the form. Type {ph} in a text field to make a data column. The page gets a test value so its checks pass. Press Stop in the page toolbar when you finish."
+    },
+    "empty": {
+      "title": "Record a form once, fill it from a file",
+      "help": "Record the form on a web page. Type {'{{'}name{'}}'} in the fields that change. Ladilala makes an Excel template with those columns and fills one row at a time.",
+      "tip": "Start with the Record button above."
+    },
+    "settings": {
+      "hintTitle": "Show the hint card while recording",
+      "hintSub": "The card in the browser page explains how to type a data column."
+    },
+    "help": "Help: how data columns work"
+  }
+}
