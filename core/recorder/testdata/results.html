@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Results</title></head><body style="font:14px sans-serif;margin:16px">
+<h1>Results</h1><pre id="out"></pre>
+<script>
+var q = new URLSearchParams(location.search).get('q') || '';
+document.getElementById('out').textContent = q;
+fetch('@SINK@', { method: 'POST', body: JSON.stringify({ page: 'results', data: { q: q } }) });
+</script></body></html>

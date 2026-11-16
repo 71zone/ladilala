@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "invoice-login-and-submit",
+  "name": "Submit monthly invoice",
+  "allowedOrigins": ["https://app.example.com", "https://*.auth.example.com"],
+  "variables": [
+    {"name": "username", "type": "string", "required": true},
+    {"name": "amount", "type": "number", "default": 100},
+    {"name": "dryRun", "type": "bool", "default": false},
+    {"name": "period", "type": "date", "default": "2026-01-31"}
+  ],
+  "steps": [
+    {
+      "id": "open",
+      "action": "navigate",
+      "value": {"expr": "https://app.example.com/invoices/new"},
+      "expect": [{"kind": "urlMatches", "value": {"expr": "^https://app\\.example\\.com/invoices"}}],
+      "timeout": "30s"
+    },
+    {
+      "id": "user",
+      "action": "fill",
+      "target": {
+        "locators": [
+          {"kind": "label", "value": "Username"},
+          {"kind": "css", "value": "input[name=user]"}
+        ],
+        "framePath": ["iframe#login"]
+      },
+      "value": {"expr": "{{username}}", "transforms": ["trim", "lower"]},
+      "retries": 2,
+      "onFail": "pause"
+    },
+    {
+      "id": "period",
+      "action": "fill",
+      "target": {
+        "locators": [{"kind": "testid", "value": "period"}],
+        "shadowPath": ["date-picker"]
+      },
+      "value": {"expr": "{{period|date:DD/MM/YYYY}}"}
+    },
+    {
+      "id": "amount",
+      "action": "fill",
+      "target": {"locators": [{"kind": "role", "value": "spinbutton", "name": "Amount"}]},
+      "value": {"expr": "{{amount}}"}
+    },
+    {"id": "settle", "action": "wait", "timeout": "1500ms"},
+    {
+      "id": "captcha",
+      "action": "manual",
+      "value": {"expr": "Solve the captcha, then press Resume"}
+    },
+    {
+      "id": "submit",
+      "action": "click",
+      "target": {"locators": [{"kind": "role", "value": "button", "name": "Submit"}]},
+      "commitPoint": true,
+      "expect": [
+        {"kind": "elementPresent", "target": {"locators": [{"kind": "text", "value": "Invoice sent"}]}},
+        {"kind": "elementAbsent", "target": {"locators": [{"kind": "css", "value": ".error"}]}}
+      ],
+      "onFail": "stop"
+    },
+    {
+      "id": "confirmed",
+      "action": "assert",
+      "expect": [
+        {"kind": "textContains", "target": {"locators": [{"kind": "css", "value": "h1"}]}, "value": {"expr": "Invoice"}}
+      ]
+    }
+  ],
+  "guards": [
+    {"kind": "urlMatches", "pattern": "^https://[^/]+\\.auth\\.example\\.com/login", "action": "needsLogin"},
+    {"kind": "elementPresent", "locator": {"kind": "text", "value": "Session expired"}, "action": "needsLogin"}
+  ]
+}

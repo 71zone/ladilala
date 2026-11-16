@@ -1,0 +1,8 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "steps": [
+  {"id": "f", "action": "fill"},
+  {"id": "n", "action": "navigate"},
+  {"id": "w", "action": "wait"},
+  {"id": "as", "action": "assert"},
+  {"id": "loc", "action": "click", "target": {"locators": [{"kind": "css"}, {"kind": "pixel", "value": "x"}, {"kind": "css", "value": "a", "name": "n"}]}}
+ ]}

@@ -1,0 +1,6 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "steps": [
+  {"id": "a", "action": "click", "target": {"locators": [{"kind": "css", "value": "a"}]}},
+  {"id": "b", "action": "click", "target": {"locators": [{"kind": "css", "value": "a"}]}},
+  {"id": "a", "action": "click", "target": {"locators": [{"kind": "css", "value": "a"}]}}
+ ]}

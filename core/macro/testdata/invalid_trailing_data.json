@@ -1,0 +1,2 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"], "steps": [{"id": "s", "action": "wait", "timeout": "1s"}]}
+{}

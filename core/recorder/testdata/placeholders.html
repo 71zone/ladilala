@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Placeholders</title>
+<style>div{margin:6px 0}label{display:inline-block;min-width:130px}body{font:14px sans-serif;margin:16px}input:invalid,textarea:invalid{outline:2px solid #dc2626}</style>
+<script src="/common.js"></script></head><body>
+<h1>Register</h1>
+<form id="f">
+<div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+<div><label for="email2">Confirm email</label><input id="email2" name="email2" type="email" required></div>
+<div><label for="fullname">Họ tên</label><input id="fullname" name="fullname" required minlength="3"></div>
+<div><label for="code">Order code</label><input id="code" name="code" pattern="[a-z0-9]{6,12}" required></div>
+<div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" pattern="0[0-9]{9}" required></div>
+<div><label for="pw">Password</label><input id="pw" name="pw" type="password" minlength="8" required></div>
+<div><label for="notes">Notes</label><textarea id="notes" name="notes"></textarea></div>
+<div><label for="city">City</label><input id="city" name="city"></div>
+<div><label for="country">Country</label><select id="country" name="country"><option value="">Choose</option><option value="de">Germany</option><option value="vn">Vietnam</option></select></div>
+<div><label><input type="checkbox" name="news" value="yes"> News</label></div>
+<button type="submit">Send</button>
+</form>
+<pre id="out"></pre>
+<script>wire(document.getElementById('f'), 'placeholders')</script>
+</body></html>

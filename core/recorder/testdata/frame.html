@@ -1,0 +1,3 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Frame</title><script src="/common.js"></script></head><body style="font:14px sans-serif;margin:4px">
+<form id="f"><label>City <input name="city"></label> <button type="submit">Send city</button></form>
+<script>wire(document.getElementById('f'), 'frame-' + (new URLSearchParams(location.search).get('who') || 'same'))</script></body></html>

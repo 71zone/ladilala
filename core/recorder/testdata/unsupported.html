@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Unsupported</title></head><body style="font:14px sans-serif;margin:16px">
+<h1>Unsupported</h1>
+<div><canvas id="cv" width="200" height="60" style="border:1px solid #888"></canvas></div>
+<div><iframe id="cf" src="/canvas-frame.html" style="width:240px;height:90px"></iframe></div>
+<div id="host"></div>
+<div><label for="f1">Resume file</label> <input type="file" id="f1"></div>
+<div><label for="f2">Photo</label><input type="file" id="f2" style="display:none"><span style="display:inline-block;border:1px dashed #888;padding:4px">Click the label to pick</span></div>
+<div id="zone" style="width:200px;height:50px;border:2px dashed #888;margin-top:8px">Drop files here<input type="file" id="f3" style="display:none"></div>
+<pre id="out"></pre>
+<script>
+// The pages cancel the click so that no native file dialog opens in a test.
+for (const id of ['f1', 'zone']) document.getElementById(id).addEventListener('click', (e) => e.preventDefault());
+document.querySelector('label[for=f2]').addEventListener('click', (e) => e.preventDefault());
+const sh = document.getElementById('host').attachShadow({ mode: 'open' });
+sh.innerHTML = '<canvas id="cvs" width="200" height="60" style="border:1px solid #888"></canvas>';
+</script></body></html>

@@ -1,0 +1,10 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "variables": [
+  {"name": "ok", "type": "string"},
+  {"name": "ok", "type": "string"},
+  {"name": "1bad", "type": "string"},
+  {"name": "t", "type": "integer"},
+  {"name": "n", "type": "number", "default": "ten"},
+  {"name": "d", "type": "date", "default": "31/01/2026"}
+ ],
+ "steps": [{"id": "s", "action": "wait", "timeout": "1s"}]}

@@ -1,0 +1,8 @@
+injector.js is original code that applies techniques documented in
+apify/fingerprint-suite (fingerprint-injector), Copyright Apify Technologies
+s.r.o., licensed under the Apache License, Version 2.0
+(https://github.com/apify/fingerprint-suite/blob/master/LICENSE):
+  - native-looking wrappers with a Function.prototype.toString map,
+  - canvas noise applied to a scratch copy instead of the visible canvas,
+  - WebGL UNMASKED_VENDOR/RENDERER and parameter overrides.
+No source files of that project are copied.

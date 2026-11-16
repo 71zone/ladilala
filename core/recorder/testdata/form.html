@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Form</title>
+<style>div{margin:6px 0}label{display:inline-block;min-width:110px}body{font:14px sans-serif;margin:16px}</style>
+<script src="/common.js"></script></head><body>
+<h1>Sign up</h1>
+<form id="f">
+<div><label for="first">First name</label><input id="first" name="first_name"></div>
+<div><label>Last name <input name="last_name"></label></div>
+<div><label for="email">Email</label><input id="email" type="email" name="email"></div>
+<div><label for="pw">Password</label><input id="pw" type="password" name="password"></div>
+<div><label for="country">Country</label><select id="country" name="country"><option value="">Choose</option><option value="ca">Canada</option><option value="de">Germany</option><option value="vn">Vietnam</option></select></div>
+<div><label><input type="checkbox" name="newsletter" value="yes"> Subscribe to newsletter</label></div>
+<fieldset><legend>Plan</legend><label><input type="radio" name="plan" value="basic"> Basic</label> <label><input type="radio" name="plan" value="pro"> Pro</label></fieldset>
+<div><label for="notes">Notes</label><textarea id="notes" name="notes"></textarea></div>
+<button type="submit">Send</button>
+</form>
+<pre id="out"></pre>
+<script>wire(document.getElementById('f'), 'form')</script>
+</body></html>

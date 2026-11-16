@@ -1,0 +1,6 @@
+[
+  {"name": "Nguyễn Văn An", "zip": "070000", "birthday": "2024-03-15", "note": "Khách quen"},
+  {"name": "Trần Thị Bích", "zip": "100000", "birthday": "1990-12-01", "note": ""},
+  {"name": "Lê Hoàng Đức", "zip": "084000", "birthday": "2001-07-09", "note": "Dòng một\nDòng hai"},
+  {"name": "Phạm Thị Ơn", "zip": "550000", "birthday": "1985-01-31", "note": "Có \"ngoặc kép\", dấu phẩy"}
+]

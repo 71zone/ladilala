@@ -1,0 +1,5 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "steps": [
+  {"id": "s", "action": "click", "target": {"locators": [{"kind": "css", "value": "a"}]}, "retries": -1, "onFail": "explode", "timeout": "99h",
+   "expect": [{"kind": "urlMatches"}, {"kind": "textEquals", "target": {"locators": [{"kind": "css", "value": "a"}]}}, {"kind": "elementPresent", "target": {"locators": []}}, {"kind": "gone"}]}
+ ]}

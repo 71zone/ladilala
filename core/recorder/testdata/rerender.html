@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Rerender</title><script src="/common.js"></script></head><body style="font:14px sans-serif;margin:16px">
+<h1>Search</h1><div id="root"></div>
+<script>
+// v=1 is the markup the recording saw. v=2 is a redeploy: wrapper divs, a new
+// element in front, generated ids, a changed button class; labels and names stay.
+const v = new URLSearchParams(location.search).get('v') || '1';
+const root = document.getElementById('root');
+if (v === '1') {
+  root.innerHTML = '<form id="f"><label for="q">Query</label><input id="q" name="q"><input type="checkbox" id="exact" name="exact"><label for="exact">Exact match</label><button type="submit">Go</button></form>';
+} else {
+  root.innerHTML = '<div class="banner">Sale</div><div class="wrap"><div class="row"><form id="f-83921"><span><label for="q-83921">Query</label></span><input id="q-83921" name="q"><span><input type="checkbox" id="exact-83921" name="exact"></span><label for="exact-83921">Exact match</label><button type="submit" class="primary">Go</button></form></div></div>';
+}
+wire(root.querySelector('form'), 'rerender');
+</script></body></html>

@@ -1,0 +1,7 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com", "https://*.b.com"],
+ "steps": [
+  {"id": "ok1", "action": "navigate", "value": {"expr": "https://a.com/x"}},
+  {"id": "ok2", "action": "navigate", "value": {"expr": "https://www.b.com/x"}},
+  {"id": "evil", "action": "navigate", "value": {"expr": "https://evil.com/"}},
+  {"id": "bare", "action": "navigate", "value": {"expr": "https://b.com/"}}
+ ]}

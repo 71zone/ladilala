@@ -1,0 +1,6 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "variables": [{"name": "v", "type": "string"}],
+ "steps": [
+  {"id": "t", "action": "fill", "target": {"locators": [{"kind": "css", "value": "i"}]},
+   "value": {"expr": "{{v|reverse}}", "transforms": ["trim", "shout", "date", "date:abc", "upper:x"]}}
+ ]}

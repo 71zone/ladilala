@@ -1,0 +1,5 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "steps": [
+  {"id": "go", "action": "navigate", "value": {"expr": "https://a.com/"}, "commitPoint": true},
+  {"id": "ok", "action": "click", "target": {"locators": [{"kind": "css", "value": "a"}]}, "commitPoint": true}
+ ]}

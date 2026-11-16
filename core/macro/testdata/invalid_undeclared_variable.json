@@ -1,0 +1,5 @@
+{"schemaVersion": 1, "id": "m", "name": "M", "allowedOrigins": ["https://a.com"],
+ "variables": [{"name": "known", "type": "string"}],
+ "steps": [
+  {"id": "f", "action": "fill", "target": {"locators": [{"kind": "label", "value": "Row {{rowNo}}"}]}, "value": {"expr": "{{known}} {{missing}}"}}
+ ]}

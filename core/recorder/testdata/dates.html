@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Dates</title>
+<script src="/common.js"></script>
+<style>div{margin:4px 0}label{display:inline-block;min-width:200px}body{font:14px sans-serif;margin:16px}</style></head><body>
+<h1>Dates</h1>
+<form id="f">
+<div id="plain"></div>
+<h3>Controlled (value kept in script state, like React)</h3>
+<div id="ctl"></div>
+<h3>Range</h3>
+<div><label for="mm_date">Date in February 2026</label><input id="mm_date" type="date" name="mm_date" min="2026-02-01" max="2026-02-28"></div>
+<div><label for="mm_time">Time in office hours</label><input id="mm_time" type="time" name="mm_time" min="09:00" max="17:00"></div>
+<button type="submit">Send</button>
+</form>
+<h3>Shadow root</h3><div id="host"></div>
+<h3>Frame</h3><iframe id="dframe" src="/dates-frame.html" style="width:420px;height:90px"></iframe>
+<pre id="out"></pre>
+<script>
+const TYPES = ['date', 'time', 'datetime-local', 'month', 'week'];
+const STEP = (t) => (t === 'time' || t === 'datetime-local' ? ' step="1"' : ''); // allow seconds
+for (const t of TYPES) {
+  plain.insertAdjacentHTML('beforeend', `<div><label for="p_${t}">Plain ${t}</label><input id="p_${t}" type="${t}" name="plain_${t}"${STEP(t)}></div>`);
+  ctl.insertAdjacentHTML('beforeend', `<div><label for="c_${t}">Controlled ${t}</label><input id="c_${t}" type="${t}" name="c_${t}"${STEP(t)}></div>`);
+}
+// A minimal controlled input as React builds it: the page object gets an own
+// "value" property that records programmatic sets, and the input event handler
+// only accepts a change the property did not see. After every event the value
+// is restored from the state. A script that sets el.value from the page's own
+// world, or types with insertText, is ignored.
+const state = {};
+const native = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+for (const t of TYPES) {
+  const el = document.getElementById('c_' + t);
+  let tracked = '';
+  state[t] = '';
+  Object.defineProperty(el, 'value', { configurable: true, get() { return native.get.call(el); }, set(v) { tracked = '' + v; native.set.call(el, v); } });
+  const onEvent = () => {
+    const cur = native.get.call(el);
+    if (cur !== tracked) { tracked = cur; state[t] = cur; }
+    el.value = state[t];
+  };
+  el.addEventListener('input', onEvent); el.addEventListener('change', onEvent);
+}
+wire(document.getElementById('f'), 'dates', () => Object.fromEntries(TYPES.map((t) => ['state_' + t, state[t]])));
+const sh = document.getElementById('host').attachShadow({ mode: 'open' });
+sh.innerHTML = '<label>Shadow date <input type="date" name="sdate"></label> <button type="button">Send shadow</button>';
+sh.querySelector('button').addEventListener('click', () => sink('dates-shadow', { sdate: sh.querySelector('input').value }));
+</script></body></html>

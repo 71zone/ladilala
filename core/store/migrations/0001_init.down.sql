@@ -1,0 +1,8 @@
+DROP TRIGGER IF EXISTS run_events_no_update;
+DROP TABLE IF EXISTS run_events;
+DROP TABLE IF EXISTS run_rows;
+DROP TABLE IF EXISTS runs;
+DROP TABLE IF EXISTS data_sources;
+DROP TABLE IF EXISTS macros;
+DROP TABLE IF EXISTS profiles;
+DROP TABLE IF EXISTS proxies;
