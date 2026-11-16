@@ -1,6 +1,7 @@
 package data
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -22,6 +23,27 @@ var wantRows = []Row{
 	{"name": "Trần Thị Bích", "zip": "100000", "birthday": "1990-12-01", "note": ""},
 	{"name": "Lê Hoàng Đức", "zip": "084000", "birthday": "2001-07-09", "note": "Dòng một\nDòng hai"},
 	{"name": "Phạm Thị Ơn", "zip": "550000", "birthday": "1985-01-31", "note": `Có "ngoặc kép", dấu phẩy`},
+}
+
+// fixture returns the path of a sample file. The UTF-8 BOM sample is built in a
+// temporary folder: the BOM is the first bytes of the file, and tools that
+// normalise text can strip it from a committed copy. The committed
+// sample-bom.csv holds the same rows without the BOM.
+func fixture(t *testing.T, name string) string {
+	t.Helper()
+	if name != "sample-bom.csv" {
+		return filepath.Join("testdata", name)
+	}
+	body, err := os.ReadFile(filepath.Join("testdata", name))
+	if err != nil {
+		t.Fatal(err)
+	}
+	body = bytes.TrimPrefix(body, []byte("\xef\xbb\xbf"))
+	p := filepath.Join(t.TempDir(), name)
+	if err := os.WriteFile(p, append([]byte("\xef\xbb\xbf"), body...), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	return p
 }
 
 var sampleFiles = []string{
@@ -54,7 +76,7 @@ func TestEveryFormatGivesSameRows(t *testing.T) {
 	ctx := context.Background()
 	for _, name := range sampleFiles {
 		t.Run(name, func(t *testing.T) {
-			src, err := OpenFile(filepath.Join("testdata", name))
+			src, err := OpenFile(fixture(t, name))
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -104,7 +126,7 @@ func TestSniff(t *testing.T) {
 		"sample-utf16.csv":     {EncUTF16LE, ','},
 	}
 	for name, want := range cases {
-		enc, d, err := Sniff(filepath.Join("testdata", name))
+		enc, d, err := Sniff(fixture(t, name))
 		if err != nil || enc != want.enc || d != want.delim {
 			t.Errorf("%s: got %s %q %v, want %s %q", name, enc, d, err, want.enc, want.delim)
 		}
@@ -131,7 +153,7 @@ func TestWindows1252Fallback(t *testing.T) {
 }
 
 func TestBOMNotInHeader(t *testing.T) {
-	s, err := NewCSV("testdata/sample-bom.csv", CSVOptions{})
+	s, err := NewCSV(fixture(t, "sample-bom.csv"), CSVOptions{})
 	if err != nil {
 		t.Fatal(err)
 	}
