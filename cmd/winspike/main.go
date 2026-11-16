@@ -32,6 +32,12 @@ func run() error {
 			return runStockLaunches(os.Args[2:])
 		case "cft":
 			return runCfT(os.Args[2:])
+		case "m0detect":
+			return runM0Detect(os.Args[2:])
+		case "m0reliab":
+			return runM0Reliab(os.Args[2:])
+		case "m0fit":
+			return runM0Fit(os.Args[2:])
 		}
 	}
 	engineName := flag.String("engine", "chrome", "chrome | edge | fpc")

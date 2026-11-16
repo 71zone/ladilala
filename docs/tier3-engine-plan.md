@@ -155,3 +155,15 @@ S13 https://github.com/ungoogled-software/ungoogled-chromium-windows (`flags.win
 S14 https://github.com/bromite/bromite (GPL-3.0). S15 https://raw.githubusercontent.com/chromium/chromium/main/docs/win_cross.md
 S16 Repo and vault: `docs/stock-engine.md`, `docs/canvas-hang.md`, `docs/engine-research-2/*.md`, ADR 0003 to 0007, 0017, 0020, `core/inject`, `core/profile`, `core/driver`
 S17 winpc probe over SSH, read only, 2026-11-17. The two probe scripts were deleted afterwards.
+
+## 9. M0 result (2026-11-17)
+
+Full tables, method and numbers: [docs/m0-engine-matrix.md](m0-engine-matrix.md). All values are [MEASURED] on winpc unless the doc says otherwise.
+
+- The newest fingerprint-chromium is 150.0.7871.186 (2 Oct 2026). Nothing newer exists. Chrome stable is 158, so 148 is 10 majors behind and 150 is 8 behind.
+- Build 150 failed 200 of 200 launches (hang at the first canvas read, renderer crash on the own CDP path). It is not usable.
+- Build 148 had 0 hangs, 0 crashes and 0 first-read leaks in 290 launches. Launch to CDP answer: 283 ms (chromedp pipe) and 257 ms (own CDP pipe). The pipe works without a debugging port.
+- 148 beats tier 1 on engine-level canvas, audio and rect noise: CreepJS shows no lie (tier 1: audio lie) and BrowserScan shows no "Canvas Tampering" (tier 1: yes). It also hides the real GPU and WebRTC addresses.
+- 148 has page-visible bugs: `measureText` returns 0.00015, `deviceMemory` 16, `colorDepth` 32, screen size not spoofed.
+- 148 works with `--load-extension`, the proxy relay, the data dir layout, the recorder (9 of 9 E2E) and the player (7 of 7 E2E). The same tests pass on stock Chrome 157.
+- Recommendation: FPC 148 is usable as a pinned tier 2 bridge with a launch check. It does not remove the need for our own current-version engine (M1). Section 5 stays as written.
