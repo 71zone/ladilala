@@ -51,3 +51,14 @@ A rollback points the feed at an older version. Users who already have a newer v
 - The update check fails on Windows: open the manifest URL in a browser and check that it is valid JSON. Check that each artifact URL gives HTTP 200. Settings can use the feed override only with https or loopback.
 - "digest mismatch" in the app log: the file served differs from the manifest. Run `scripts/ship.sh publish <version>` again to compare the served bytes. Never edit an uploaded exe.
 - "invalid signature" in the app: the release was signed with a key that is not in `app/updater.pub`. `verify` shows this before you publish.
+
+## Commits, changelog and the release PR
+
+Every commit on `main` uses the Conventional Commits format: `type(scope): subject`. Types: `feat`, `fix`, `perf`, `revert` appear in the changelog. `docs`, `test`, `build`, `ci`, `chore`, `refactor` do not. Put `!` after the type or `BREAKING CHANGE:` in the body for a breaking change.
+
+- **Check:** the `commitlint` workflow checks every commit of a pull request.
+- **Release PR:** after each push to `main`, the `release-please` workflow keeps one open PR named `chore(main): release X.Y.Z`. It holds the version bump and the new `CHANGELOG.md` text. `feat` raises the minor number, `fix` raises the patch number.
+- **Release:** merge that PR. The workflow then creates the tag `vX.Y.Z` and a GitHub Release with the same notes.
+- **Ship:** run `scripts/ship.sh all X.Y.Z` on the Mac with the notes from the GitHub Release. The GitHub Release does not carry the signed exe. Only `ship.sh` signs and publishes the update feed.
+- **Start point:** the first release PR lists only commits after `533509f`. The manifest starts at 1.0.1, the version on the live feed.
+- **Version in code:** the line `var version` in `app/main.go` is bumped by the PR. The build still sets the real value with `-X main.version`.
