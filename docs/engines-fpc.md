@@ -41,3 +41,15 @@ After install, and at each launch of a profile on `fpc`, Ladilala reads the canv
 3. Test it. Add the entry to a local build, install it from the Engines screen (the install runs the launch self-check), then start many profiles on it. The M0 harness in `cmd/winspike` (`-engine fpc -enginedir <folder>`) can run 50 or more fresh launches. Any hang or crash means the tag is not safe.
 4. Add a `FPCBuild{Tag, URL, Size, SHA256, ChromiumMajor}` to `driver.FPCBuilds`. The first entry is the one the app offers.
 5. Run `go test ./core/driver ./app`.
+
+## Recorder overlay on a page with a strict CSP
+Symptom: on some pages the recorder overlay had no layout. The bar, the Data columns panel and the first-use card sat in the page flow as plain text with default buttons ([before](img/fpc-overlay-before.png)).
+
+Cause: the overlay put its CSS in a `<style>` element inside its shadow root. A page with a Content-Security-Policy `style-src` that has no `'unsafe-inline'` (a nonce or hash only) blocks that element, so no overlay rule applied. This is not specific to fingerprint-chromium: stock Chrome 157 and FPC 148 behave the same on such a page. The light test pages have no CSP, which is why the M0 recorder run (9 of 9) looked right.
+
+Fix: `core/recorder/recorder.js` now builds the CSS as a constructed stylesheet (`adoptedStyleSheets`), which CSP `style-src` does not govern; the `<style>` element stays only as a fallback for a browser without `CSSStyleSheet`. Result on FPC 148 and Chrome 157: [after](img/fpc-overlay-after.png), [Chrome](img/fpc-overlay-chrome-after.png). The test `TestE2EOverlayLayout` (`core/recorder/overlay_e2e_test.go`, page `testdata/dark.html` with a nonce CSP and hostile global styles) fails if the bar, panel or card is not `position: fixed` or its box is outside the viewport. Run it with `LADILALA_E2E=1 LADILALA_E2E_BROWSER=fpc LADILALA_FPC_DIR=<folder>`.
+
+Launch flags: none of the `FingerprintChromium.Args` flags changes the overlay. The CSS features it uses (`:host`, `all`, `position: fixed`, shadow DOM) work on 148.
+
+## Infobar "You are using an unsupported command-line flag"
+Not reproduced. The app's exact command line (the flags of `launchFlags` plus `FingerprintChromium.Args`, with the debug pipe, with `--proxy-server`, `--disable-spoofing`, `--fingerprint-platform=macos`, `--fingerprint-brand=Edge`, a `vi-VN` locale) was run on Windows with FPC 148 in a visible window, one flag group removed at a time: no infobar showed, and the viewport had no infobar offset in the E2E run. The text names the flag, but the screenshot of the report cuts it off, so the flag is unknown. Most likely the report came from an older Ladilala build with other flags. `--test-type` was not enabled: it hides this class of infobar but also changes sandbox and security behaviour, and no flag is known to need it. If an infobar is shown it adds about 40 px above the page, so `window.innerHeight` and `outerHeight - innerHeight` differ from a browser without it.

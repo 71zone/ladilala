@@ -330,10 +330,19 @@
     if (!root) return false;
     host = document.createElement('ladi-' + Math.random().toString(36).slice(2, 8));
     const sh = host.attachShadow({ mode: 'closed' });
-    const css = document.createElement('style');
-    css.textContent = CSS;
+    // A constructed stylesheet is not subject to the page's Content-Security-Policy; a <style>
+    // element is, and a page with a strict style-src would leave the overlay unstyled.
+    try {
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(CSS);
+      sh.adoptedStyleSheets = [sheet];
+    } catch (e) {
+      const css = document.createElement('style');
+      css.textContent = CSS;
+      sh.append(css);
+    }
     const hl = h('div', 'hl'), badge = h('div', 'badge');
-    sh.append(css, hl, badge);
+    sh.append(hl, badge);
     ui = { hl, badge };
     // A click on the overlay must not take the focus from the field the user is typing in.
     sh.addEventListener('mousedown', (e) => { if (!(e.target && e.target.localName === 'input')) e.preventDefault(); });
@@ -347,7 +356,7 @@
       const note = h('div', 'note');
       ui.panel = h('div', 'panel'); ui.card = h('div', 'card');
       sh.append(bar, note, ui.panel, ui.card);
-      Object.assign(ui, { note, label, dot, pb, cb, sb });
+      Object.assign(ui, { bar, note, label, dot, pb, cb, sb });
     }
     root.appendChild(host);
     renderAll();
@@ -483,6 +492,16 @@
     notice: (m) => { if (ui && ui.note) notify(m); },
     ready: () => !!host,
     sync,
+    // Computed position and box of the overlay parts, for the layout test.
+    layout() {
+      if (!ui || !ui.panel) return null;
+      const out = { vw: innerWidth, vh: innerHeight };
+      for (const [k, el] of [['bar', ui.bar], ['panel', ui.panel], ['card', ui.card], ['note', ui.note]]) {
+        const cs = getComputedStyle(el), r = el.getBoundingClientRect();
+        out[k] = { position: cs.position, display: cs.display, x: r.left, y: r.top, w: r.width, h: r.height };
+      }
+      return out;
+    },
     // Center of an overlay control in viewport pixels, for tests that drive it with real mouse events.
     rect(what) {
       if (!ui || !ui.panel) return null;

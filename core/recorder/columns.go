@@ -231,6 +231,63 @@ func (r *Recorder) partsExpr(parts []rawPart) (string, bool) {
 	return expr, true
 }
 
+// OverlayBox is the computed position and box of one overlay part.
+type OverlayBox struct {
+	Position string  `json:"position"`
+	Display  string  `json:"display"`
+	X        float64 `json:"x"`
+	Y        float64 `json:"y"`
+	W        float64 `json:"w"`
+	H        float64 `json:"h"`
+}
+
+// OverlayLayout is what the overlay of the top frame looks like: the viewport
+// and the computed box of the bar, the Data columns panel, the first-use card
+// and the note. Tests check that the overlay is positioned and inside the
+// viewport; it reads the page and changes nothing.
+type OverlayLayout struct {
+	VW, VH float64
+	Bar    OverlayBox
+	Panel  OverlayBox
+	Card   OverlayBox
+	Note   OverlayBox
+}
+
+// OverlayLayout reads the layout of the overlay in the top frame of pg.
+func (r *Recorder) OverlayLayout(ctx context.Context, pg *driver.Page) (OverlayLayout, error) {
+	r.mu.Lock()
+	var ids []int
+	for k, id := range r.contexts {
+		if k.session == pg.SessionID {
+			ids = append(ids, id)
+		}
+	}
+	r.mu.Unlock()
+	for _, id := range ids {
+		cctx, cancel := context.WithTimeout(ctx, 2*time.Second)
+		var res struct {
+			Result struct {
+				Value *struct {
+					VW    float64    `json:"vw"`
+					VH    float64    `json:"vh"`
+					Bar   OverlayBox `json:"bar"`
+					Panel OverlayBox `json:"panel"`
+					Card  OverlayBox `json:"card"`
+					Note  OverlayBox `json:"note"`
+				} `json:"value"`
+			} `json:"result"`
+		}
+		err := pg.Call(cctx, "Runtime.evaluate", map[string]any{
+			"contextId": id, "returnByValue": true, "expression": "typeof __ladiRec==='object'?__ladiRec.layout():null",
+		}, &res)
+		cancel()
+		if v := res.Result.Value; err == nil && v != nil {
+			return OverlayLayout{VW: v.VW, VH: v.VH, Bar: v.Bar, Panel: v.Panel, Card: v.Card, Note: v.Note}, nil
+		}
+	}
+	return OverlayLayout{}, fmt.Errorf("recorder: overlay layout not found")
+}
+
 // OverlayPoint returns the viewport center of an overlay control: "cols" (the
 // Data columns button), "stop", "rename:<name>", "delete:<name>", "confirm",
 // "hint-chip", "hint-close" or "hint-never". Tests use it to aim real mouse
