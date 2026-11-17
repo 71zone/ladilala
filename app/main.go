@@ -25,7 +25,7 @@ var distFS embed.FS
 var updaterPublicKey []byte
 
 // version is set at build time: -ldflags "-X main.version=1.0.0".
-var version = "1.0.1" // x-release-please-version
+var version = "1.1.0" // x-release-please-version
 
 const singleInstanceID = "app.ladilala.desktop"
 
