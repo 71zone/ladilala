@@ -46,6 +46,9 @@ func (s *EngineService) RunDiagnostics(ctx context.Context) ([]Diag, error) {
 	if cin := s.installFor(engineCfT); cin != nil {
 		found = append(found, map[string]any{"path": cin.Path, "brand": driver.BrandChromium, "version": s.readState().Active})
 	}
+	if m, in, ok := s.fpcInstalled(); ok && s.fpcOK {
+		found = append(found, map[string]any{"path": in.Path, "brand": driver.BrandChromium, "version": m.Tag})
+	}
 	if len(found) == 0 {
 		add(Diag{ID: "browser", Level: "fail", Code: "none", FixID: "installCft"})
 	} else {
@@ -182,7 +185,14 @@ func (s *EngineService) startProbe(ctx context.Context, in driver.Install) (*dri
 		Fingerprint: profile.NewFingerprint(7, profile.Options{Platform: profile.PlatformWindows, Language: "en-US", Timezone: "Asia/Ho_Chi_Minh"}),
 	}
 	start := time.Now()
-	sess, err := l.LaunchStockUnverified(ctx, driver.StockChrome{}, in, p, "")
+	var sess *driver.StockSession
+	if in.FPC {
+		// The self-check of fingerprint-chromium (canvas and WebGL read) runs
+		// inside the launch.
+		sess, _, err = l.LaunchFPC(ctx, in, p, "")
+	} else {
+		sess, err = l.LaunchStockUnverified(ctx, driver.StockChrome{}, in, p, "")
+	}
 	if err != nil {
 		_ = os.RemoveAll(dir)
 		return nil, nil, 0, err
@@ -234,6 +244,8 @@ func (s *EngineService) TestLaunch(ctx context.Context, engineID string) ([]Test
 			code = "blocked"
 		case errors.Is(err, driver.ErrBinaryNotFound):
 			code = "binary"
+		case errors.Is(err, driver.ErrFPCCanvasBroken):
+			code = "canvas"
 		case errors.Is(err, context.DeadlineExceeded):
 			code = "timeout"
 		}
@@ -254,8 +266,10 @@ func (s *EngineService) TestLaunch(ctx context.Context, engineID string) ([]Test
 	if _, err := sess.WaitPage(ctx); err != nil {
 		return fail(2, err), nil
 	}
-	h, err := sess.Verify(ctx)
-	if err != nil {
+	var h string
+	if rep, ok := sess.FPCReport(); ok {
+		h = rep.CanvasHash
+	} else if h, err = sess.Verify(ctx); err != nil {
 		return fail(2, err), nil
 	}
 	steps[2] = TestStep{ID: "fingerprint", State: "ok", Params: map[string]any{"hash": h}}

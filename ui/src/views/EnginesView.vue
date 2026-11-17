@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { fmtSize, fmtSpeed, fmtSec, fmtPct } from '@/format'
 import { Download, MoreHorizontal, Play, Pause, Check, X, RefreshCw, Stethoscope, Copy, TriangleAlert, ChevronRight, Link, Undo2, Loader, FolderOpen } from '@lucide/vue'
 import { groupsList } from '@/store'
-import { engines, eng, defaultEngine, pins, upd, checking, stateOf, statusText, canUpdate, canInstall, checkUpdates, saveUpdateSettings, setDefault, setGroupPin, rollback, removeEngine, openFolder, job, jobRunning, openInstall, openUpdate, openRedownload, pauseJob, resumeJob, cancelJob, applyJobFix, jobFix, jobFailText, stageDetail, selfTests, fixLabel, diag, diagSummary, runDiag, fixDiag, diagLabel, copyReport, launch, testLaunch, problems, elogs, healthIssues, type EngineDTO } from '@/engines'
+import { engines, eng, defaultEngine, downloadable, pins, upd, checking, stateOf, statusText, canUpdate, canInstall, checkUpdates, saveUpdateSettings, setDefault, setGroupPin, rollback, removeEngine, openFolder, job, jobRunning, openInstall, openUpdate, openRedownload, pauseJob, resumeJob, cancelJob, applyJobFix, jobFix, jobFailText, stageDetail, selfTests, fixLabel, diag, diagSummary, runDiag, fixDiag, diagLabel, copyReport, launch, testLaunch, problems, elogs, healthIssues, type EngineDTO } from '@/engines'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
@@ -40,6 +40,8 @@ const checkOpts = computed<[string, string][]>(() => [['daily', t('settings.chec
 const lvl = (s: string) => (s === 'ok' ? 'ok' : s === 'warn' ? 'warn' : s === 'fail' ? 'fail' : s === 'running' ? 'checking' : 'idle')
 const firstFail = computed(() => launch.steps.findIndex((s) => s.state === 'fail'))
 const stageClass = (s: string) => (s === 'done' ? 'bg-success/15 text-success' : s === 'fail' ? 'bg-destructive/15 text-destructive' : s === 'active' ? 'bg-primary/15 text-link' : 'bg-muted text-muted-foreground')
+const runTest = (e: EngineDTO) => { tab.value = 'doctor'; testEngine.value = e.id; void testLaunch(e.id) }
+const rowPct = (e: EngineDTO) => (d.value && d.value.engineId === e.id && d.value.stage === 'download' ? pct.value : -1)
 const doRemove = () => { if (removeTarget.value) void removeEngine(removeTarget.value); removeTarget.value = null }
 const dlg = computed({ get: () => job.open, set: (v: boolean) => { job.open = v } })
 const d = computed(() => job.dto)
@@ -70,12 +72,13 @@ const sizeOf = (e: EngineDTO) => e.installed.reduce((n, v) => n + v.sizeBytes, 0
           <TableHeader class="bg-background"><TableRow class="hover:bg-transparent"><TableHead class="pl-5">{{ $t('engines.colEngine') }}</TableHead><TableHead class="w-[170px]">{{ $t('engines.colVersion') }}</TableHead><TableHead class="w-[170px]">{{ $t('proxies.status') }}</TableHead><TableHead class="w-[80px] text-right">{{ $t('engines.colSize') }}</TableHead><TableHead class="w-[150px] pr-5" /></TableRow></TableHeader>
           <TableBody>
             <TableRow v-for="e in tier(n)" :key="e.id" class="[&>td]:py-2">
-              <TableCell class="pl-5" :title="e.path"><div class="flex flex-wrap items-center gap-x-1.5"><b class="font-medium">{{ e.name }}</b><Badge v-if="e.default" variant="secondary" class="text-link">{{ $t('engines.default') }}</Badge></div>
-                <div class="truncate text-xs text-muted-foreground">{{ $t('engines.role.' + e.id) }}</div><div v-if="e.path" class="truncate font-mono text-[11px] text-muted-foreground">{{ e.path }}</div></TableCell>
+              <TableCell class="pl-5" :title="e.path"><div class="flex flex-wrap items-center gap-x-1.5"><b class="font-medium">{{ e.name }}</b><Badge v-if="e.default" variant="secondary" class="text-link">{{ $t('engines.default') }}</Badge><Badge v-if="e.notes?.includes('old')" variant="outline" class="border-warning text-warning">{{ $t('engines.old.badge') }}</Badge></div>
+                <div class="truncate text-xs text-muted-foreground">{{ $t('engines.role.' + e.id) }}</div>
+                <template v-if="e.notes?.includes('old')"><div class="mt-0.5 text-xs text-warning">{{ $t('engines.old.note', { major: e.chromiumMajor }) }}</div><div v-if="e.notes?.includes('unsupported')" class="text-xs text-muted-foreground">{{ $t('engines.old.unsupported') }}</div></template><div v-if="e.path" class="truncate font-mono text-[11px] text-muted-foreground">{{ e.path }}</div></TableCell>
               <TableCell :title="e.installed.map((i) => i.version).join(', ')"><div class="truncate font-mono text-xs tabular-nums">{{ e.status === 'unavailable' ? '-' : verLine(e) }}<span v-if="e.installed.length > 1" class="text-muted-foreground"> +{{ e.installed.length - 1 }}</span></div>
                 <div v-if="canUpdate(e)" class="truncate font-mono text-[11px] text-warning tabular-nums">{{ $t('engines.availableVer', { v: e.latest }) }}</div><div v-else-if="e.id === 'cft' && !e.active && e.latest" class="truncate font-mono text-[11px] text-muted-foreground tabular-nums">{{ $t('engines.latestVer', { v: e.latest }) }}</div><div v-else-if="e.previous" class="truncate font-mono text-[11px] text-muted-foreground tabular-nums">{{ $t('engines.prevVer', { v: e.previous }) }}</div></TableCell>
-              <TableCell :title="statusText(e)"><StateDot :s="stateOf(e)" />{{ statusText(e) }}</TableCell>
-              <TableCell class="text-right tabular-nums text-muted-foreground">{{ e.system || e.status === 'unavailable' ? '-' : e.active ? fmtSize(sizeOf(e) / MB) : e.downloadBytes ? fmtSize(e.downloadBytes / MB) : '-' }}</TableCell>
+              <TableCell :title="statusText(e)"><StateDot :s="stateOf(e)" />{{ statusText(e) }}<Progress v-if="rowPct(e) >= 0" :model-value="rowPct(e)" class="mt-1.5" /></TableCell>
+              <TableCell class="text-right tabular-nums text-muted-foreground">{{ e.system || e.status === 'unavailable' ? '-' : e.active ? fmtSize(sizeOf(e) / MB) : e.downloadBytes ? fmtSize(e.downloadBytes / MB) : '-' }}<div v-if="e.diskBytes && !e.active" class="text-[11px]">{{ $t('engines.diskSize', { size: fmtSize(e.diskBytes / MB) }) }}</div></TableCell>
               <TableCell class="pr-5 text-right">
                 <Button v-if="canInstall(e)" size="sm" :disabled="!!e.jobId || jobRunning" @click="openInstall(e.id)"><Download class="size-3" />{{ $t('engines.install') }}</Button>
                 <Button v-else-if="canUpdate(e)" size="sm" :disabled="!!e.jobId || jobRunning" @click="openUpdate(e.id)"><Download class="size-3" />{{ $t('engines.update') }}</Button>
@@ -84,10 +87,11 @@ const sizeOf = (e: EngineDTO) => e.installed.reduce((n, v) => n + v.sizeBytes, 0
                     <DropdownMenuItem v-if="e.id === 'cft'" :disabled="!e.previous || !!e.jobId" @select="rollback(e)"><Undo2 />{{ e.previous ? $t('engines.rollbackTo', { v: e.previous.split('.')[0] }) : $t('engines.rollback') }}</DropdownMenuItem>
                     <DropdownMenuItem :disabled="e.status !== 'ready' || e.default" @select="setDefault(e)">{{ $t('engines.setDefault') }}</DropdownMenuItem>
                     <DropdownMenuItem @select="pinsOpen = true">{{ $t('engines.pinGroup') }}</DropdownMenuItem>
-                    <DropdownMenuItem v-if="e.id === 'cft' && e.active" :disabled="jobRunning" @select="openRedownload(e.id, e.active)"><RefreshCw />{{ $t('engines.redownload') }}</DropdownMenuItem>
-                    <DropdownMenuItem v-if="e.id === 'cft'" @select="openFolder"><FolderOpen />{{ $t('engines.openFolder') }}</DropdownMenuItem>
+                    <DropdownMenuItem v-if="e.status === 'ready'" :disabled="launch.running" @select="runTest(e)"><Play />{{ $t('engines.test') }}</DropdownMenuItem>
+                    <DropdownMenuItem v-if="downloadable(e) && e.active" :disabled="jobRunning" @select="openRedownload(e.id, e.active)"><RefreshCw />{{ $t('engines.redownload') }}</DropdownMenuItem>
+                    <DropdownMenuItem v-if="downloadable(e)" @select="openFolder(e)"><FolderOpen />{{ $t('engines.openFolder') }}</DropdownMenuItem>
                     <DropdownMenuItem v-if="e.notesUrl" as-child><a :href="e.notesUrl" target="_blank" rel="noreferrer">{{ $t('settings.releaseNotes') }}</a></DropdownMenuItem>
-                    <template v-if="e.id === 'cft'"><DropdownMenuSeparator /><DropdownMenuItem variant="destructive" :disabled="!e.active || !!e.jobId" @select="removeTarget = e">{{ $t('common.remove') }}</DropdownMenuItem></template>
+                    <template v-if="downloadable(e)"><DropdownMenuSeparator /><DropdownMenuItem variant="destructive" :disabled="!e.active || !!e.jobId" @select="removeTarget = e">{{ $t('common.remove') }}</DropdownMenuItem></template>
                   </DropdownMenuContent></DropdownMenu>
                 <Badge v-else variant="outline" class="text-muted-foreground">{{ $t('engines.status.unavailable') }}</Badge>
               </TableCell>

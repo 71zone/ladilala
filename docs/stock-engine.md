@@ -7,6 +7,7 @@ Measured on winpc (Windows, Chrome 157.0.8103.52, Edge 157.0.4341.60, CfT 157.0.
 - `core/driver/rawcdp.go`: own CDP client over the NUL-framed pipe (`rawConn`, implements `cdp.Session`, so cdproto commands and `EmulationSteps` run on it). `stockpipe_*.go`: pipe handoff (fd 3/4 on Unix, `--remote-debugging-io-pipes` handles on Windows).
 - `core/driver/stock.go`, `stock_attach.go`: `StockChrome` engine (SystemChrome detection, Chrome then Edge), `Launcher.LaunchStock` (launch, verify, retry up to 4 launches; Job object kept), `LaunchStockUnverified`, `LaunchStockBare` (control), `StockSession` (`WaitPage`, `NewPage`, `Page.Navigate/Eval/Screenshot`, `SentMethods`, `Close`). `EmulationPlan` now wraps `EmulationSteps` (same behaviour, tests unchanged).
 - `core/driver/cft.go`: `ParseCfTStable`, `FetchCfTStable`, `CfTPlatform`, `CfTInstall`; fixture `testdata/cft-last-known-good.json`.
+- `core/driver/fpc.go`, `fpc_launch.go`, `download.go`: fingerprint-chromium as the downloadable engine `fpc` (pin table, installer, launch self-check). The injector is off for it. See `docs/engines-fpc.md`.
 - Unit tests (no browser): config determinism and coherence, injector run in Node vm (native-looking getters, cross-realm toString), pipe framing with a 3 MB message, CDP errors and events, CfT parsing.
 
 ## Runtime.enable (answer)

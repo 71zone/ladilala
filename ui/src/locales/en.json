@@ -367,7 +367,10 @@
     "clearDesc": "This removes {n} cookie from this profile. You will be signed out of every site. | This removes {n} cookies from this profile. You will be signed out of every site.",
     "clearAction": "Clear cookies",
     "clear": "Clear",
-    "save": "Save profile"
+    "save": "Save profile",
+    "engine": "Engine",
+    "engineDefault": "Follow the default",
+    "engineOld": "Old engine: Chromium {major}, about 10 versions behind. It misses newer security fixes."
   },
   "proxies": {
     "count": "{n} in pool",
@@ -1006,8 +1009,8 @@
         "help": "Chrome first, then Edge. The vendor updates them. Ladilala does not change them."
       },
       "2": {
-        "title": "Chrome for Testing",
-        "help": "The official build from Google. Ladilala downloads it, checks it and keeps old versions for roll back. Use it when no browser is installed or a policy blocks the others."
+        "title": "Downloaded by Ladilala",
+        "help": "Builds Ladilala downloads and checks. Chrome for Testing is the official build from Google and keeps old versions for roll back. Use it when no browser is installed or a policy blocks the others. fingerprint-chromium changes the fingerprint inside the browser, but it is an old build."
       },
       "3": {
         "title": "Ladilala Chromium",
@@ -1022,7 +1025,8 @@
       "chrome": "Installed on this PC",
       "edge": "Installed on this PC",
       "cft": "Downloaded by Ladilala",
-      "patched": "Not available"
+      "patched": "Not available",
+      "fpc": "Downloaded by Ladilala, changes the fingerprint inside the browser"
     },
     "none": "none",
     "availableVer": "{v} available",
@@ -1107,7 +1111,9 @@
         "selftestOk": "The browser started and answered",
         "switching": "Writing the new version, then switching",
         "activeKept": "Active: {version}. Previous {previous} kept for roll back",
-        "active": "Active: {version}"
+        "active": "Active: {version}",
+        "pinned": "Version {version} (Chromium {major}) is pinned in the app",
+        "shaPinned": "SHA-256 {sha} matches the pinned value"
       }
     },
     "fail": {
@@ -1121,7 +1127,7 @@
       },
       "checksum": {
         "title": "Downloaded file is damaged",
-        "why": "The file does not match the SHA-256 recorded on the first download, or it is not a valid zip. It was discarded."
+        "why": "The file does not match the pinned or recorded SHA-256, or it is not a valid zip. It was discarded."
       },
       "disk": {
         "title": "Not enough disk space",
@@ -1169,6 +1175,10 @@
         "untouched": "Your current {version} is untouched.",
         "nothing": "Nothing was installed.",
         "partial": " The partial download is kept so you can resume."
+      },
+      "canvas": {
+        "title": "This engine build crashed on canvas read",
+        "why": "The browser crashed or hung when a page read the canvas. Choose another engine. The test copy was removed."
       }
     },
     "fixes": {
@@ -1261,7 +1271,8 @@
         "label": "Fingerprint verified",
         "ok": "Canvas and hardware read back as the profile says",
         "failed": "The fingerprint check failed: {error}",
-        "timeout": "The fingerprint check took too long."
+        "timeout": "The fingerprint check took too long.",
+        "canvas": "This engine build crashed on canvas read. Choose another engine."
       },
       "proxy": {
         "label": "Proxy reachable",
@@ -1297,7 +1308,14 @@
         "t": "Disk is full",
         "d": "Unpacking needs about 500 MB. Free space, then try again."
       }
-    }
+    },
+    "old": {
+      "badge": "Old engine",
+      "note": "Built on Chromium {major}, about 10 versions behind. It misses the security fixes of newer Chrome. Use it only for profiles that need its fingerprint.",
+      "unsupported": "Screen size, device memory and color depth stay real. Text width in canvas reads wrong."
+    },
+    "diskSize": "{size} on disk",
+    "test": "Test launch"
   },
   "data": {
     "auto": "Automatic",

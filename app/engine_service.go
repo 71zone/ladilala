@@ -23,12 +23,14 @@ import (
 
 // Engine IDs. The three tiers of ADR 0003, 0004 and 0005:
 //  1. chrome, edge: the vendor browser installed on this PC (stock),
-//  2. cft: Chrome for Testing, downloaded by Ladilala,
+//  2. cft: Chrome for Testing, and fpc: fingerprint-chromium (pinned, ten
+//     Chromium versions old), both downloaded by Ladilala,
 //  3. patched: an own patched Chromium. Not built, so never offered.
 const (
 	engineChrome  = "chrome"
 	engineEdge    = "edge"
 	engineCfT     = "cft"
+	engineFPC     = "fpc"
 	enginePatched = "patched"
 )
 
@@ -45,6 +47,7 @@ type EngineService struct {
 	cfg      *settingsStore
 	dataDir  string
 	dir      string // <data>/engines/chrome-for-testing
+	fpcDir   string // <data>/engines/fingerprint-chromium
 	platform string
 	launcher *engine.StockLauncher
 	emit     func(name string, data any)
@@ -54,6 +57,8 @@ type EngineService struct {
 	version       func(driver.Install) (string, error)
 	probe         func(ctx context.Context, in driver.Install) (string, error)
 	fetchVersions func(ctx context.Context) ([]driver.CfTBuild, error)
+	fpcBuilds     []driver.FPCBuild // pinned fingerprint-chromium builds
+	fpcOK         bool              // the pinned zip is a Windows build
 	activeRuns    func() int
 	client        *http.Client
 	probeTimeout  time.Duration
@@ -74,6 +79,9 @@ func newEngineService(b *Backend) *EngineService {
 		cfg:          b.Settings,
 		dataDir:      b.DataDir,
 		dir:          filepath.Join(b.DataDir, "engines", "chrome-for-testing"),
+		fpcDir:       filepath.Join(b.DataDir, "engines", "fingerprint-chromium"),
+		fpcBuilds:    driver.FPCBuilds,
+		fpcOK:        runtime.GOOS == "windows" && runtime.GOARCH == "amd64",
 		platform:     driver.CfTPlatform(runtime.GOOS, runtime.GOARCH),
 		emit:         b.Emit,
 		detect:       driver.StockChrome{}.Detect,
@@ -166,6 +174,14 @@ type EngineDTO struct {
 	PolicyBlocked bool            `json:"policyBlocked"`
 	NotesURL      string          `json:"notesUrl"`
 	JobID         string          `json:"jobId"` // running job of this engine, or empty
+	// DiskBytes is the size on disk after the unpack, when known (fpc).
+	DiskBytes int64 `json:"diskBytes,omitempty"`
+	// ChromiumMajor is the Chromium version the engine is built on (fpc).
+	ChromiumMajor int `json:"chromiumMajor,omitempty"`
+	// Notes are codes the UI writes in the user's language: old (the build is
+	// many Chromium versions old and misses security fixes), unsupported
+	// (fields the engine cannot set stay real).
+	Notes []string `json:"notes,omitempty"`
 }
 
 // EngineSummary is what the sidebar badge needs.
@@ -294,6 +310,14 @@ func (s *EngineService) installFor(id string) *driver.Install {
 			return nil
 		}
 		return &f.in
+	case engineFPC:
+		if !s.fpcOK {
+			return nil
+		}
+		if _, in, ok := s.fpcInstalled(); ok {
+			return &in
+		}
+		return nil
 	case engineCfT:
 		s.mu.Lock()
 		act := s.readState().Active
@@ -358,8 +382,8 @@ func (s *EngineService) applyDefault() {
 	case engineEdge:
 		s.launcher.UseBrand(driver.BrandEdge)
 		s.launcher.UseInstall(nil)
-	case engineCfT:
-		s.launcher.UseInstall(s.installFor(engineCfT))
+	case engineCfT, engineFPC:
+		s.launcher.UseInstall(s.installFor(id))
 	default:
 		s.launcher.UseBrand(driver.BrandChrome)
 		s.launcher.UseInstall(nil)
@@ -419,7 +443,7 @@ func (s *EngineService) ListEngines(context.Context) ([]EngineDTO, error) {
 		cft.Latest = latest.Version
 		cft.DownloadBytes = size
 	}
-	out = append(out, cft, EngineDTO{
+	out = append(out, cft, s.fpcDTO(def), EngineDTO{
 		ID: enginePatched, Tier: 3, Name: "Ladilala Chromium", Status: "unavailable", Installed: []EngineVersion{},
 	})
 	return out, nil
@@ -582,7 +606,7 @@ func (s *EngineService) SetDefaultEngine(_ context.Context, id string) error {
 	if id == enginePatched {
 		return apiErr("engine.unavailable", "the own Chromium is not available")
 	}
-	if !oneOf(id, engineChrome, engineEdge, engineCfT) {
+	if !oneOf(id, engineChrome, engineEdge, engineCfT, engineFPC) {
 		return apiErr("notFound", "unknown engine", "id", id)
 	}
 	in := s.installFor(id)
@@ -678,6 +702,13 @@ func (s *EngineService) runsActive() bool { return s.activeRuns != nil && s.acti
 // version when version is empty. Stock browsers belong to the OS and cannot be
 // removed here.
 func (s *EngineService) RemoveEngine(_ context.Context, id, version string) error {
+	if id == engineFPC {
+		if err := s.removeFPC(); err != nil {
+			return err
+		}
+		s.forgetEngine(engineFPC)
+		return nil
+	}
 	if id != engineCfT {
 		return apiErr("engine.system", "this engine is managed by Windows", "id", id)
 	}
@@ -719,22 +750,28 @@ func (s *EngineService) RemoveEngine(_ context.Context, id, version string) erro
 	}
 	// A pin or default that pointed at the removed engine falls back.
 	if st.Active == "" {
-		_, _ = s.cfg.Update(func(c *Settings) error {
-			if c.Engines.DefaultEngine == engineCfT {
-				c.Engines.DefaultEngine = engineChrome
-			}
-			for _, m := range []map[string]string{c.Engines.GroupPins, c.Engines.ProfileEngines} {
-				for k, v := range m {
-					if v == engineCfT {
-						delete(m, k)
-					}
+		s.forgetEngine(engineCfT)
+	}
+	return nil
+}
+
+// forgetEngine moves a default or a pin that pointed at a removed engine back
+// to the default, then tells the launcher.
+func (s *EngineService) forgetEngine(id string) {
+	_, _ = s.cfg.Update(func(c *Settings) error {
+		if c.Engines.DefaultEngine == id {
+			c.Engines.DefaultEngine = engineChrome
+		}
+		for _, m := range []map[string]string{c.Engines.GroupPins, c.Engines.ProfileEngines} {
+			for k, v := range m {
+				if v == id {
+					delete(m, k)
 				}
 			}
-			return nil
-		})
-	}
+		}
+		return nil
+	})
 	s.applyDefault()
-	return nil
 }
 
 // validVersion accepts only dotted digits, so a version can never be a path.
@@ -750,12 +787,21 @@ func validVersion(v string) bool {
 	return !strings.HasPrefix(v, ".") && !strings.Contains(v, "..")
 }
 
-// OpenEnginesFolder shows the engines folder in the file manager.
-func (s *EngineService) OpenEnginesFolder(context.Context) error {
-	if err := os.MkdirAll(s.dir, 0o700); err != nil {
+// OpenEngineFolder shows the folder of a downloaded engine (cft or fpc) in
+// the file manager.
+func (s *EngineService) OpenEngineFolder(_ context.Context, id string) error {
+	dir := s.dir
+	switch id {
+	case engineCfT:
+	case engineFPC:
+		dir = s.fpcDir
+	default:
+		return apiErr("engine.system", "this engine is managed by Windows", "id", id)
+	}
+	if err := os.MkdirAll(dir, 0o700); err != nil {
 		return asAPIError(err)
 	}
-	return asAPIError(openInFileManager(s.dir))
+	return asAPIError(openInFileManager(dir))
 }
 
 // EngineSummary counts what the sidebar badge shows.

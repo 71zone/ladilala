@@ -32,10 +32,13 @@ export const upd = reactive<EngineUpdateSettings>({ channel: 'Stable', autoCheck
 export const pins = reactive<EnginePins>({ groups: {}, profiles: {} })
 export const checking = ref(false)
 export const eng = (id: string) => engines.value.find((e) => e.id === id)
+/** Engines a profile can use: only those installed and not blocked. */
+export const readyEngines = computed(() => engines.value.filter((e) => e.status === 'ready'))
 export const defaultEngine = computed(() => engines.value.find((e) => e.default)?.id ?? '')
 export const major = (v: string) => +v.split('.')[0]
 export const canUpdate = (e: EngineDTO) => e.id === 'cft' && !!e.active && !!e.latest && e.latest !== e.active && major(e.latest) >= major(e.active)
-export const canInstall = (e: EngineDTO) => e.id === 'cft' && !e.active
+export const downloadable = (e: EngineDTO) => e.id === 'cft' || e.id === 'fpc'
+export const canInstall = (e: EngineDTO) => downloadable(e) && e.status !== 'unavailable' && !e.active
 export const stateOf = (e: EngineDTO): 'checking' | 'ok' | 'warn' | 'fail' | 'idle' => e.jobId ? 'checking' : e.status === 'blocked' ? 'fail' : e.status === 'ready' ? (canUpdate(e) ? 'warn' : 'ok') : 'idle'
 export const statusText = (e: EngineDTO) => e.jobId ? t('engines.status.busy') : canUpdate(e) ? t('engines.status.update') : t('engines.status.' + e.status)
 
@@ -68,13 +71,19 @@ export async function setDefault(e: EngineDTO) {
 export async function setGroupPin(group: string, engineId: string) {
   if (await attempt(() => engineApi.setGroupPin(group, engineId).then(() => true))) { if (engineId) pins.groups[group] = engineId; else delete pins.groups[group] }
 }
+/** Pin one profile to an engine; an empty id removes the pin. Returns false when the service refused. */
+export async function setProfileEngine(profileId: string, engineId: string) {
+  const ok = await attempt(() => engineApi.setProfileEngine(profileId, engineId).then(() => true))
+  if (ok) { if (engineId) pins.profiles[profileId] = engineId; else delete pins.profiles[profileId] }
+  return !!ok
+}
 export async function rollback(e: EngineDTO) {
   if (await attempt(() => engineApi.rollback(e.id).then(() => true))) { log(lz('engines.log.rolledBack', { name: e.name })); await refresh(); notify(t('toasts.rolledBack', { version: eng(e.id)?.active ?? '' })) }
 }
 export async function removeEngine(e: EngineDTO, version = '') {
   if (await attempt(() => engineApi.remove(e.id, version).then(() => true))) { log(lz('engines.log.removed', { name: e.name }), 'w'); await refresh(); notify(t('toasts.removedEngine', { name: e.name })) }
 }
-export const openFolder = () => attempt(() => engineApi.openFolder())
+export const openFolder = (e: EngineDTO) => attempt(() => engineApi.openFolder(e.id))
 
 // ---- install, update, redownload job ----
 export const job = reactive({ open: false, dto: null as JobDTO | null })

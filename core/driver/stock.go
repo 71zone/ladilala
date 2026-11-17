@@ -47,6 +47,8 @@ type StockSession struct {
 
 	hook func(ctx context.Context, p *Page) error
 
+	fpc *FPCReport // set by LaunchFPC
+
 	exited    chan struct{}
 	closeOnce sync.Once
 	closeErr  error

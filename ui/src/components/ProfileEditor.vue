@@ -19,6 +19,7 @@ import { store, OS_PRESETS, consistency, checkText, notify, groupsList, ENGINE_M
 import { inWails } from '../bridge/api'
 import { createProfile, errorCodeText, errorText, previewFingerprint, randomSeed, updateProfile, type ProfileForm } from '../bridge/profiles'
 import { createProxy, setProxyPassword, testProxy } from '../bridge/proxies'
+import { engines, readyEngines, pins, setProfileEngine } from '../engines'
 const { t } = useI18n()
 const isNew = store.editing === 'new'
 const src = store.profiles.find(p => p.id === store.editing)
@@ -37,6 +38,10 @@ const tab = ref('general')
 const saving = ref(false)
 const warnCount = computed(() => checks.value.filter(c => c.level !== 'ok').length)
 const proxyOpts = computed(() => [{ value: '', label: t('editor.noProxy') }, ...store.proxies.map(p => ({ value: p.id, label: (p.cc ? p.cc + ' ' : '') + p.host + ':' + p.port + (p.status === 'down' ? '  (' + t('proxyStatus.down') + ')' : '') }))])
+// The engine this profile is pinned to; empty follows its group pin or the default. fpc shows only when installed.
+const engineId = ref(src ? pins.profiles[src.id] ?? '' : '')
+const engineOpts = computed(() => [{ value: '', label: t('editor.engineDefault') }, ...readyEngines.value.map(e => ({ value: e.id, label: e.name }))])
+const fpcMajor = computed(() => engines.value.find(e => e.id === 'fpc')?.chromiumMajor ?? 148)
 const groupOpts = computed(() => groupsList.map(g => ({ value: g, label: g })))
 const open = computed({ get: () => true, set: (v: boolean) => { if (!v) store.editing = null } })
 const osKeys = Object.keys(OS_PRESETS)
@@ -72,6 +77,7 @@ async function save() {
     }
     const form: ProfileForm = { name: draft.name, group: draft.group, tags: draft.tags, notes: draft.notes, proxyId, os: draft.os, seed: draft.seed, lang: draft.lang, tz: draft.tz, noise: draft.noise }
     const saved = isNew ? await createProfile(form) : await updateProfile(src!.id, form)
+    if (engineId.value !== (pins.profiles[saved.id] ?? '')) await setProfileEngine(saved.id, engineId.value)
     await refreshProxies(); await refreshProfiles()
     store.selId = saved.id
     store.editing = null; notify(t('toasts.profileSaved'))
@@ -91,6 +97,7 @@ const stat = (l: string) => (l === 'ok' ? 'ok' : l === 'warn' ? 'warn' : 'fail')
         <div class="min-h-0 flex-1 overflow-auto bg-muted/60 px-5 py-4">
           <TabsContent value="general">
             <Group><Row :label="$t('editor.name')"><Input v-model="draft.name" class="w-60 text-right" /></Row><Row :label="$t('editor.group')"><Input v-if="inWails" v-model="draft.group" list="editor-groups" class="w-60 text-right" /><Pick v-else v-model="draft.group" :options="groupOpts" /><datalist id="editor-groups"><option v-for="g in groupsList" :key="g" :value="g" /></datalist></Row><Row :label="$t('editor.tags')"><Input v-model="tagText" class="w-60 text-right" /></Row></Group>
+            <Group :help="engineId === 'fpc' ? $t('editor.engineOld', { major: fpcMajor }) : ''"><Row :label="$t('editor.engine')"><Pick v-model="engineId" :options="engineOpts" /></Row></Group>
             <Group :title="$t('editor.notes')"><div class="p-2"><Textarea v-model="draft.notes" rows="3" class="resize-none border-0 shadow-none focus-visible:ring-0" :placeholder="$t('editor.notesPlaceholder')" /></div></Group>
           </TabsContent>
           <TabsContent value="proxy">

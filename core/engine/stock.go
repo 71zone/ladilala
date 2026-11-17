@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log/slog"
 	"sync"
 	"time"
 
@@ -120,7 +121,16 @@ func (s *StockLauncher) Launch(ctx context.Context, p profile.Profile) (Browser,
 		rcancel()
 	}
 	var sess *driver.StockSession
-	if s.Unverified {
+	if in.FPC {
+		// fingerprint-chromium spoofs inside the engine: no injector, no
+		// canvas verification against the injector's config, but a self-check
+		// that the build survives a canvas and WebGL read.
+		var rep driver.FPCReport
+		sess, rep, err = s.Launcher.LaunchFPC(ctx, in, p, addr)
+		for _, o := range rep.Oddities {
+			slog.Warn("fingerprint-chromium: known engine oddity", "profile", p.ID, "oddity", o)
+		}
+	} else if s.Unverified {
 		sess, err = s.Launcher.LaunchStockUnverified(ctx, driver.StockChrome{}, in, p, addr)
 	} else {
 		sess, _, err = s.Launcher.LaunchStock(ctx, driver.StockChrome{}, in, p, addr)

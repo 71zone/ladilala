@@ -367,7 +367,10 @@
     "clearDesc": "Thao tác này xóa {n} cookie khỏi profile. Bạn sẽ bị đăng xuất khỏi mọi trang web.",
     "clearAction": "Xóa cookie",
     "clear": "Xóa",
-    "save": "Lưu profile"
+    "save": "Lưu profile",
+    "engine": "Engine",
+    "engineDefault": "Theo mặc định",
+    "engineOld": "Engine cũ: Chromium {major}, chậm khoảng 10 phiên bản. Thiếu các bản vá bảo mật mới."
   },
   "proxies": {
     "count": "{n} trong kho",
@@ -1006,8 +1009,8 @@
         "help": "Chrome trước, rồi đến Edge. Hãng cập nhật chúng. Ladilala không thay đổi chúng."
       },
       "2": {
-        "title": "Chrome for Testing",
-        "help": "Bản dựng chính thức của Google. Ladilala tải về, kiểm tra và giữ các bản cũ để khôi phục. Dùng khi máy chưa có trình duyệt hoặc chính sách chặn các trình duyệt kia."
+        "title": "Ladilala tải về",
+        "help": "Các bản dựng Ladilala tải về và kiểm tra. Chrome for Testing là bản chính thức của Google, giữ các bản cũ để khôi phục. Dùng khi máy chưa có trình duyệt hoặc chính sách chặn các trình duyệt kia. fingerprint-chromium đổi dấu vân tay ngay trong trình duyệt, nhưng đây là bản dựng cũ."
       },
       "3": {
         "title": "Ladilala Chromium",
@@ -1022,7 +1025,8 @@
       "chrome": "Đã cài trên máy này",
       "edge": "Đã cài trên máy này",
       "cft": "Ladilala tải về",
-      "patched": "Chưa có"
+      "patched": "Chưa có",
+      "fpc": "Ladilala tải về, đổi dấu vân tay trong trình duyệt"
     },
     "none": "chưa có",
     "availableVer": "có bản {v}",
@@ -1107,7 +1111,9 @@
         "selftestOk": "Trình duyệt đã khởi động và phản hồi",
         "switching": "Đang ghi phiên bản mới rồi chuyển sang",
         "activeKept": "Đang dùng: {version}. Giữ bản trước {previous} để khôi phục",
-        "active": "Đang dùng: {version}"
+        "active": "Đang dùng: {version}",
+        "pinned": "Phiên bản {version} (Chromium {major}) được ghim sẵn trong ứng dụng",
+        "shaPinned": "SHA-256 {sha} khớp với giá trị đã ghim"
       }
     },
     "fail": {
@@ -1121,7 +1127,7 @@
       },
       "checksum": {
         "title": "Tệp tải về bị hỏng",
-        "why": "Tệp không khớp SHA-256 đã ghi ở lần tải đầu, hoặc không phải tệp zip hợp lệ. Tệp đã bị bỏ."
+        "why": "Tệp không khớp SHA-256 đã ghim hoặc đã ghi, hoặc không phải zip hợp lệ. Tệp đã bị bỏ."
       },
       "disk": {
         "title": "Không đủ dung lượng đĩa",
@@ -1169,6 +1175,10 @@
         "untouched": "Bản {version} hiện tại không bị đụng tới.",
         "nothing": "Chưa cài gì cả.",
         "partial": " Tệp tải dở được giữ lại để bạn tiếp tục."
+      },
+      "canvas": {
+        "title": "Bản engine này bị sập khi đọc canvas",
+        "why": "Trình duyệt bị treo hoặc sập khi trang đọc canvas. Hãy chọn engine khác. Bản chạy thử đã được xóa."
       }
     },
     "fixes": {
@@ -1261,7 +1271,8 @@
         "label": "Fingerprint đã được xác minh",
         "ok": "Canvas và phần cứng đọc lại đúng như profile",
         "failed": "Kiểm tra fingerprint thất bại: {error}",
-        "timeout": "Kiểm tra fingerprint quá lâu."
+        "timeout": "Kiểm tra fingerprint quá lâu.",
+        "canvas": "Bản engine này bị sập khi đọc canvas. Hãy chọn engine khác."
       },
       "proxy": {
         "label": "Proxy kết nối được",
@@ -1297,7 +1308,14 @@
         "t": "Đĩa đã đầy",
         "d": "Giải nén cần khoảng 500 MB. Hãy giải phóng dung lượng rồi thử lại."
       }
-    }
+    },
+    "old": {
+      "badge": "Engine cũ",
+      "note": "Dựng trên Chromium {major}, chậm khoảng 10 phiên bản so với Chrome mới. Thiếu các bản vá bảo mật mới. Chỉ dùng cho hồ sơ cần dấu vân tay của nó.",
+      "unsupported": "Kích thước màn hình, bộ nhớ thiết bị và độ sâu màu vẫn là giá trị thật. Độ rộng chữ trong canvas đọc sai."
+    },
+    "diskSize": "{size} trên đĩa",
+    "test": "Chạy thử"
   },
   "data": {
     "auto": "Tự động",

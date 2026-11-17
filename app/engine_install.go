@@ -3,18 +3,13 @@ package main
 import (
 	"archive/zip"
 	"context"
-	"crypto/sha256"
-	"encoding/hex"
 	"errors"
 	"fmt"
-	"io"
-	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
 	"sync"
-	"syscall"
 	"time"
 
 	"github.com/8bu/ladilala/core/driver"
@@ -158,6 +153,13 @@ func (s *EngineService) RedownloadEngine(_ context.Context, id, version string) 
 func (s *EngineService) startJob(req InstallRequest, kind string) (JobDTO, error) {
 	switch req.EngineID {
 	case engineCfT:
+	case engineFPC:
+		if !s.fpcOK {
+			return JobDTO{}, apiErr("engine.platform", "fingerprint-chromium has a Windows build only")
+		}
+		if _, ok := s.fpcBuild(req.Version); !ok {
+			return JobDTO{}, apiErr("engine.versionGone", "this version is not offered", "version", req.Version)
+		}
 	case enginePatched:
 		return JobDTO{}, apiErr("engine.unavailable", "the own Chromium is not available")
 	case engineChrome, engineEdge:
@@ -168,7 +170,7 @@ func (s *EngineService) startJob(req InstallRequest, kind string) (JobDTO, error
 	if req.Version != "" && !validVersion(req.Version) {
 		return JobDTO{}, apiErr("invalid", "version is not valid", "field", "version")
 	}
-	if s.platform == "" {
+	if req.EngineID == engineCfT && s.platform == "" {
 		return JobDTO{}, apiErr("engine.platform", "Chrome for Testing has no build for this system")
 	}
 	s.mu.Lock()
@@ -176,7 +178,7 @@ func (s *EngineService) startJob(req InstallRequest, kind string) (JobDTO, error
 	if s.closed {
 		return JobDTO{}, apiErr("conflict", "the app is closing")
 	}
-	if s.runningJobLocked(engineCfT) != "" {
+	if s.runningJobLocked(engineCfT) != "" || s.runningJobLocked(engineFPC) != "" {
 		return JobDTO{}, apiErr("conflict", "an install is already running", "reason", "jobRunning")
 	}
 	s.seq++
@@ -299,9 +301,10 @@ func (s *EngineService) ApplyJobFix(ctx context.Context, id, fixID string) (JobD
 	switch fixID {
 	case "retry":
 	case "redownload":
-		s.removeDownload(old.Version)
+		s.removeDownload(old.EngineID, old.Version)
 	case "freeSpace":
 		s.freeSpace()
+		s.fpcFreeSpace()
 	default:
 		return JobDTO{}, apiErr("invalid", "unknown fix", "fixId", fixID)
 	}
@@ -316,7 +319,12 @@ func (s *EngineService) ApplyJobFix(ctx context.Context, id, fixID string) (JobD
 
 func (s *EngineService) runJob(ctx context.Context, j *engineJob) {
 	defer close(j.done)
-	err := s.execute(ctx, j)
+	var err error
+	if j.snapshot().EngineID == engineFPC {
+		err = s.executeFPC(ctx, j)
+	} else {
+		err = s.execute(ctx, j)
+	}
 	switch {
 	case err == nil:
 		j.update(true, func(d *JobDTO) { d.State, d.Stage, d.Error = jobDone, "", nil })
@@ -324,7 +332,7 @@ func (s *EngineService) runJob(ctx context.Context, j *engineJob) {
 		j.mu.Lock()
 		user := j.userCancel
 		j.mu.Unlock()
-		kept := fileExists(s.partPath(j.snapshot().Version))
+		kept := s.partialKept(j.snapshot().EngineID, j.snapshot().Version)
 		j.update(true, func(d *JobDTO) {
 			d.State, d.PartialKept = jobCancelled, kept
 			for i := range d.Stages {
@@ -339,7 +347,7 @@ func (s *EngineService) runJob(ctx context.Context, j *engineJob) {
 	default:
 		ae := toEngineError(err)
 		j.update(true, func(d *JobDTO) {
-			d.State, d.Error, d.PartialKept = jobFailed, ae, fileExists(s.partPath(d.Version))
+			d.State, d.Error, d.PartialKept = jobFailed, ae, s.partialKept(d.EngineID, d.Version)
 			for i := range d.Stages {
 				if d.Stages[i].State == "active" {
 					d.Stages[i].State, d.Stages[i].Code = "fail", ae.Code
@@ -358,26 +366,26 @@ func toEngineError(err error) *APIError {
 	}
 	e := &APIError{Code: "engine.internal", Message: err.Error()}
 	switch {
+	case errors.Is(err, driver.ErrFPCCanvasBroken):
+		e.Code = "engine.canvas"
+	case errors.Is(err, driver.ErrFPCHashMismatch):
+		e.Code, e.Details = "engine.checksum", map[string]any{"fixId": "redownload"}
+	case errors.Is(err, driver.ErrFPCDownload):
+		e.Code, e.Details = "engine.download", map[string]any{"fixId": "retry"}
+	case errors.Is(err, driver.ErrFPCNoBinary):
+		e.Code = "engine.unpack"
 	case errors.Is(err, driver.ErrDebuggingBlocked):
 		e.Code = "engine.policy"
 	case errors.Is(err, driver.ErrBinaryNotFound):
 		e.Code = "engine.binary"
 	case errors.Is(err, zip.ErrChecksum), errors.Is(err, zip.ErrFormat):
 		e.Code, e.Details = "engine.checksum", map[string]any{"fixId": "redownload"}
-	case isDiskFull(err):
+	case driver.IsDiskFull(err):
 		e.Code, e.Details = "engine.disk", map[string]any{"fixId": "freeSpace"}
 	case errors.Is(err, context.DeadlineExceeded):
 		e.Code = "engine.timeout"
 	}
 	return e
-}
-
-func isDiskFull(err error) bool {
-	if errors.Is(err, syscall.ENOSPC) {
-		return true
-	}
-	m := strings.ToLower(err.Error())
-	return strings.Contains(m, "no space left") || strings.Contains(m, "not enough space")
 }
 
 func fileExists(p string) bool {
@@ -415,7 +423,7 @@ func (s *EngineService) execute(ctx context.Context, j *engineJob) error {
 
 	// 3 verify: SHA-256 against the value recorded on the first download.
 	j.stage("verify", "active", "computing", nil)
-	sum, err := fileSHA256(ctx, zipPath)
+	sum, err := driver.FileSHA256(ctx, zipPath)
 	if err != nil {
 		return err
 	}
@@ -579,7 +587,13 @@ func (s *EngineService) zipPath(v string) string {
 }
 func (s *EngineService) partPath(v string) string { return s.zipPath(v) + ".part" }
 
-func (s *EngineService) removeDownload(v string) {
+func (s *EngineService) removeDownload(engineID, v string) {
+	if engineID == engineFPC {
+		if validVersion(v) {
+			_ = os.Remove(filepath.Join(s.fpcDir, "downloads", v+".zip.part"))
+		}
+		return
+	}
 	if validVersion(v) {
 		_ = os.Remove(s.partPath(v))
 		_ = os.Remove(s.zipPath(v))
@@ -637,7 +651,7 @@ func (s *EngineService) download(ctx context.Context, j *engineJob, b driver.CfT
 	var err error
 	for attempt := 1; attempt <= downloadAttempts; attempt++ {
 		j.update(true, func(d *JobDTO) { d.Attempt = attempt })
-		if err = s.downloadOnce(ctx, j, b.URL, part); err == nil {
+		if err = s.fetch(ctx, j, b.URL, part); err == nil {
 			if err = os.Rename(part, final); err != nil {
 				return "", err
 			}
@@ -647,7 +661,7 @@ func (s *EngineService) download(ctx context.Context, j *engineJob, b driver.CfT
 			return "", ctx.Err()
 		}
 		var ae *APIError
-		if errors.As(err, &ae) || isDiskFull(err) {
+		if errors.As(err, &ae) || driver.IsDiskFull(err) {
 			return "", err // not worth a retry
 		}
 		if attempt < downloadAttempts {
@@ -661,68 +675,39 @@ func (s *EngineService) download(ctx context.Context, j *engineJob, b driver.CfT
 	return "", apiErr("engine.download", err.Error(), "attempts", downloadAttempts, "fixId", "retry")
 }
 
-func (s *EngineService) downloadOnce(ctx context.Context, j *engineJob, url, part string) error {
-	var off int64
-	if st, err := os.Stat(part); err == nil {
-		off = st.Size()
-	}
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
-	if err != nil {
-		return err
-	}
-	if off > 0 {
-		req.Header.Set("Range", fmt.Sprintf("bytes=%d-", off))
-	}
-	resp, err := s.client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-	flags := os.O_CREATE | os.O_WRONLY
-	switch resp.StatusCode {
-	case http.StatusOK:
-		off = 0
-		flags |= os.O_TRUNC
-	case http.StatusPartialContent:
-		flags |= os.O_APPEND
-	case http.StatusRequestedRangeNotSatisfiable:
-		_ = os.Remove(part)
-		return errors.New("partial file does not fit the server file")
-	default:
-		return fmt.Errorf("download: %s", resp.Status)
-	}
-	total := int64(0)
-	if resp.ContentLength >= 0 {
-		total = off + resp.ContentLength
-	}
-	f, err := os.OpenFile(part, flags, 0o600)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
+// fetch is one download attempt into part, continuing a partial file.
+func (s *EngineService) fetch(ctx context.Context, j *engineJob, url, part string) error {
+	hooks, reset := s.fetchHooks(j)
+	reset()
+	return driver.DownloadFile(ctx, s.client, url, part, hooks)
+}
 
-	j.update(true, func(d *JobDTO) { d.BytesDone, d.BytesTotal = off, total })
+// fetchHooks reports download progress to the job and honours pause and the
+// bandwidth limit. Call reset when a new attempt starts.
+func (s *EngineService) fetchHooks(j *engineJob) (hooks driver.DownloadHooks, reset func()) {
 	limit := s.cfg.Get().Engines.BandwidthLimit
-	start, written := time.Now(), int64(0)
-	lastT, lastN := start, off
-	buf := make([]byte, 64*1024)
-	for {
-		if err := j.waitIfPaused(ctx); err != nil {
-			return err
-		}
-		n, rerr := resp.Body.Read(buf)
-		if n > 0 {
-			if _, werr := f.Write(buf[:n]); werr != nil {
-				return werr
+	var start, lastT time.Time
+	var lastN int64
+	var first bool
+	reset = func() { start, lastT, lastN, first = time.Now(), time.Now(), 0, true }
+	hooks = driver.DownloadHooks{
+		Progress: func(done, total int64) {
+			if first {
+				first, lastN = false, done
+				j.update(true, func(d *JobDTO) { d.BytesDone, d.BytesTotal = done, total })
+				return
 			}
-			written += int64(n)
-			done := off + written
 			if now := time.Now(); now.Sub(lastT) >= engineProgressEvery {
 				rate := int64(float64(done-lastN) / now.Sub(lastT).Seconds())
 				lastT, lastN = now, done
-				j.update(false, func(d *JobDTO) { d.BytesDone, d.BytesPerSec = done, rate })
+				j.update(false, func(d *JobDTO) { d.BytesDone, d.BytesTotal, d.BytesPerSec = done, total, rate })
 			} else {
-				j.update(false, func(d *JobDTO) { d.BytesDone = done })
+				j.update(false, func(d *JobDTO) { d.BytesDone, d.BytesTotal = done, total })
+			}
+		},
+		Gate: func(ctx context.Context, written int64) error {
+			if err := j.waitIfPaused(ctx); err != nil {
+				return err
 			}
 			if limit > 0 { // sleep until the average rate drops to the limit
 				ahead := time.Duration(float64(written)/float64(limit)*float64(time.Second)) - time.Since(start)
@@ -734,22 +719,10 @@ func (s *EngineService) downloadOnce(ctx context.Context, j *engineJob, url, par
 					}
 				}
 			}
-		}
-		if rerr == io.EOF {
-			break
-		}
-		if rerr != nil {
-			return rerr
-		}
+			return nil
+		},
 	}
-	if err := f.Close(); err != nil {
-		return err
-	}
-	if total > 0 && off+written != total {
-		return io.ErrUnexpectedEOF
-	}
-	j.update(true, func(d *JobDTO) { d.BytesDone, d.BytesTotal, d.BytesPerSec = off+written, off+written, 0 })
-	return nil
+	return hooks, reset
 }
 
 func (j *engineJob) waitIfPaused(ctx context.Context) error {
@@ -776,109 +749,19 @@ func fileSize(p string) int64 {
 	return 0
 }
 
-func fileSHA256(ctx context.Context, p string) (string, error) {
-	f, err := os.Open(p)
-	if err != nil {
-		return "", err
-	}
-	defer f.Close()
-	h := sha256.New()
-	if _, err := io.Copy(h, &ctxReader{ctx, f}); err != nil {
-		return "", err
-	}
-	return hex.EncodeToString(h.Sum(nil)), nil
-}
-
-type ctxReader struct {
-	ctx context.Context
-	r   io.Reader
-}
-
-func (c *ctxReader) Read(p []byte) (int, error) {
-	if err := c.ctx.Err(); err != nil {
-		return 0, err
-	}
-	return c.r.Read(p)
-}
-
 // ---- unzip ------------------------------------------------------------------------
 
-// unzipTo extracts zipPath into dest. It refuses entries that would land
-// outside dest (zip slip) and symlinks that point outside it. A damaged entry
-// fails with zip.ErrChecksum.
+// unzipTo extracts zipPath into dest through driver.Unzip and gives an unsafe
+// entry the code the UI translates.
 func unzipTo(ctx context.Context, zipPath, dest string) (files int, size int64, err error) {
-	zr, err := zip.OpenReader(zipPath)
-	if err != nil {
-		return 0, 0, err
-	}
-	defer zr.Close()
-	if err := os.MkdirAll(dest, 0o700); err != nil {
-		return 0, 0, err
-	}
-	root := filepath.Clean(dest) + string(os.PathSeparator)
-	inside := func(p string) bool { return strings.HasPrefix(filepath.Clean(p)+string(os.PathSeparator), root) }
-	for _, f := range zr.File {
-		if err := ctx.Err(); err != nil {
-			return files, size, err
+	files, size, err = driver.Unzip(ctx, zipPath, dest)
+	var uz *driver.UnsafeZipError
+	if errors.As(err, &uz) {
+		msg := "the zip has an entry outside the folder"
+		if uz.Link {
+			msg = "the zip has a link that points outside the folder"
 		}
-		target := filepath.Join(dest, filepath.FromSlash(f.Name))
-		if !inside(target) {
-			return files, size, apiErr("engine.unpack", "the zip has an entry outside the folder", "name", f.Name)
-		}
-		mode := f.Mode()
-		switch {
-		case f.FileInfo().IsDir():
-			if err := os.MkdirAll(target, 0o700); err != nil {
-				return files, size, err
-			}
-		case mode&os.ModeSymlink != 0:
-			rc, err := f.Open()
-			if err != nil {
-				return files, size, err
-			}
-			link, err := io.ReadAll(io.LimitReader(rc, 4096))
-			rc.Close()
-			if err != nil {
-				return files, size, err
-			}
-			if !inside(filepath.Join(filepath.Dir(target), string(link))) || filepath.IsAbs(string(link)) {
-				return files, size, apiErr("engine.unpack", "the zip has a link that points outside the folder", "name", f.Name)
-			}
-			if err := os.MkdirAll(filepath.Dir(target), 0o700); err != nil {
-				return files, size, err
-			}
-			if err := os.Symlink(string(link), target); err != nil {
-				return files, size, err
-			}
-			files++
-		default:
-			if err := os.MkdirAll(filepath.Dir(target), 0o700); err != nil {
-				return files, size, err
-			}
-			n, err := extractFile(ctx, f, target, mode.Perm()|0o600)
-			size += n
-			if err != nil {
-				return files, size, err
-			}
-			files++
-		}
+		return files, size, apiErr("engine.unpack", msg, "name", uz.Name)
 	}
-	return files, size, nil
-}
-
-func extractFile(ctx context.Context, f *zip.File, target string, perm os.FileMode) (int64, error) {
-	rc, err := f.Open()
-	if err != nil {
-		return 0, err
-	}
-	defer rc.Close()
-	out, err := os.OpenFile(target, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, perm)
-	if err != nil {
-		return 0, err
-	}
-	n, err := io.Copy(out, &ctxReader{ctx, rc})
-	if cerr := out.Close(); err == nil {
-		err = cerr
-	}
-	return n, err
+	return files, size, err
 }

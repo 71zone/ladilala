@@ -14,6 +14,8 @@ import (
 	"github.com/wailsapp/wails/v3/pkg/application"
 	"github.com/wailsapp/wails/v3/pkg/updater"
 	"github.com/wailsapp/wails/v3/pkg/updater/providers/endpoint"
+
+	"github.com/8bu/ladilala/core/driver"
 )
 
 // updateStages are the steps of an app update, in order. The Wails updater
@@ -483,7 +485,7 @@ func toUpdateError(err error) *APIError {
 	switch {
 	case errors.Is(err, errUpdatesNotConfigured):
 		e.Code, e.Retryable, e.Details = "update.notConfigured", false, nil
-	case isDiskFull(err):
+	case driver.IsDiskFull(err):
 		e.Code, e.Details = "update.disk", map[string]any{"fixId": "retry"}
 	case strings.Contains(m, "signature") || strings.Contains(m, "digest") || strings.Contains(m, "verif"):
 		e.Code, e.Retryable, e.Details = "update.signature", false, map[string]any{"fixId": "redownload"}

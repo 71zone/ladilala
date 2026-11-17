@@ -40,6 +40,7 @@ func newEngineFixture(t *testing.T) *engineFixture {
 	}
 	f := &engineFixture{dir: dir}
 	s := newEngineService(&Backend{DataDir: dir, Settings: cfg})
+	s.fpcOK = true
 	s.platform = driver.CfTPlatform(runtime.GOOS, runtime.GOARCH)
 	if s.platform == "" {
 		s.platform = "win64"
@@ -128,13 +129,13 @@ func TestEngineListThreeTiers(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(list) != 4 {
+	if len(list) != 5 {
 		t.Fatalf("got %d engines", len(list))
 	}
 	want := []struct {
 		id, status string
 		tier       int
-	}{{"chrome", "ready", 1}, {"edge", "ready", 1}, {"cft", "missing", 2}, {"patched", "unavailable", 3}}
+	}{{"chrome", "ready", 1}, {"edge", "ready", 1}, {"cft", "missing", 2}, {"fpc", "missing", 2}, {"patched", "unavailable", 3}}
 	for i, w := range want {
 		if list[i].ID != w.id || list[i].Status != w.status || list[i].Tier != w.tier {
 			t.Errorf("engine %d = %+v", i, list[i])

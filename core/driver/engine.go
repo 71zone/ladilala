@@ -24,6 +24,9 @@ const (
 type Install struct {
 	Path  string
 	Brand string
+	// FPC marks a fingerprint-chromium build. It spoofs inside the browser, so
+	// the launcher uses LaunchFPC and the injector stays off.
+	FPC bool
 }
 
 // Typed launch failures. Callers match them with errors.Is to show an
