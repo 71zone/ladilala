@@ -11,6 +11,24 @@ Ladilala is a Windows app that does two jobs.
 
 The app is in Vietnamese by default. English is built in. It updates itself.
 
+## Screenshots
+
+<img src="docs/img/screens/en-profiles.png" alt="Profiles list" width="800">
+
+The list of browser profiles.
+
+<img src="docs/img/screens/en-macro.png" alt="Macro editor" width="800">
+
+A macro is a list of steps. Each data column fills one field of the form.
+
+<img src="docs/img/screens/en-run.png" alt="Run screen" width="800">
+
+A run shows the state of each data row.
+
+<img src="docs/img/screens/en-engines.png" alt="Engines screen" width="800">
+
+An engine is a browser that Ladilala opens.
+
 ## Download
 
 Version 1.1.0, Windows 64-bit. Use the button above, or open the [latest release](https://github.com/71zone/ladilala/releases/latest).

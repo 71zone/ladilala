@@ -11,6 +11,24 @@ Ladilala là ứng dụng Windows làm hai việc.
 
 Ứng dụng mặc định bằng tiếng Việt. Có sẵn tiếng Anh. Ứng dụng tự cập nhật.
 
+## Hình ảnh
+
+<img src="docs/img/screens/vi-profiles.png" alt="Danh sách hồ sơ" width="800">
+
+Danh sách hồ sơ trình duyệt.
+
+<img src="docs/img/screens/vi-macro.png" alt="Trình chỉnh macro" width="800">
+
+Macro gồm các bước. Mỗi cột dữ liệu điền vào một ô của biểu mẫu.
+
+<img src="docs/img/screens/vi-run.png" alt="Màn hình chạy" width="800">
+
+Lượt chạy theo dõi từng dòng dữ liệu.
+
+<img src="docs/img/screens/vi-engines.png" alt="Màn hình engine" width="800">
+
+Engine là trình duyệt mà Ladilala mở.
+
 ## Tải về
 
 Phiên bản 1.1.0, Windows 64-bit. Bấm nút ở trên, hoặc mở [bản phát hành mới nhất](https://github.com/71zone/ladilala/releases/latest).
