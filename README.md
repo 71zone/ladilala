@@ -1,28 +1,30 @@
 # Ladilala
 
-[![Download for Windows](https://img.shields.io/badge/Download_for_Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/71zone/ladilala/releases/latest)
+[Tiếng Việt](README.md) | [English](README.en.md)
 
-Ladilala is a Windows app that does two jobs.
+[![Tải cho Windows](https://img.shields.io/badge/T%E1%BA%A3i_cho_Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/71zone/ladilala/releases/latest)
 
-- **Browser profiles.** Each profile is a separate browser with its own proxy, its own identity and its own saved logins. Profiles do not mix.
-- **Web macros.** Record a task once in the browser. Ladilala repeats it for every row of your Excel, CSV, JSON or REST data. Use it to fill forms.
+Ladilala là ứng dụng Windows làm hai việc.
 
-The app is in Vietnamese by default. English is built in. It updates itself.
+- **Hồ sơ trình duyệt.** Mỗi hồ sơ là một trình duyệt riêng, có proxy riêng, danh tính riêng và đăng nhập riêng. Các hồ sơ không lẫn vào nhau.
+- **Macro web.** Ghi một thao tác một lần trên trình duyệt. Ladilala lặp lại thao tác đó cho từng dòng dữ liệu Excel, CSV, JSON hoặc REST của bạn. Dùng để điền biểu mẫu.
 
-## Download
+Ứng dụng mặc định bằng tiếng Việt. Có sẵn tiếng Anh. Ứng dụng tự cập nhật.
 
-Version 1.1.0, Windows 64-bit. Use the button above, or open the [latest release](https://github.com/71zone/ladilala/releases/latest).
+## Tải về
 
-- `ladilala-1.1.0-windows-amd64-setup.exe`: the installer. Use this one first.
-- `ladilala-1.1.0-windows-amd64.exe`: the portable program. No install needed.
+Phiên bản 1.1.0, Windows 64-bit. Bấm nút ở trên, hoặc mở [bản phát hành mới nhất](https://github.com/71zone/ladilala/releases/latest).
 
-Windows may show a SmartScreen warning. The files are not code-signed yet. Two of 71 antivirus engines flag the program as a possible threat. Both flags come from machine-learning rules and are likely false alarms. See the [VirusTotal result](https://www.virustotal.com/gui/file/4e8db0d2e8350dea35cef32c2eade86702f3b783d8e75904936236bb54c23164). Checksums are in `SHA256SUMS.txt` in the release.
+- `ladilala-1.1.0-windows-amd64-setup.exe`: bộ cài đặt. Hãy dùng file này trước.
+- `ladilala-1.1.0-windows-amd64.exe`: bản chạy trực tiếp. Không cần cài đặt.
 
-## Good to know
+Windows có thể hiện cảnh báo SmartScreen. Các file chưa được ký số. Hai trong 71 phần mềm diệt virus đánh dấu chương trình là có thể nguy hiểm. Cả hai cảnh báo đến từ luật học máy và nhiều khả năng là báo nhầm. Xem [kết quả VirusTotal](https://www.virustotal.com/gui/file/4e8db0d2e8350dea35cef32c2eade86702f3b783d8e75904936236bb54c23164). Mã kiểm tra (checksum) nằm trong `SHA256SUMS.txt` của bản phát hành.
 
-- Windows 11 is tested. Windows 10 is not.
-- Google Sheets is not supported yet.
+## Lưu ý
 
-## For developers
+- Đã thử trên Windows 11. Chưa thử trên Windows 10.
+- Chưa hỗ trợ Google Sheets.
 
-See [docs/development.md](docs/development.md) for the code layout, the build and the tests.
+## Dành cho lập trình viên
+
+Xem [docs/development.md](docs/development.md) (tiếng Anh) để biết cấu trúc mã, cách build và cách chạy test.

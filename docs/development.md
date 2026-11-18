@@ -1,6 +1,6 @@
 # Development
 
-For contributors. The product overview is in the [README](../README.md).
+For contributors. The product overview is in the [README](../README.en.md).
 
 ## Layout
 
