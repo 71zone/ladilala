@@ -1,5 +1,7 @@
 # Ladilala
 
+[![Download for Windows](https://img.shields.io/badge/Download_for_Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/71zone/ladilala/releases/latest)
+
 Ladilala is a Windows app that does two jobs.
 
 - **Browser profiles.** Each profile is a separate browser with its own proxy, its own identity and its own saved logins. Profiles do not mix.
@@ -9,7 +11,7 @@ The app is in Vietnamese by default. English is built in. It updates itself.
 
 ## Download
 
-Version 1.1.0, Windows 64-bit. [Get it from the latest release](https://github.com/71zone/ladilala/releases/latest).
+Version 1.1.0, Windows 64-bit. Use the button above, or open the [latest release](https://github.com/71zone/ladilala/releases/latest).
 
 - `ladilala-1.1.0-windows-amd64-setup.exe`: the installer. Use this one first.
 - `ladilala-1.1.0-windows-amd64.exe`: the portable program. No install needed.
