@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/71zone/ladilala/compare/v1.1.0...v1.1.1) (2026-11-19)
+
+
+### Bug fixes
+
+* **ui:** do not crash the profile list on an untested proxy ([0c2322f](https://github.com/71zone/ladilala/commit/0c2322fea46e38734a4aecbbb781759b9cc0f2c1))
+* **ui:** show a warning for a proxy that is not tested yet ([31da04d](https://github.com/71zone/ladilala/commit/31da04dc9fe22c08f1973061dc5b1e61955e7b28))
+
 ## [1.1.0](https://github.com/71zone/ladilala/compare/v1.0.1...v1.1.0) (2026-11-17)
 
 
