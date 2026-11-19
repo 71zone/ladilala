@@ -52,6 +52,10 @@ A rollback points the feed at an older version. Users who already have a newer v
 - "digest mismatch" in the app log: the file served differs from the manifest. Run `scripts/ship.sh publish <version>` again to compare the served bytes. Never edit an uploaded exe.
 - "invalid signature" in the app: the release was signed with a key that is not in `app/updater.pub`. `verify` shows this before you publish.
 
+## GitHub release
+
+After `ship.sh all`, publish the GitHub release for the tag. Attach the installer, the portable exe and `SHA256SUMS.txt`. Also attach a copy of the installer named exactly `ladilala-setup.exe`. The Download button in the READMEs links to `releases/latest/download/ladilala-setup.exe`. Without this file, the button gives a 404.
+
 ## Commits, changelog and the release PR
 
 Every commit on `main` uses the Conventional Commits format: `type(scope): subject`. Types: `feat`, `fix`, `perf`, `revert` appear in the changelog. `docs`, `test`, `build`, `ci`, `chore`, `refactor` do not. Put `!` after the type or `BREAKING CHANGE:` in the body for a breaking change.

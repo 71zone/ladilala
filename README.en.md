@@ -2,7 +2,7 @@
 
 **English** | [Tiếng Việt](README.md)
 
-[![Download for Windows](https://img.shields.io/badge/Download_for_Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/71zone/ladilala/releases/latest)
+[![Download for Windows](https://img.shields.io/badge/Download_for_Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/71zone/ladilala/releases/latest/download/ladilala-setup.exe)
 
 Ladilala is a Windows app that does two jobs.
 
