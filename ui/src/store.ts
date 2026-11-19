@@ -155,9 +155,11 @@ export function consistency(p: Profile): Check[] {
   if (!px) out.push({ level: 'warn', k: 'noProxy' })
   else {
     out.push(px.status === 'down' ? { level: 'warn', k: 'proxyDown' } : { level: 'ok', k: 'proxyOk' })
-    out.push(p.tz === px.tz ? { level: 'ok', k: 'tzOk', p: { tz: px.tz } } : { level: 'warn', k: 'tzDiff', p: { tz: p.tz, proxy: px.tz } })
-    const cn = countryName(px.cc)
-    out.push(p.lang.split('-')[1] === px.cc || p.lang.startsWith(px.lang.split('-')[0]) ? { level: 'ok', k: 'langOk', p: { lang: p.lang, country: cn } } : { level: 'warn', k: 'langOdd', p: { lang: p.lang, country: cn } })
+    if (px.tz && px.cc && px.lang) {
+      out.push(p.tz === px.tz ? { level: 'ok', k: 'tzOk', p: { tz: px.tz } } : { level: 'warn', k: 'tzDiff', p: { tz: p.tz, proxy: px.tz } })
+      const cn = countryName(px.cc)
+      out.push(p.lang.split('-')[1] === px.cc || p.lang.startsWith(px.lang.split('-')[0]) ? { level: 'ok', k: 'langOk', p: { lang: p.lang, country: cn } } : { level: 'warn', k: 'langOdd', p: { lang: p.lang, country: cn } })
+    }
   }
   out.push(p.noise.webrtc === 'real' && px ? { level: 'warn', k: 'webrtcLeak' } : { level: 'ok', k: 'webrtcOk' })
   const [w] = p.screen.split('x').map(Number)
