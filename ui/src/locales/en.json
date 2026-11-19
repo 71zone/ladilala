@@ -248,6 +248,7 @@
     "noProxy": "No proxy: real IP will be used",
     "proxyDown": "Proxy is down: session will fail closed",
     "proxyOk": "Proxy reachable: ok",
+    "proxyUntested": "Proxy not tested yet",
     "tzOk": "Timezone matches proxy ({tz}): ok",
     "tzDiff": "Timezone {tz} differs from proxy {proxy}",
     "langOk": "Language {lang} plausible for {country}: ok",

@@ -248,6 +248,7 @@
     "noProxy": "Không có proxy: sẽ dùng IP thật",
     "proxyDown": "Proxy đang lỗi: phiên sẽ bị ngắt an toàn",
     "proxyOk": "Proxy kết nối được: ổn",
+    "proxyUntested": "Proxy chưa được kiểm tra",
     "tzOk": "Múi giờ khớp proxy ({tz}): ổn",
     "tzDiff": "Múi giờ {tz} khác proxy {proxy}",
     "langOk": "Ngôn ngữ {lang} hợp lý cho {country}: ổn",

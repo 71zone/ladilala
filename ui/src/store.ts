@@ -154,7 +154,7 @@ export function consistency(p: Profile): Check[] {
   out.push(p.ua.includes(o.uaOs) ? { level: 'ok', k: 'uaPlatformOk' } : { level: 'fail', k: 'uaPlatformBad', p: { os: p.os } })
   if (!px) out.push({ level: 'warn', k: 'noProxy' })
   else {
-    out.push(px.status === 'down' ? { level: 'warn', k: 'proxyDown' } : { level: 'ok', k: 'proxyOk' })
+    out.push(px.status === 'down' ? { level: 'warn', k: 'proxyDown' } : px.status === 'untested' ? { level: 'warn', k: 'proxyUntested' } : { level: 'ok', k: 'proxyOk' })
     if (px.tz && px.cc && px.lang) {
       out.push(p.tz === px.tz ? { level: 'ok', k: 'tzOk', p: { tz: px.tz } } : { level: 'warn', k: 'tzDiff', p: { tz: p.tz, proxy: px.tz } })
       const cn = countryName(px.cc)
