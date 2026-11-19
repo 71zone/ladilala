@@ -31,12 +31,12 @@ An engine is a browser that Ladilala opens.
 
 ## Download
 
-Version 1.1.0, Windows 64-bit. Use the button above, or open the [latest release](https://github.com/71zone/ladilala/releases/latest).
+Version 1.1.1, Windows 64-bit. Use the button above, or open the [latest release](https://github.com/71zone/ladilala/releases/latest).
 
-- `ladilala-1.1.0-windows-amd64-setup.exe`: the installer. Use this one first.
-- `ladilala-1.1.0-windows-amd64.exe`: the portable program. No install needed.
+- `ladilala-1.1.1-windows-amd64-setup.exe`: the installer. Use this one first.
+- `ladilala-1.1.1-windows-amd64.exe`: the portable program. No install needed.
 
-Windows may show a SmartScreen warning. The files are not code-signed yet. Two of 71 antivirus engines flag the program as a possible threat. Both flags come from machine-learning rules and are likely false alarms. See the [VirusTotal result](https://www.virustotal.com/gui/file/4e8db0d2e8350dea35cef32c2eade86702f3b783d8e75904936236bb54c23164). Checksums are in `SHA256SUMS.txt` in the release.
+Windows may show a SmartScreen warning. The files are not code-signed yet. Two of 71 antivirus engines flag the program as a possible threat. Both flags come from machine-learning rules and are likely false alarms. See the [VirusTotal result for 1.1.0](https://www.virustotal.com/gui/file/4e8db0d2e8350dea35cef32c2eade86702f3b783d8e75904936236bb54c23164). Checksums are in `SHA256SUMS.txt` in the release.
 
 ## Good to know
 

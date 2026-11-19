@@ -31,12 +31,12 @@ Engine là trình duyệt mà Ladilala mở.
 
 ## Tải về
 
-Phiên bản 1.1.0, Windows 64-bit. Bấm nút ở trên, hoặc mở [bản phát hành mới nhất](https://github.com/71zone/ladilala/releases/latest).
+Phiên bản 1.1.1, Windows 64-bit. Bấm nút ở trên, hoặc mở [bản phát hành mới nhất](https://github.com/71zone/ladilala/releases/latest).
 
-- `ladilala-1.1.0-windows-amd64-setup.exe`: bộ cài đặt. Hãy dùng file này trước.
-- `ladilala-1.1.0-windows-amd64.exe`: bản chạy trực tiếp. Không cần cài đặt.
+- `ladilala-1.1.1-windows-amd64-setup.exe`: bộ cài đặt. Hãy dùng file này trước.
+- `ladilala-1.1.1-windows-amd64.exe`: bản chạy trực tiếp. Không cần cài đặt.
 
-Windows có thể hiện cảnh báo SmartScreen. Các file chưa được ký số. Hai trong 71 phần mềm diệt virus đánh dấu chương trình là có thể nguy hiểm. Cả hai cảnh báo đến từ luật học máy và nhiều khả năng là báo nhầm. Xem [kết quả VirusTotal](https://www.virustotal.com/gui/file/4e8db0d2e8350dea35cef32c2eade86702f3b783d8e75904936236bb54c23164). Mã kiểm tra (checksum) nằm trong `SHA256SUMS.txt` của bản phát hành.
+Windows có thể hiện cảnh báo SmartScreen. Các file chưa được ký số. Hai trong 71 phần mềm diệt virus đánh dấu chương trình là có thể nguy hiểm. Cả hai cảnh báo đến từ luật học máy và nhiều khả năng là báo nhầm. Xem [kết quả VirusTotal của bản 1.1.0](https://www.virustotal.com/gui/file/4e8db0d2e8350dea35cef32c2eade86702f3b783d8e75904936236bb54c23164). Mã kiểm tra (checksum) nằm trong `SHA256SUMS.txt` của bản phát hành.
 
 ## Lưu ý
 
